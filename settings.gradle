@@ -1,0 +1,2 @@
+rootProject.name='zjp-wandroid-master'
+include ':app'
