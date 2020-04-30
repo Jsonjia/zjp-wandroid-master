@@ -29,7 +29,6 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
 
     protected VM mViewModel;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
