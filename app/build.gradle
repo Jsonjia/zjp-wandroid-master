@@ -1,15 +1,19 @@
 apply plugin: 'com.android.application'
 
+def androidId = rootProject.ext.androidId
+def androidXTest = rootProject.ext.androidXTest
+def support = rootProject.ext.dependencies
+
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.zjp.wandroid"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        applicationId androidId.applicationId
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -21,14 +25,26 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    if (isMainModule.toBoolean()) { //独立运行
+        implementation project(':library-base')
+    } else { //合并
+        implementation project(':module-main')
+        implementation project(':module-project')
+        implementation project(':module-square')
+        implementation project(':module-officialaccount')
+        implementation project(':module-mine')
+    }
 }

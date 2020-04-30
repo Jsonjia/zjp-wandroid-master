@@ -1,0 +1,50 @@
+ext {
+
+    androidId = [
+            compileSdkVersion: 29,
+            buildToolsVersion: '29.0.3',
+            applicationId    : "com.zjp.wandroid",
+            minSdkVersion    : 21,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+
+    version = [
+            appcompatVersion: "1.1.0",
+            constraintlayout: "1.1.3",
+            materialVersion : "1.1.0",
+    ]
+
+    androidXTest = [
+            "junit"                               : "junit:junit:4.12",
+            "androidx.test.ext_junit"             : "androidx.test.ext:junit:1.1.1",
+            "androidx.test.espresso:espresso_core": "androidx.test.espresso:espresso-core:3.2.0",
+    ]
+
+    androidx = [
+            "appcompat"       : "androidx.appcompat:appcompat:${version["appcompatVersion"]}",
+            "constraintlayout": "androidx.constraintlayout:constraintlayout:${version["constraintlayout"]}",
+            "material"        : "com.google.android.material:material:${version["materialVersion"]}",
+            "lifecycle"       : "androidx.lifecycle:lifecycle-extensions:2.1.0",
+    ]
+
+    dependencies = [
+
+            //retrofit
+            "retrofit"           : "com.squareup.retrofit2:retrofit:2.8.1",
+            "converter_gson"     : "com.squareup.retrofit2:converter-gson:2.8.1",
+            "adapter_rxjava"     : "com.squareup.retrofit2:adapter-rxjava2:2.8.1",
+            "converter_scalars"  : "com.squareup.retrofit2:converter-scalars:2.8.1",
+
+            //okhttp
+            "okhttp"             : "com.squareup.okhttp3:okhttp:4.4.0",
+            "logging_interceptor": "com.squareup.okhttp3:logging-interceptor:4.4.0",
+
+            //rxjava
+            "rxjava"             : "io.reactivex.rxjava3:rxjava:3.0.2",
+            "rxandroid"          : "io.reactivex.rxjava3:rxandroid:3.0.0",
+
+            "lifecycle": "androidx.lifecycle:lifecycle-extensions:2.1.0",
+    ]
+}

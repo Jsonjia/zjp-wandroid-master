@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--默认主题颜色-->
+    <color name="colorPrimary">#139FF8</color>
+    <color name="colorPrimaryDark">#139FF8</color>
+    <color name="colorAccent">#139FF8</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="c_bfbfbf">#bfbfbf</color>
+
+</resources>

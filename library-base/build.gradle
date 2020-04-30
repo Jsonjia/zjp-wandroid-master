@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+
+def androidId = rootProject.ext.androidId
+def androidXTest = rootProject.ext.androidXTest
+def androidx = rootProject.ext.androidx
+def support = rootProject.ext.dependencies
+
+android {
+    compileSdkVersion androidId.compileSdkVersion
+    buildToolsVersion androidId.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion androidId.minSdkVersion
+        targetSdkVersion androidId.targetSdkVersion
+        versionCode androidId.versionCode
+        versionName androidId.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    androidXTest.each { k, v -> api v }
+
+    api androidx.appcompat
+    api androidx.material
+
+    api support.retrofit
+    api support.converter_gson
+    api support.adapter_rxjava
+    api support.converter_scalars
+    api support.okhttp
+    api support.logging_interceptor
+    api support.rxjava
+    api support.rxandroid
+    api support.lifecycle
+}

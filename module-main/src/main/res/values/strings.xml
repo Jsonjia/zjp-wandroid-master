@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">moudle-main</string>
+
+    <string name="ic_tab_home_txt">首页</string>
+    <string name="ic_tab_project_txt">项目</string>
+    <string name="ic_tab_square_txt">广场</string>
+    <string name="ic_tab_official_accounts_txt">公众号</string>
+    <string name="ic_tab_mine_txt">我的</string>
+</resources>

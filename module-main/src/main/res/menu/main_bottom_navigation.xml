@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:checked="true"
+        android:icon="@mipmap/home"
+        android:title="@string/ic_tab_home_txt" />
+    <item
+        android:id="@+id/menu_project"
+        android:icon="@mipmap/project"
+        android:title="@string/ic_tab_project_txt" />
+    <item
+        android:id="@+id/menu_square"
+        android:icon="@mipmap/square"
+        android:title="@string/ic_tab_square_txt" />
+
+    <item
+        android:id="@+id/menu_official_accounts"
+        android:icon="@mipmap/official_account"
+        android:title="@string/ic_tab_official_accounts_txt" />
+    <item
+        android:id="@+id/menu_official_account"
+        android:icon="@mipmap/mine"
+        android:title="@string/ic_tab_mine_txt" />
+</menu>
