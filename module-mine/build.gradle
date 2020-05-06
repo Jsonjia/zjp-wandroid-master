@@ -13,4 +13,5 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':library-common')
+    annotationProcessor support.arouter_compiler
 }

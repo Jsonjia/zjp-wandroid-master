@@ -45,6 +45,15 @@ ext {
             "rxjava"             : "io.reactivex.rxjava3:rxjava:3.0.2",
             "rxandroid"          : "io.reactivex.rxjava3:rxandroid:3.0.0",
 
-            "lifecycle": "androidx.lifecycle:lifecycle-extensions:2.1.0",
+            "lifecycle"          : "androidx.lifecycle:lifecycle-extensions:2.2.0",
+
+            "arouter_api"        : "com.alibaba:arouter-api:1.5.0",
+            "arouter_compiler"   : "com.alibaba:arouter-compiler:1.2.2",
+
+            //banner
+            "banner"             : "com.youth.banner:banner:2.0.8",
+
+            //refresh
+            "refreshlayout"      : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
     ]
 }

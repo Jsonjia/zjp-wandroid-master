@@ -41,5 +41,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(':library-network')
+
+
+//    api androidx.appcompat
+    api androidx.material
     api androidx.constraintlayout
+
+    api support.arouter_api
+    api support.refreshlayout
 }

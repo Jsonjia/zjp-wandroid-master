@@ -5,14 +5,15 @@ def support = rootProject.ext.dependencies
 android {
     defaultConfig {
         if (isMainModule.toBoolean()) {
-            applicationId "com.zjp.officialaccount"
+            applicationId "com.zjp.home"
         }
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     api project(':library-common')
     annotationProcessor support.arouter_compiler
+
+    implementation support.banner
 }

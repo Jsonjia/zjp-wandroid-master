@@ -40,9 +40,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     androidXTest.each { k, v -> api v }
-
+    
     api androidx.appcompat
-    api androidx.material
 
     api support.retrofit
     api support.converter_gson
