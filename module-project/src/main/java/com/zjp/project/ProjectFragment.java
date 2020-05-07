@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ProjectFragment extends AppCompatActivity {
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.zjp.base.fragment.BaseFragment;
+import com.zjp.common.router.RouterFragmentPath;
+
+@Route(path = RouterFragmentPath.Project.PAGER_PROJECT)
+public class ProjectFragment extends BaseFragment {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_project_fragment);
+    public int getLayoutId() {
+        return R.layout.fragment_project_fragment;
     }
 }
