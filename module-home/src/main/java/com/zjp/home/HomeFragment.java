@@ -14,4 +14,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, BaseView
     public int getLayoutId() {
         return R.layout.home_fragment_home;
     }
+
+
 }
