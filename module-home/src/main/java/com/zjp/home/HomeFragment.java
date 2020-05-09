@@ -9,13 +9,14 @@ import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
+import com.zjp.home.databinding.ProjectFragmentBinding;
 
 @Route(path = RouterFragmentPath.Home.PAGER_HOME)
-public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, BaseViewModel> {
+public class HomeFragment extends BaseFragment<ProjectFragmentBinding, BaseViewModel> {
 
     @Override
     public int getLayoutId() {
-        return R.layout.home_fragment_home;
+        return R.layout.project_fragment;
     }
 
 

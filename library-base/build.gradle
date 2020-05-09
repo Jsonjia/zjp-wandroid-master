@@ -52,4 +52,5 @@ dependencies {
     api support.rxjava
     api support.rxandroid
     api support.lifecycle
+    api support.arouter_api
 }

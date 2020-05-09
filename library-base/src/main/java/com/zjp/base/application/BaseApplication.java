@@ -15,6 +15,7 @@ import com.zjp.base.manager.AppManager;
 public class BaseApplication extends Application {
 
     private static BaseApplication sInstance;
+    private static boolean debug;
 
     @Override
     public void onCreate() {
@@ -77,5 +78,13 @@ public class BaseApplication extends Application {
                     "please inherit BaseApplication or call setApplication.");
         }
         return sInstance;
+    }
+
+    public void setDebug(boolean isDebug) {
+        debug = isDebug;
+    }
+
+    public boolean isDebug() {
+        return debug;
     }
 }

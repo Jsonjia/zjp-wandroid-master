@@ -15,11 +15,11 @@
         android:title="@string/ic_tab_square_txt" />
 
     <item
-        android:id="@+id/menu_official_accounts"
+        android:id="@+id/menu_official_account"
         android:icon="@mipmap/official_account"
         android:title="@string/ic_tab_official_accounts_txt" />
     <item
-        android:id="@+id/menu_official_account"
+        android:id="@+id/menu_mine"
         android:icon="@mipmap/mine"
         android:title="@string/ic_tab_mine_txt" />
 </menu>

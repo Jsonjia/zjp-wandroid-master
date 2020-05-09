@@ -29,7 +29,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
-
+        initView();
         mViewDataBinding.setLifecycleOwner(this);
         initViewModel();
 
@@ -39,6 +39,10 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
     @LayoutRes
     protected abstract int getLayoutId();
+
+    protected void initView() {
+
+    }
 
     private void initViewModel() {
         if (mViewModel == null) {
