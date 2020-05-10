@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 
 def androidId = rootProject.ext.androidId
-def androidXTest = rootProject.ext.androidXTest
 def androidx = rootProject.ext.androidx
 def support = rootProject.ext.dependencies
 
@@ -43,7 +42,6 @@ dependencies {
     api project(':library-network')
 
 
-//    api androidx.appcompat
     api androidx.material
     api androidx.constraintlayout
 

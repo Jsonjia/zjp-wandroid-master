@@ -43,6 +43,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         super.onViewCreated(view, savedInstanceState);
         initViewModel();
         getLifecycle().addObserver(mViewModel);
+        initView();
     }
 
     @LayoutRes
@@ -59,6 +60,10 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
             }
             mViewModel = (VM) ViewModelProviders.of(this).get(modelClass);
         }
+    }
+
+    protected void initView() {
+
     }
 
     @Override

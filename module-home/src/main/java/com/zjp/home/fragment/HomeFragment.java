@@ -1,4 +1,4 @@
-package com.zjp.home;
+package com.zjp.home.fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.router.RouterFragmentPath;
+import com.zjp.home.R;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.databinding.ProjectFragmentBinding;
 
@@ -16,8 +17,12 @@ public class HomeFragment extends BaseFragment<ProjectFragmentBinding, BaseViewM
 
     @Override
     public int getLayoutId() {
-        return R.layout.project_fragment;
+        return R.layout.home_fragment_home;
     }
 
+    @Override
+    protected void initView() {
+        super.initView();
 
+    }
 }
