@@ -1,4 +1,4 @@
-package com.zjp.base.moudle;
+package com.zjp.base.module;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zjp.base.application.BaseApplication;

@@ -9,13 +9,14 @@ import androidx.lifecycle.LifecycleOwner;
 
 import com.zjp.base.interf.IBaseViewModel;
 
-import io.reactivex.rxjava3.disposables.CompositeDisposable;
-import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by zjp on 2020/4/30 16:14
  */
-public class BaseViewModel extends AndroidViewModel implements IBaseViewModel {
+public class BaseViewModel extends AndroidViewModel implements IBaseViewModel, Consumer<Disposable> {
 
     private CompositeDisposable mCompositeDisposable;
 
@@ -71,5 +72,11 @@ public class BaseViewModel extends AndroidViewModel implements IBaseViewModel {
     @Override
     public void onPause() {
 
+    }
+
+
+    @Override
+    public void accept(Disposable disposable) throws Exception {
+        addDisposable(disposable);
     }
 }

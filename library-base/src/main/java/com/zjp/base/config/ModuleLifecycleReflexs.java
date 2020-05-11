@@ -8,7 +8,7 @@ public class ModuleLifecycleReflexs {
     /**
      * 基础库
      */
-    private static final String BaseInit = "com.zjp.base.moudle.CommonModuleInit";
+    private static final String BaseInit = "com.zjp.base.module.CommonModuleInit";
 
     public static String[] initModuleNames = {BaseInit};
 }

@@ -3,7 +3,7 @@ package com.zjp.base.config;
 import androidx.annotation.Nullable;
 
 import com.zjp.base.application.BaseApplication;
-import com.zjp.base.moudle.IModuleInit;
+import com.zjp.base.module.IModuleInit;
 
 
 /**

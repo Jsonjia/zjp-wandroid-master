@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="picUrl"
+            type="java.lang.String" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_cover"
+            loadImageUrl="@{picUrl}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            tools:background="@mipmap/square_default_bg" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_banner_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp35"
+            android:layout_alignParentBottom="true"
+            android:background="#4d000000"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/dp11"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp12"
+            tools:text="我是标题" />
+    </RelativeLayout>
+</layout>

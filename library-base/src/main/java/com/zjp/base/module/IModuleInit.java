@@ -1,4 +1,4 @@
-package com.zjp.base.moudle;
+package com.zjp.base.module;
 
 import com.zjp.base.application.BaseApplication;
 
