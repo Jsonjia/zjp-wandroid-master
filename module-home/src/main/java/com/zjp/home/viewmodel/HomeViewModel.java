@@ -75,6 +75,7 @@ public class HomeViewModel extends BaseViewModel {
                         return data;
                     }
                 }).compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
                 .subscribe(new Consumer<List<ArticleEntity.DatasBean>>() {
                     @Override
                     public void accept(List<ArticleEntity.DatasBean> datasBeans) throws Exception {
