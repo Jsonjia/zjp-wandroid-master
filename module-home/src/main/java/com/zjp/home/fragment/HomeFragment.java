@@ -34,7 +34,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     protected void initView() {
         super.initView();
 
-
         mViewModel.getBanner();
 
         mViewModel.mBannerList.observe(this, bannerEntities -> {

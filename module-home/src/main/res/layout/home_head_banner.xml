@@ -13,7 +13,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_cover"
@@ -28,11 +28,13 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp35"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/dp30"
             android:background="#4d000000"
             android:gravity="center_vertical"
             android:paddingLeft="@dimen/dp11"
             android:textColor="@color/white"
             android:textSize="@dimen/sp12"
+            android:visibility="gone"
             tools:text="我是标题" />
     </RelativeLayout>
 </layout>

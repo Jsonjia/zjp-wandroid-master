@@ -9,7 +9,7 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
@@ -40,9 +40,7 @@
                 <com.youth.banner.Banner
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginLeft="@dimen/dp10"
-                    android:layout_marginRight="@dimen/dp10" />
+                    android:layout_height="250dp" />
 
                 <androidx.core.widget.NestedScrollView
                     android:layout_width="match_parent"
@@ -51,7 +49,7 @@
                     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
                     <LinearLayout
-                        android:id="@+id/l"
+                        android:id="@+id/llRadius"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -67,12 +65,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="42dp"
                             android:background="@color/white"
+                            android:gravity="center"
                             android:orientation="horizontal">
 
                             <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="42dp"
-                                android:layout_height="42dp"
+                                android:layout_width="@dimen/dp38"
+                                android:layout_height="@dimen/dp38"
                                 android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
                                 android:padding="8dp"
                                 android:src="@mipmap/article_icon" />
 
@@ -87,17 +87,15 @@
                         </LinearLayout>
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recy"
+                            android:id="@+id/rvHomeList"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/white"
-                            android:overScrollMode="never" />
+                            android:background="@color/white" />
 
                     </LinearLayout>
-
                 </androidx.core.widget.NestedScrollView>
-
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -130,5 +128,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </FrameLayout>
 </layout>

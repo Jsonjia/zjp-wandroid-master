@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.zjp.base.interf.IBaseView;
 import com.zjp.base.viewmodel.BaseViewModel;
 
@@ -25,9 +26,12 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
     protected VM mViewModel;
 
+    protected ImmersionBar mImmersionBar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initImmersionBar();
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         initView();
         mViewDataBinding.setLifecycleOwner(this);
@@ -35,6 +39,11 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
         //让ViewModel拥有View的生命周期感应
         getLifecycle().addObserver(mViewModel);
+    }
+
+    protected void initImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
     }
 
     @LayoutRes
