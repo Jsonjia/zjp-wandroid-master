@@ -25,6 +25,11 @@ public class ArticleEntity {
     private int total;
     private List<DatasBean> datas;
 
+
+    public String show() {
+        return ("第1次翻译=" + total);
+    }
+
     public int getCurPage() {
         return curPage;
     }
@@ -82,6 +87,8 @@ public class ArticleEntity {
     }
 
     public static class DatasBean {
+
+
         /**
          * apkLink :
          * audit : 1
@@ -147,6 +154,12 @@ public class ArticleEntity {
         private int visible;
         private int zan;
         private List<?> tags;
+
+        public String show() {
+
+            return ("第2次翻译=" + desc);
+
+        }
 
         public String getApkLink() {
             return apkLink;

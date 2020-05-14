@@ -47,5 +47,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         });
 
 
+        mViewModel.getArticleList(1);
+
     }
 }
