@@ -13,7 +13,14 @@ import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.blankj.utilcode.util.ToastUtils;
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
 import com.zjp.base.interf.IBaseView;
+import com.zjp.base.loadsir.EmptyCallback;
+import com.zjp.base.loadsir.ErrorCallback;
+import com.zjp.base.loadsir.LoadingCallback;
 import com.zjp.base.viewmodel.BaseViewModel;
 
 import java.lang.reflect.ParameterizedType;
@@ -28,6 +35,10 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     protected V mViewDataBinding;
 
     protected VM mViewModel;
+
+    protected LoadService mLoadService;
+
+    private boolean isShowedContent = false;
 
     @Nullable
     @Override
@@ -66,23 +77,55 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
 
     }
 
+    /**
+     * 注册LoadSir
+     *
+     * @param view 替换视图
+     */
+    public void setLoadSir(View view) {
+        if (mLoadService == null) {
+            mLoadService = LoadSir.getDefault()
+                    .register(view, (Callback.OnReloadListener) v -> onRetryBtnClick());
+        }
+        showLoading();
+    }
+
     @Override
     public void showContent() {
-
+        if (null != mLoadService) {
+            isShowedContent = true;
+            mLoadService.showSuccess();
+        }
     }
 
     @Override
     public void showLoading() {
-
+        if (null != mLoadService) {
+            mLoadService.showCallback(LoadingCallback.class);
+        }
     }
 
     @Override
     public void showEmpty() {
-
+        if (null != mLoadService) {
+            mLoadService.showCallback(EmptyCallback.class);
+        }
     }
 
     @Override
     public void showFailure(@Nullable String message) {
+        if (null != mLoadService) {
+            if (!isShowedContent) {
+                mLoadService.showCallback(ErrorCallback.class);
+            } else {
+                ToastUtils.showShort(message);
+            }
+        }
+    }
 
+    /**
+     * 失败重试,重新加载事件
+     */
+    protected void onRetryBtnClick() {
     }
 }

@@ -1,6 +1,7 @@
 package com.zjp.base.viewmodel;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -34,6 +35,7 @@ public class BaseViewModel extends AndroidViewModel implements IBaseViewModel, C
     @Override
     protected void onCleared() {
         super.onCleared();
+        Log.d("zjp1","onCleared");
         if (mCompositeDisposable != null && !mCompositeDisposable.isDisposed()) {
             mCompositeDisposable.clear();
         }
@@ -77,6 +79,7 @@ public class BaseViewModel extends AndroidViewModel implements IBaseViewModel, C
 
     @Override
     public void accept(Disposable disposable) throws Exception {
+        Log.d("zjp1","accept");
         addDisposable(disposable);
     }
 }

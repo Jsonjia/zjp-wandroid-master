@@ -1,5 +1,10 @@
 package com.zjp.home.bean;
 
+import android.text.TextUtils;
+
+import com.chad.library.adapter.base.entity.MultiItemEntity;
+import com.zjp.common.constant.C;
+
 import java.util.List;
 
 /**
@@ -24,11 +29,6 @@ public class ArticleEntity {
     private int size;
     private int total;
     private List<DatasBean> datas;
-
-
-    public String show() {
-        return ("第1次翻译=" + total);
-    }
 
     public int getCurPage() {
         return curPage;
@@ -86,7 +86,7 @@ public class ArticleEntity {
         this.datas = datas;
     }
 
-    public static class DatasBean {
+    public static class DatasBean implements MultiItemEntity {
 
 
         /**
@@ -154,12 +154,6 @@ public class ArticleEntity {
         private int visible;
         private int zan;
         private List<?> tags;
-
-        public String show() {
-
-            return ("第2次翻译=" + desc);
-
-        }
 
         public String getApkLink() {
             return apkLink;
@@ -407,6 +401,14 @@ public class ArticleEntity {
 
         public void setTags(List<?> tags) {
             this.tags = tags;
+        }
+
+        @Override
+        public int getItemType() {
+            if (TextUtils.isEmpty(envelopePic)) {
+                return C.ARTICLE_ITEM;
+            }
+            return C.ARTICLE_ITEM_PIC;
         }
     }
 }

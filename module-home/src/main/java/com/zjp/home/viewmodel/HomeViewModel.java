@@ -1,5 +1,6 @@
 package com.zjp.home.viewmodel;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.util.Log;
 
@@ -32,7 +33,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class HomeViewModel extends BaseViewModel {
 
-    public MutableLiveData<List<BannerEntity>> mBannerList = new MutableLiveData<>();
+    public MutableLiveData<List<BannerEntity>> mBannerListMutable = new MutableLiveData<>();
+    public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -47,7 +49,7 @@ public class HomeViewModel extends BaseViewModel {
                     @Override
                     public void success(BaseResponse<List<BannerEntity>> response) {
                         if (response.getData() != null && response.getData().size() > 0) {
-                            mBannerList.postValue(response.getData());
+                            mBannerListMutable.postValue(response.getData());
                         } else {
 
                         }
@@ -60,70 +62,34 @@ public class HomeViewModel extends BaseViewModel {
                 }));
     }
 
+    @SuppressLint("CheckResult")
     public void getArticleList(int page) {
         HomeService homeService = RetrofitHelper.getInstance().create(HomeService.class);
         Observable.zip(homeService.getTopList(),
                 homeService.getHomeList(page),
+                // 注：创建BiFunction对象传入的第3个参数 = 合并后数据的数据类型
                 new BiFunction<BaseResponse<List<ArticleEntity.DatasBean>>, BaseResponse<ArticleEntity>, List<ArticleEntity.DatasBean>>() {
                     @Override
                     public List<ArticleEntity.DatasBean> apply(BaseResponse<List<ArticleEntity.DatasBean>> listBaseResponse, BaseResponse<ArticleEntity> articleEntityBaseResponse) throws Exception {
-                        List<ArticleEntity.DatasBean> data = new ArrayList<>();
-
-                        data.addAll(0, listBaseResponse.getData());
-                        ArticleEntity data1 = articleEntityBaseResponse.getData();
-                        data.addAll(data1.getDatas());
+                        List<ArticleEntity.DatasBean> data = listBaseResponse.getData();
+                        data.addAll(articleEntityBaseResponse.getData().getDatas());
                         return data;
                     }
                 }).compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
                 .subscribe(new Consumer<List<ArticleEntity.DatasBean>>() {
+                    // 成功返回数据时调用
                     @Override
                     public void accept(List<ArticleEntity.DatasBean> datasBeans) throws Exception {
-                        Log.d("zjp1", "最终接收到的数据是：" + datasBeans.get(0).getTitle());
+                        // 结合显示2个网络请求的数据结果
+                        mArticleListMutable.postValue(datasBeans);
                     }
                 }, new Consumer<Throwable>() {
+                    // 网络请求错误时调用
                     @Override
                     public void accept(Throwable throwable) throws Exception {
 
                     }
                 });
-
-//
-//        Observable<BaseResponse<List<ArticleEntity.DatasBean>>> topList = homeService.getTopList().subscribeOn(Schedulers.io());
-//        Observable<BaseResponse<ArticleEntity>> homeList = homeService.getHomeList(page).subscribeOn(Schedulers.io());
-//
-//        Observable.zip(topList, homeList,
-//                new BiFunction<BaseResponse<List<ArticleEntity.DatasBean>>, BaseResponse<ArticleEntity>,  List<ArticleEntity.DatasBean>>() {
-//                    @Override
-//                    public  List<ArticleEntity.DatasBean> apply(BaseResponse<List<ArticleEntity.DatasBean>> listBaseResponse, BaseResponse<ArticleEntity> articleEntityBaseResponse) throws Exception {
-//
-//                        List<ArticleEntity.DatasBean> data = new ArrayList<>();
-//
-////                        List<ArticleEntity.DatasBean> data = listBaseResponse.getData();
-//
-//                        data.addAll(0, listBaseResponse.getData());
-//
-//
-//                        ArticleEntity data1 = articleEntityBaseResponse.getData();
-//                        data.addAll(data1.getDatas());
-//
-//
-//                        return data;
-//                    }
-//                }).observeOn(AndroidSchedulers.mainThread()) // 在主线程接收 & 处理数据
-//                .subscribe(new Consumer< List<ArticleEntity.DatasBean>>() {
-//                    @Override
-//                    public void accept( List<ArticleEntity.DatasBean> s) throws Exception {
-//                        Log.d("zjp1", "最终接收到的数据是：" + s.get(0).getTitle());
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        Log.d("zjp1", "throwable：" + throwable);
-//                    }
-//                });
-
-
     }
-
 }

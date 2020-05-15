@@ -54,5 +54,7 @@ dependencies {
     api support.lifecycle
     api support.arouter_api
     api support.immersionbar
+    api support.loadsir
+    api support.utilcodex
 
 }

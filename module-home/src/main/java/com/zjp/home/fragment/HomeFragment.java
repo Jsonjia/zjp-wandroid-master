@@ -2,6 +2,7 @@ package com.zjp.home.fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 
@@ -13,8 +14,11 @@ import com.youth.banner.util.BannerUtils;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.router.RouterFragmentPath;
+import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
+import com.zjp.home.adapter.HomeArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
+import com.zjp.home.bean.ArticleEntity;
 import com.zjp.home.bean.BannerEntity;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.databinding.ProjectFragmentBinding;
@@ -25,6 +29,8 @@ import java.util.List;
 @Route(path = RouterFragmentPath.Home.PAGER_HOME)
 public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeViewModel> {
 
+    private HomeArticleListAdapter articleListAdapter;
+
     @Override
     public int getLayoutId() {
         return R.layout.home_fragment_home;
@@ -34,9 +40,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     protected void initView() {
         super.initView();
 
+        setLoadSir(mViewDataBinding.rootview);
+        mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
+                CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
+        mViewDataBinding.recy.setAdapter(articleListAdapter = new HomeArticleListAdapter(null));
         mViewModel.getBanner();
+        mViewModel.getArticleList(1);
 
-        mViewModel.mBannerList.observe(this, bannerEntities -> {
+        mViewModel.mBannerListMutable.observe(this, bannerEntities -> {
             if (bannerEntities != null && bannerEntities.size() > 0) {
                 mViewDataBinding.banner.setAdapter(new HomeHeadBannerAdapter(bannerEntities));
                 mViewDataBinding.banner.setIndicator(new CircleIndicator(getActivity()));
@@ -46,8 +58,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             }
         });
 
+        mViewModel.mArticleListMutable.observe(this, datasBeans -> {
+            showContent();
+            articleListAdapter.setList(datasBeans);
+        });
+    }
 
-        mViewModel.getArticleList(1);
+    @Override
+    protected void onRetryBtnClick() {
 
     }
 }

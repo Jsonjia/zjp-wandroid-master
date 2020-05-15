@@ -41,11 +41,11 @@ dependencies {
 
     api project(':library-network')
 
-
     api androidx.material
     api androidx.constraintlayout
 
     api support.arouter_api
     api support.refreshlayout
     api support.glide
+    api support.baseadapterhelper
 }
