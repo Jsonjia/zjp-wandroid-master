@@ -28,6 +28,8 @@
             android:background="@color/white"
             app:itemIconSize="20dp"
             app:itemIconTint="@drawable/bottom_navigation_item_selector"
+            app:itemTextAppearanceActive="@style/bottom_tab_title_active"
+            app:itemTextAppearanceInactive="@style/bottom_tab_title_inactive"
             app:itemTextColor="@drawable/bottom_navigation_item_selector"
             app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"

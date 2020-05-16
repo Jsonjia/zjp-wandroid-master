@@ -46,7 +46,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         mFragmentManager = getSupportFragmentManager();
         mFragmentMap = new SparseArray<>();
         pageTo(FRAGMENT_HOME);
-        mViewDataBinding.bottomnavigation.setItemIconTintList(null);
         mViewDataBinding.bottomnavigation.setOnNavigationItemSelectedListener(this);
     }
 
