@@ -1,10 +1,11 @@
-package com.zjp.login;
+package com.zjp.login.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.login.R;
 import com.zjp.login.databinding.ActivityLoginBinding;
 
 /**
