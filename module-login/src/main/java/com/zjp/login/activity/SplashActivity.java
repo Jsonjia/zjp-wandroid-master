@@ -2,7 +2,9 @@ package com.zjp.login.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zjp.base.activity.BaseActivity;
@@ -21,6 +23,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, BaseView
     @Override
     protected void initView() {
         super.initView();
-        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+//        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
     }
 }
