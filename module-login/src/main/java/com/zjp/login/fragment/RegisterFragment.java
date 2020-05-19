@@ -1,5 +1,8 @@
 package com.zjp.login.fragment;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.login.R;
@@ -12,5 +15,11 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Base
     @Override
     public int getLayoutId() {
         return R.layout.fragment_register;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+
     }
 }

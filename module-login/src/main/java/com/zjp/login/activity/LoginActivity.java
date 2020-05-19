@@ -19,6 +19,7 @@ import com.zjp.login.fragment.LoginFragment;
  */
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewModel> {
 
+    public  TextView tvRight;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -27,17 +28,11 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewMo
     @Override
     protected void initView() {
         super.initView();
-        TextView tvRight = mViewDataBinding.headTitle.getTvRight();
+         tvRight = mViewDataBinding.headTitle.getTvRight();
 
         tvRight.setVisibility(View.VISIBLE);
         tvRight.setText("注册");
 
-        tvRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(tvRight).navigate(R.id.action_fragment_register);
-            }
-        });
 
     }
 
