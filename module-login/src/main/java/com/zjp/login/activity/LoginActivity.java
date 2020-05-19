@@ -19,7 +19,8 @@ import com.zjp.login.fragment.LoginFragment;
  */
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewModel> {
 
-    public  TextView tvRight;
+    public TextView tvRight;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -28,12 +29,9 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewMo
     @Override
     protected void initView() {
         super.initView();
-         tvRight = mViewDataBinding.headTitle.getTvRight();
-
+        tvRight = mViewDataBinding.headTitle.getTvRight();
         tvRight.setVisibility(View.VISIBLE);
         tvRight.setText("注册");
-
-
     }
 
     @Override
