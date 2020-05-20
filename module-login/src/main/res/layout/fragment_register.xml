@@ -14,7 +14,7 @@
             android:id="@+id/tv_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp21"
+            android:layout_marginLeft="@dimen/dp25"
             android:layout_marginTop="@dimen/dp50"
             android:text="注册"
             android:textColor="@color/black"
@@ -41,6 +41,7 @@
             android:id="@+id/divider_name"
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp05"
+            android:background="@color/no_transparent_10_percent"
             app:layout_constraintLeft_toLeftOf="@+id/et_username"
             app:layout_constraintRight_toRightOf="@+id/et_username"
             app:layout_constraintTop_toBottomOf="@+id/et_username" />
@@ -63,6 +64,7 @@
             android:id="@+id/divider_pwd"
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp05"
+            android:background="@color/no_transparent_10_percent"
             app:layout_constraintLeft_toLeftOf="@+id/et_pwd"
             app:layout_constraintRight_toRightOf="@+id/et_pwd"
             app:layout_constraintTop_toBottomOf="@+id/et_pwd" />
@@ -72,7 +74,7 @@
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp44"
             android:layout_marginLeft="@dimen/dp20"
-            android:layout_marginTop="@dimen/dp25"
+            android:layout_marginTop="@dimen/dp35"
             android:layout_marginRight="@dimen/dp20"
             android:background="@drawable/bg_press_color_radius"
             android:enabled="false"

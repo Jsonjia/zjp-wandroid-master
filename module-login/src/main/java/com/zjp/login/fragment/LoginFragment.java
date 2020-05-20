@@ -31,7 +31,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
 
         activity = (LoginActivity) getActivity();
         activity.tvRight.setOnClickListener(v -> {
-            activity.tvRight.setVisibility(View.GONE);
             Navigation.findNavController(mViewDataBinding.btnLogin).navigate(R.id.action_fragment_register);
         });
 
@@ -43,5 +42,8 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
     @Override
     public void onResume() {
         super.onResume();
+        if (activity.tvRight.getVisibility() == View.GONE) {
+            activity.tvRight.setVisibility(View.VISIBLE);
+        }
     }
 }

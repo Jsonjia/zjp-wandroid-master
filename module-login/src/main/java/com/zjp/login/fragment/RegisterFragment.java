@@ -15,6 +15,9 @@ import com.zjp.login.databinding.FragmentRegisterBinding;
  * Created by zjp on 2020/5/18 17:30
  */
 public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, BaseViewModel> {
+
+    private LoginActivity activity;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_register;
@@ -23,13 +26,13 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Base
     @Override
     protected void initView() {
         super.initView();
-        LoginActivity activity = (LoginActivity) getActivity();
+        activity = (LoginActivity) getActivity();
+        activity.backView.setOnClickListener(v -> Navigation.findNavController(getView()).navigateUp());
+    }
 
-        activity.backView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(getView()).navigateUp();
-            }
-        });
+    @Override
+    public void onResume() {
+        super.onResume();
+        activity.tvRight.setVisibility(View.GONE);
     }
 }
