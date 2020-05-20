@@ -1,5 +1,6 @@
 package com.zjp.login.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +18,8 @@ import com.zjp.login.databinding.FragmentLoginBinding;
  */
 public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewModel> {
 
+    private LoginActivity activity;
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_login;
@@ -26,13 +29,20 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
     protected void initView() {
         super.initView();
 
-        LoginActivity activity = (LoginActivity) getActivity();
-
-        activity.tvRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(mViewDataBinding.btnLogin).navigate(R.id.action_fragment_register);
-            }
+        activity = (LoginActivity) getActivity();
+        activity.tvRight.setOnClickListener(v -> {
+            activity.tvRight.setVisibility(View.GONE);
+            Navigation.findNavController(mViewDataBinding.btnLogin).navigate(R.id.action_fragment_register);
         });
+
+        activity.backView.setOnClickListener(v -> {
+
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

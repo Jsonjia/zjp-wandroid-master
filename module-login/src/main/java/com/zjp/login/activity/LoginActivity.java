@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zjp.base.activity.BaseActivity;
@@ -20,6 +21,7 @@ import com.zjp.login.fragment.LoginFragment;
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewModel> {
 
     public TextView tvRight;
+    public View backView;
 
     @Override
     protected int getLayoutId() {
@@ -30,6 +32,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewMo
     protected void initView() {
         super.initView();
         tvRight = mViewDataBinding.headTitle.getTvRight();
+        backView = mViewDataBinding.headTitle.getBackView();
         tvRight.setVisibility(View.VISIBLE);
         tvRight.setText("注册");
     }
