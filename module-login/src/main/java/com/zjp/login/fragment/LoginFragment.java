@@ -43,6 +43,5 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
     @Override
     public void onResume() {
         super.onResume();
-
     }
 }
