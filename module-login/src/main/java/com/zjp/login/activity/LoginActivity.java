@@ -24,6 +24,14 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewMo
     public View backView;
 
     @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar
+                .statusBarDarkFont(true)
+                .init();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
     }

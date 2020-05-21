@@ -20,6 +20,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
 
     private LoginActivity activity;
 
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_login;
@@ -33,7 +34,7 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, BaseViewMo
         activity.tvRight.setOnClickListener(v -> {
             Navigation.findNavController(mViewDataBinding.btnLogin).navigate(R.id.action_fragment_register);
         });
-
+        activity.backView.setBackgroundResource(R.drawable.close);
         activity.backView.setOnClickListener(v -> {
 
         });

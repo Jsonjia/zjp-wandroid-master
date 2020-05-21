@@ -19,11 +19,10 @@
 
     <ImageView
         android:id="@+id/iv_back"
-        android:layout_width="@dimen/dp35"
-        android:layout_height="@dimen/dp35"
-        android:layout_marginLeft="@dimen/dp10"
+        android:layout_width="@dimen/dp20"
+        android:layout_height="@dimen/dp20"
+        android:layout_marginLeft="@dimen/dp16"
         android:padding="@dimen/dp8"
-        android:src="@drawable/close"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_status" />
 

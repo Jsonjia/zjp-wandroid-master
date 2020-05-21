@@ -27,6 +27,7 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Base
     protected void initView() {
         super.initView();
         activity = (LoginActivity) getActivity();
+        activity.backView.setBackgroundResource(R.drawable.back_left);
         activity.backView.setOnClickListener(v -> Navigation.findNavController(getView()).navigateUp());
     }
 
