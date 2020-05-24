@@ -22,6 +22,7 @@ import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.common.page.PageInfo;
 import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
@@ -39,7 +40,7 @@ import java.util.List;
 public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeViewModel> {
 
     private HomeArticleListAdapter articleListAdapter;
-    private int page = 1;
+    private PageInfo pageInfo;
 
     @Override
     protected void initImmersionBar() {
@@ -54,11 +55,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         return R.layout.home_fragment_home;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initView() {
         super.initView();
 
+        pageInfo = new PageInfo();
         setLoadSir(mViewDataBinding.rootview);
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(getActivity()));
         mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
@@ -66,11 +67,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         articleListAdapter = new HomeArticleListAdapter(null);
         mViewDataBinding.recy.setAdapter(articleListAdapter);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mViewDataBinding.cl.setElevation(10f);
-            mViewDataBinding.llRadius.setElevation(20f);
-            mViewDataBinding.recy.setNestedScrollingEnabled(false);
-        }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            mViewDataBinding.cl.setElevation(10f);
+//            mViewDataBinding.llRadius.setElevation(20f);
+//            mViewDataBinding.recy.setNestedScrollingEnabled(false);
+//        }
 
         //解决swiperefresh与scrollview滑动冲突问题
         mViewDataBinding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
@@ -102,23 +103,17 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         loadData();
 
         mViewDataBinding.swipe.setOnRefreshListener(() -> {//刷新
-            page = 1;
+            pageInfo.reset();
             loadData();
         });
 
-        articleListAdapter.getLoadMoreModule().setOnLoadMoreListener(() -> {
-            page += 1;
-            loadData();
-        });
+
     }
-
-    int dd = 0;
 
     @Override
     protected void initData() {
         super.initData();
         mViewModel.mBannerListMutable.observe(this, bannerEntities -> {
-            Log.d("zjp1", "wozoule" + dd + "次");
             if (mViewDataBinding.swipe.isRefreshing()) {
                 mViewDataBinding.swipe.setRefreshing(false);
             }
@@ -127,7 +122,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
                 mViewDataBinding.banner.setIndicator(new CircleIndicator(getActivity()));
                 mViewDataBinding.banner.setIndicatorGravity(IndicatorConfig.Direction.RIGHT);
                 mViewDataBinding.banner.setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
-                        BannerConfig.INDICATOR_MARGIN, (int) BannerUtils.dp2px(12)));
+                        BannerConfig.INDICATOR_MARGIN, (int) BannerUtils.dp2px(40)));
             }
         });
 
@@ -140,18 +135,19 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 //                articleListAdapter.getLoadMoreModule().loadMoreComplete();
 //            }
             showContent();
-            if (page == 1) {
+            if (pageInfo.isFirstPage()) {
                 articleListAdapter.setList(datasBeans);
             } else {
                 articleListAdapter.addData(datasBeans);
             }
+            pageInfo.nextPage();
         });
     }
 
     private void loadData() {
-        if (page == 1)
+        if (pageInfo.isFirstPage())
             mViewModel.getBanner();
-        mViewModel.getArticleList(page);
+        mViewModel.getArticleList(pageInfo.page);
     }
 
     @Override

@@ -92,23 +92,56 @@
             app:layout_constraintRight_toRightOf="@+id/et_pwd"
             app:layout_constraintTop_toBottomOf="@+id/et_pwd" />
 
-        <com.zjp.common.view.SubmitBtnView
-            android:id="@+id/btn_login"
+        <FrameLayout
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp44"
             android:layout_marginLeft="@dimen/dp20"
             android:layout_marginTop="@dimen/dp35"
             android:layout_marginRight="@dimen/dp20"
-            android:background="@drawable/bg_press_color_radius"
-            android:enabled="false"
-            android:gravity="center"
-            android:text="登 录"
-            android:textColor="@color/white"
-            android:textSize="@dimen/sp16"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider_pwd"
-            app:sv_bindEditText1="@+id/et_username"
-            app:sv_bindEditText2="@+id/et_pwd" />
+            app:layout_constraintTop_toBottomOf="@+id/divider_pwd">
+
+            <com.zjp.common.view.SubmitBtnView
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_press_color_radius"
+                android:enabled="false"
+                android:gravity="center"
+                android:text="登 录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                app:sv_bindEditText1="@+id/et_username"
+                app:sv_bindEditText2="@+id/et_pwd" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_blue_color_radius"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="登录中"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <ProgressBar
+                    android:layout_width="@dimen/dp15"
+                    android:layout_height="@dimen/dp15"
+                    android:indeterminateTint="@color/white"
+                    app:layout_constraintBottom_toBottomOf="@+id/btn_loading"
+                    app:layout_constraintLeft_toRightOf="@+id/btn_loading"
+                    app:layout_constraintTop_toTopOf="@+id/btn_loading" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

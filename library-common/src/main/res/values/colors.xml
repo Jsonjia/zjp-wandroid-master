@@ -13,5 +13,6 @@
     <color name="c_999999">#999999</color>
     <color name="no_transparent_10_percent">#1a000000</color>
     <color name="ripple_gray">#D1D1D1</color>
+    <color name="c_7F7F7F">#7F7F7F</color>
 
 </resources>

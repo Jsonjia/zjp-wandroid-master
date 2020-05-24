@@ -48,4 +48,5 @@ dependencies {
     api support.refreshlayout
     api support.glide
     api support.baseadapterhelper
+    api support.mmkv
 }
