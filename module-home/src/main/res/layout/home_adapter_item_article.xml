@@ -1,72 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ripple_bg">
 
-    <data></data>
+    <View
+        android:id="@+id/view_label"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:background="@mipmap/top_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:paddingTop="@dimen/dp15"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ripple_bg">
+        android:layout_marginLeft="@dimen/dp28"
+        android:layout_marginTop="@dimen/dp15"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp13"
+        android:visibility="visible"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="作者" />
 
-        <View
-            android:id="@+id/view_label"
-            android:layout_width="@dimen/dp40"
-            android:layout_height="@dimen/dp40"
-            android:background="@mipmap/top_label"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/dp20"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp13"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_author"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_author"
+        tools:text="2013-34" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp28"
-            android:layout_marginTop="@dimen/dp15"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp13"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="作者" />
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="@dimen/dp0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp15"
+        android:ellipsize="end"
+        android:lineSpacingExtra="@dimen/dp3"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sp16"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_author"
+        app:layout_constraintRight_toRightOf="@+id/tv_date"
+        app:layout_constraintTop_toBottomOf="@+id/tv_author"
+        tools:text="android 沉淀 - 渲染原理" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp20"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp13"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_author"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_author"
-            tools:text="2013-34" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp15"
-            android:ellipsize="end"
-            android:lineSpacingExtra="@dimen/dp3"
-            android:maxLines="2"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp16"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_author"
-            app:layout_constraintRight_toRightOf="@+id/tv_date"
-            app:layout_constraintTop_toBottomOf="@+id/tv_author"
-            tools:text="android 沉淀 - 渲染原理" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_chapter_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp10"
-            android:paddingBottom="@dimen/dp10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_author"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title"
-            tools:text="干货资源" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_chapter_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp10"
+        android:paddingBottom="@dimen/dp10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_author"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:text="干货资源" />
+</androidx.constraintlayout.widget.ConstraintLayout>

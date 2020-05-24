@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.gyf.immersionbar.ImmersionBar;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -32,6 +33,8 @@ import java.lang.reflect.Type;
 public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseViewModel>
         extends Fragment implements IBaseView {
 
+    protected ImmersionBar mImmersionBar;
+
     protected V mViewDataBinding;
 
     protected VM mViewModel;
@@ -43,6 +46,7 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        initImmersionBar();
         mViewDataBinding =
                 DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         mViewDataBinding.setLifecycleOwner(this);
@@ -55,6 +59,12 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
         initViewModel();
         getLifecycle().addObserver(mViewModel);
         initView();
+        initData();
+    }
+
+    protected void initImmersionBar() {
+        mImmersionBar = ImmersionBar.with(this);
+        mImmersionBar.init();
     }
 
     @LayoutRes
@@ -74,6 +84,9 @@ public abstract class BaseFragment<V extends ViewDataBinding, VM extends BaseVie
     }
 
     protected void initView() {
+
+    }
+    protected void initData() {
 
     }
 

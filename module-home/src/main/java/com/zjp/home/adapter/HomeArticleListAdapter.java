@@ -2,9 +2,11 @@ package com.zjp.home.adapter;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zjp.common.constant.C;
+import com.zjp.common.utils.GlideUtil;
 import com.zjp.home.R;
 import com.zjp.home.bean.ArticleEntity;
 
@@ -15,7 +17,7 @@ import java.util.List;
 /**
  * Created by zjp on 2020/5/15 14:18
  */
-public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.DatasBean, BaseViewHolder> {
+public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.DatasBean, BaseViewHolder> implements LoadMoreModule {
 
     public HomeArticleListAdapter(List<ArticleEntity.DatasBean> data) {
         super(data);
@@ -27,9 +29,7 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
     protected void convert(@NotNull BaseViewHolder baseViewHolder, ArticleEntity.DatasBean datasBean) {
         switch (baseViewHolder.getItemViewType()) {
             case C.ARTICLE_ITEM:
-                baseViewHolder.setText(R.id.tv_author, datasBean.getAuthor())
-                        .setText(R.id.tv_date, datasBean.getNiceDate())
-                        .setText(R.id.tv_title, datasBean.getTitle())
+                baseViewHolder.setText(R.id.tv_date, datasBean.getNiceDate())
                         .setText(R.id.tv_chapter_name, datasBean.getSuperChapterName())
                         .setGone(R.id.view_label, datasBean.getType() == 0);
                 break;
@@ -38,5 +38,9 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
 
                 break;
         }
+
+        baseViewHolder
+                .setText(R.id.tv_author, datasBean.getAuthor())
+                .setText(R.id.tv_title, datasBean.getTitle());
     }
 }

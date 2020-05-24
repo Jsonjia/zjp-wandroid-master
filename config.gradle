@@ -63,7 +63,7 @@ ext {
 
             "loadsir"            : "com.kingja.loadsir:loadsir:1.3.6",
             "utilcodex"          : "com.blankj:utilcodex:1.28.4",
-            "baseadapterhelper"  : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.3",
+            "baseadapterhelper"  : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
 
             "navigation_fragment": "androidx.navigation:navigation-fragment:2.3.0-alpha06",
             "navigation_ui"      : "androidx.navigation:navigation-ui:2.3.0-alpha06",
