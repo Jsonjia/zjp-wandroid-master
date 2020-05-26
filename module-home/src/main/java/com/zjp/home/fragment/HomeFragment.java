@@ -1,11 +1,13 @@
 package com.zjp.home.fragment;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +16,12 @@ import android.view.ViewTreeObserver;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.google.android.material.appbar.AppBarLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.config.BannerConfig;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
@@ -41,6 +47,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
     private HomeArticleListAdapter articleListAdapter;
     private PageInfo pageInfo;
+    private boolean isLoading = true;
 
     @Override
     protected void initImmersionBar() {
@@ -55,6 +62,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         return R.layout.home_fragment_home;
     }
 
+    @SuppressLint("NewApi")
     @Override
     protected void initView() {
         super.initView();
@@ -78,14 +86,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             /**
              *   verticalOffset == 0 时候也就是Appbarlayout完全展开的时候，事件交给swiperefresh
              */
-            mViewDataBinding.swipe.setEnabled(verticalOffset == 0);
+//            mViewDataBinding.swipe.setEnabled(verticalOffset == 0);
         });
 
         mViewDataBinding.nestscrollview.getViewTreeObserver().addOnScrollChangedListener(() -> {
             /**
              * 原理如上
              */
-            mViewDataBinding.swipe.setEnabled(mViewDataBinding.nestscrollview.getScrollY() == 0);
+//            mViewDataBinding.swipe.setEnabled(mViewDataBinding.nestscrollview.getScrollY() == 0);
         });
 
         mViewDataBinding.nestscrollview.setOnScrollChangeListener((View.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
@@ -96,27 +104,34 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             } else {
                 mViewDataBinding.ivSearch.setEnabled(false);
             }
-
             mViewDataBinding.cl.setAlpha(alpha);
         });
 
-        loadData();
+        mViewDataBinding.refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                loadData();
+            }
 
-        mViewDataBinding.swipe.setOnRefreshListener(() -> {//刷新
-            pageInfo.reset();
-            loadData();
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                pageInfo.reset();
+                loadData();
+            }
         });
 
-
+        loadData();
     }
 
     @Override
     protected void initData() {
         super.initData();
         mViewModel.mBannerListMutable.observe(this, bannerEntities -> {
-            if (mViewDataBinding.swipe.isRefreshing()) {
-                mViewDataBinding.swipe.setRefreshing(false);
+            if (mViewDataBinding.refresh.getState().isOpening) {
+                mViewDataBinding.refresh.finishRefresh();
+                mViewDataBinding.refresh.finishLoadMore();
             }
+
             if (bannerEntities != null && bannerEntities.size() > 0) {
                 mViewDataBinding.banner.setAdapter(new HomeHeadBannerAdapter(bannerEntities));
                 mViewDataBinding.banner.setIndicator(new CircleIndicator(getActivity()));
@@ -127,27 +142,44 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         });
 
         mViewModel.mArticleListMutable.observe(this, datasBeans -> {
-            if (mViewDataBinding.swipe.isRefreshing()) {
-                mViewDataBinding.swipe.setRefreshing(false);
+            if (mViewDataBinding.refresh.getState().isOpening) {
+                mViewDataBinding.refresh.finishRefresh();
             }
-
-//            if(articleListAdapter.getLoadMoreModule().isLoading()){
-//                articleListAdapter.getLoadMoreModule().loadMoreComplete();
-//            }
-            showContent();
-            if (pageInfo.isFirstPage()) {
-                articleListAdapter.setList(datasBeans);
-            } else {
-                articleListAdapter.addData(datasBeans);
-            }
+            if (isLoading)
+                showContent();
+            articleListAdapter.setList(datasBeans);
             pageInfo.nextPage();
+            isLoading = false;
+        });
+
+        mViewModel.mArticleMutable.observe(this, articleEntity -> {
+            if (mViewDataBinding.refresh.getState().isOpening) {
+                mViewDataBinding.refresh.finishLoadMore();
+            }
+            if (null != articleEntity) {
+                List<ArticleEntity.DatasBean> entityDatas = articleEntity.getDatas();
+                if (null != entityDatas && entityDatas.size() > 0) {
+                    articleListAdapter.addData(entityDatas);
+                    pageInfo.nextPage();
+                }
+            }
+        });
+
+        articleListAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                ToastUtils.showShort("啦啦啦啦");
+            }
         });
     }
 
     private void loadData() {
-        if (pageInfo.isFirstPage())
+        if (pageInfo.isFirstPage()) {
             mViewModel.getBanner();
-        mViewModel.getArticleList(pageInfo.page);
+            mViewModel.getArticleMultiList(pageInfo.page);
+        } else {
+            mViewModel.getArticleList(pageInfo.page);
+        }
     }
 
     @Override

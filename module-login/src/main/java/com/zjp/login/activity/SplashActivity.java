@@ -23,8 +23,8 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, BaseView
     @Override
     protected void initView() {
         super.initView();
-        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-//        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+//        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
         finish();
     }
 }

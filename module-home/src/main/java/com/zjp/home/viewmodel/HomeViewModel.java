@@ -35,6 +35,7 @@ public class HomeViewModel extends BaseViewModel {
 
     public MutableLiveData<List<BannerEntity>> mBannerListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
+    public MutableLiveData<ArticleEntity> mArticleMutable = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -63,7 +64,7 @@ public class HomeViewModel extends BaseViewModel {
     }
 
     @SuppressLint("CheckResult")
-    public void getArticleList(int page) {
+    public void getArticleMultiList(int page) {
         HomeService homeService = RetrofitHelper.getInstance().create(HomeService.class);
         Observable.zip(homeService.getTopList(),
                 homeService.getHomeList(page),
@@ -91,5 +92,26 @@ public class HomeViewModel extends BaseViewModel {
 
                     }
                 });
+    }
+
+    public void getArticleList(int page) {
+        RetrofitHelper.getInstance().create(HomeService.class)
+                .getHomeList(page)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)  //  请求与ViewModel周期同步
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
+                    @Override
+                    public void success(BaseResponse<ArticleEntity> response) {
+                        if (response.getData() != null) {
+                            mArticleMutable.postValue(response.getData());
+                        }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+
     }
 }

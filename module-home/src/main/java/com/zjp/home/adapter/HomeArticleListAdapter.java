@@ -1,5 +1,7 @@
 package com.zjp.home.adapter;
 
+import android.text.TextUtils;
+
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
@@ -40,7 +42,8 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
         }
 
         baseViewHolder
-                .setText(R.id.tv_author, datasBean.getAuthor())
+                .setText(R.id.tv_author, TextUtils.isEmpty(datasBean.getAuthor()) ? datasBean.getShareUser()
+                        : datasBean.getAuthor())
                 .setText(R.id.tv_title, datasBean.getTitle());
     }
 }

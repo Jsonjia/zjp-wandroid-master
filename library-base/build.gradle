@@ -56,5 +56,5 @@ dependencies {
     api support.immersionbar
     api support.loadsir
     api support.utilcodex
-
+    api support.smartRefreshLayout
 }

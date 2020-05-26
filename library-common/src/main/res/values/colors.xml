@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--默认主题颜色-->
-    <color name="colorPrimary">#3700B3</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#3700B3</color>
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
