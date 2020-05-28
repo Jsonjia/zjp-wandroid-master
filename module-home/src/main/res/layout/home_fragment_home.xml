@@ -8,10 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-               <!-- <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                    android:id="@+id/swipe"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">-->
+        <!-- <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+             android:id="@+id/swipe"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">-->
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refresh"
             android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                 </androidx.core.widget.NestedScrollView>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-              <!-- </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+            <!-- </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout

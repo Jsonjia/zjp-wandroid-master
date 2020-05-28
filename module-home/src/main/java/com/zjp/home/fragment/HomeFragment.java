@@ -18,6 +18,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chad.library.adapter.base.listener.OnLoadMoreListener;
 import com.google.android.material.appbar.AppBarLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -165,9 +166,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             }
         });
 
-        articleListAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        articleListAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 ToastUtils.showShort("啦啦啦啦");
             }
         });

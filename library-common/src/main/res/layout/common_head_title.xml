@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_height="@dimen/dp28" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/iv_back"
         android:layout_width="@dimen/dp20"
         android:layout_height="@dimen/dp20"
@@ -26,7 +26,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view_status" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
         android:layout_width="@dimen/dp0"
         android:layout_height="@dimen/dp0"
@@ -39,7 +39,8 @@
         app:layout_constraintTop_toTopOf="@+id/iv_back"
         tools:text="标题" />
 
-    <TextView
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_right"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/dp0"

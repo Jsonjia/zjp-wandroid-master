@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -63,7 +62,7 @@
         android:layout_marginTop="@dimen/dp10"
         android:paddingBottom="@dimen/dp10"
         android:textColor="@color/c_999999"
-        android:textSize="@dimen/sp13"
+        android:textSize="@dimen/sp12"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="@+id/tv_author"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"

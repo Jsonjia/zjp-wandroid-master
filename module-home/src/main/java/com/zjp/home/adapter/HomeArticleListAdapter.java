@@ -38,6 +38,7 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
 
             case C.ARTICLE_ITEM_PIC:
 
+
                 break;
         }
 

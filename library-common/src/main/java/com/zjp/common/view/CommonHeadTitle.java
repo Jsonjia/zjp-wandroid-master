@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentActivity;
 
@@ -21,8 +22,8 @@ import com.zjp.common.R;
  */
 public class CommonHeadTitle extends FrameLayout {
 
-    private final TextView mTvTitle;
-    private final TextView mTvRight;
+    private final AppCompatTextView mTvTitle;
+    private final AppCompatTextView mTvRight;
     private final View mStatusView;
     private final View mBackView;
 
@@ -71,7 +72,7 @@ public class CommonHeadTitle extends FrameLayout {
         mTvRight.setText(text);
     }
 
-    public TextView getTvRight() {
+    public AppCompatTextView getTvRight() {
         return mTvRight;
     }
 
