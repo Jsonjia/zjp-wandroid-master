@@ -46,6 +46,7 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
         initImmersionBar();
         mViewDataBinding = DataBindingUtil.setContentView(this, getLayoutId());
         initView();
+        initData();
         mViewDataBinding.setLifecycleOwner(this);
         initViewModel();
 
@@ -62,6 +63,10 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
     protected abstract int getLayoutId();
 
     protected void initView() {
+
+    }
+
+    protected void initData() {
 
     }
 

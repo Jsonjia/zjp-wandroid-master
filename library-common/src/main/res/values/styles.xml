@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="wrap_content_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="textview_12sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_14sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp14</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_15sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp15</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_16sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp16</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_17sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp17</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_18sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp18</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+</resources>

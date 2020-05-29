@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/dp22"
+    android:layout_marginRight="@dimen/dp22"
     android:background="@drawable/ripple_bg"
     android:paddingBottom="@dimen/dp15">
 
@@ -12,6 +14,7 @@
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginTop="@dimen/dp15"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@mipmap/ic_launcher" />
@@ -21,7 +24,6 @@
         android:layout_width="@dimen/dp0"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp15"
-        android:layout_marginRight="@dimen/dp10"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/black"

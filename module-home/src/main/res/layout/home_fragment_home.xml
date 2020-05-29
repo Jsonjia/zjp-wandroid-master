@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
@@ -8,13 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <!-- <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-             android:id="@+id/swipe"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">-->
         <com.scwang.smartrefresh.layout.SmartRefreshLayout
             android:id="@+id/refresh"
             android:layout_width="match_parent"
@@ -54,7 +48,9 @@
                 <com.youth.banner.Banner
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp" />
+                    android:layout_height="250dp"
+                    banner:indicator_normal_color="@android:color/white"
+                    banner:indicator_selected_color="@color/colorPrimary" />
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/nestscrollview"
@@ -114,8 +110,6 @@
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
             </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-            <!-- </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,11 +133,10 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivSearch"
-                android:layout_width="@dimen/dp40"
-                android:layout_height="@dimen/dp32"
+                android:layout_width="@dimen/dp22"
+                android:layout_height="@dimen/dp22"
                 android:layout_marginTop="@dimen/dp38"
                 android:layout_marginRight="@dimen/dp20"
-                android:padding="@dimen/dp7"
                 android:src="@mipmap/home_search"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

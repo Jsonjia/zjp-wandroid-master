@@ -1,18 +1,18 @@
 package com.zjp.home.fragment;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
-import com.chad.library.adapter.base.listener.OnLoadMoreListener;
-import com.google.android.material.appbar.AppBarLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.config.BannerConfig;
@@ -24,6 +24,7 @@ import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
+import com.zjp.home.activity.SearchActivity;
 import com.zjp.home.adapter.HomeArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.bean.ArticleEntity;
@@ -111,6 +112,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         });
 
         loadData();
+
+        mViewDataBinding.ivSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mViewDataBinding.ivSearch, "search");
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
+            }
+        });
     }
 
     @Override

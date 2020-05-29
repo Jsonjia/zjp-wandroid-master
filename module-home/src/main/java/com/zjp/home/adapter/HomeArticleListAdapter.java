@@ -41,6 +41,7 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
             case C.ARTICLE_ITEM_PIC:
                 AppCompatImageView mIvCover = baseViewHolder.getView(R.id.iv_cover);
                 GlideUtil.getInstance().loadRoundImage(mIvCover, datasBean.getEnvelopePic(), 4);
+                baseViewHolder.setText(R.id.tv_desc, datasBean.getDesc());
                 break;
         }
 

@@ -16,4 +16,5 @@ dependencies {
     annotationProcessor support.arouter_compiler
 
     implementation support.banner
+    implementation support.flexbox
 }

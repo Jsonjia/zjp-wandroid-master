@@ -24,7 +24,8 @@
         android:layout_marginLeft="@dimen/dp16"
         android:padding="@dimen/dp8"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_status" />
+        app:layout_constraintTop_toBottomOf="@+id/view_status"
+        tools:background="@drawable/back_left" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
@@ -38,7 +39,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_back"
         tools:text="标题" />
-
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_right"

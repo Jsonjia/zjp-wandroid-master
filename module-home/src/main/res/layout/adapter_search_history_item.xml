@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp44">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_history_keywords"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp24"
+            android:layout_marginRight="@dimen/dp27"
+            android:drawableLeft="@mipmap/sousuo_icon_shijian"
+            android:drawablePadding="@dimen/dp8"
+            android:singleLine="true"
+            android:text="ddddd"
+            android:textColor="@color/c_444444"
+            android:textSize="@dimen/sp_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/clear_keywords_ib"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/clear_keywords_ib"
+            android:layout_width="@dimen/dp14"
+            android:layout_height="@dimen/dp14"
+            android:layout_marginRight="@dimen/dp24"
+            android:background="@mipmap/search_clear_item"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

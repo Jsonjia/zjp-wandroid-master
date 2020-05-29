@@ -28,11 +28,11 @@ public class CommonHeadTitle extends FrameLayout {
     private final View mBackView;
 
     public CommonHeadTitle(@NonNull Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public CommonHeadTitle(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public CommonHeadTitle(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
