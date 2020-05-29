@@ -2,6 +2,8 @@ package com.zjp.home.adapter;
 
 import android.text.TextUtils;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
@@ -37,8 +39,8 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
                 break;
 
             case C.ARTICLE_ITEM_PIC:
-
-
+                AppCompatImageView mIvCover = baseViewHolder.getView(R.id.iv_cover);
+                GlideUtil.getInstance().loadRoundImage(mIvCover, datasBean.getEnvelopePic(), 4);
                 break;
         }
 

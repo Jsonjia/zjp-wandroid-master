@@ -2,6 +2,8 @@ package com.zjp.common.storage;
 
 import com.google.gson.Gson;
 import com.tencent.mmkv.MMKV;
+import com.zjp.common.bean.UserInfo;
+import com.zjp.network.constant.ApiConstants;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,8 +56,6 @@ public class MmkvHelper {
 
     /**
      * 获取map集合
-     *
-     * @param key 标识
      */
     public Map<String, String> getInfo(String key) {
         Map<String, String> itemMap = new HashMap<>();
@@ -78,6 +78,30 @@ public class MmkvHelper {
 
         }
         return itemMap;
+    }
+
+    /**
+     * 是否是第一次启动app
+     */
+    public boolean isFirst() {
+        MMKV mmkv = MMKV.defaultMMKV();
+        return mmkv.encode("first", false);
+    }
+
+    public boolean getFirst() {
+        MMKV mmkv = MMKV.defaultMMKV();
+        return mmkv.decodeBool("first", true);
+    }
+
+    /**
+     * 保存用户信息
+     */
+    public void saveUserInfo(UserInfo userInfo) {
+        mmkv.encode(ApiConstants.USER_INFO, userInfo);
+    }
+
+    public UserInfo getUserInfo() {
+        return mmkv.decodeParcelable(ApiConstants.USER_INFO, UserInfo.class);
     }
 
 }

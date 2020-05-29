@@ -57,4 +57,5 @@ dependencies {
     api support.loadsir
     api support.utilcodex
     api support.smartRefreshLayout
+    api support.mmkv
 }

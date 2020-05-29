@@ -67,6 +67,7 @@
             android:layout_marginRight="@dimen/dp20"
             android:background="@null"
             android:hint="请输入密码"
+            android:inputType="textPassword"
             android:textSize="@dimen/sp14"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -80,6 +81,18 @@
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/et_pwd"
             app:layout_constraintRight_toRightOf="@+id/et_pwd"
+            app:layout_constraintTop_toTopOf="@+id/et_pwd"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_pwd_private"
+            android:layout_width="@dimen/dp25"
+            android:layout_height="@dimen/dp22"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@mipmap/pwd_close"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/et_pwd"
+            app:layout_constraintRight_toLeftOf="@+id/iv_clear_pwd"
             app:layout_constraintTop_toTopOf="@+id/et_pwd"
             tools:visibility="visible" />
 
@@ -141,7 +154,6 @@
                     app:layout_constraintLeft_toRightOf="@+id/btn_loading"
                     app:layout_constraintTop_toTopOf="@+id/btn_loading" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

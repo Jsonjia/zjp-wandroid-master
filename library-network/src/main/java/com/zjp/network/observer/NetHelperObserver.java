@@ -38,7 +38,11 @@ public class NetHelperObserver<T extends BaseResponse> implements Observer<T>, L
     @Override
     public void onNext(@NonNull T t) {
         if (mCallback != null) {
-            mCallback.success(t);
+            if (t.isSuccess()) {
+                mCallback.success(t);
+            } else {
+                mCallback.error(t.getErrorMsg());
+            }
         }
     }
 

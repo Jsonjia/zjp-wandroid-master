@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.SizeUtils;
 import com.kingja.loadsir.core.LoadSir;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.tencent.mmkv.MMKV;
 import com.zjp.base.R;
 import com.zjp.base.application.BaseApplication;
 import com.zjp.base.loadsir.EmptyCallback;
@@ -18,6 +19,8 @@ public class CommonModuleInit implements IModuleInit {
 
     @Override
     public boolean onInitAhead(BaseApplication application) {
+
+        MMKV.initialize(application);
 
         LoadSir.beginBuilder()
                 .addCallback(new ErrorCallback())
@@ -40,6 +43,8 @@ public class CommonModuleInit implements IModuleInit {
             layout.setPrimaryColorsId(R.color.colorPrimary, R.color.colorPrimaryDark);
             return footer;
         });
+
+
         return false;
     }
 

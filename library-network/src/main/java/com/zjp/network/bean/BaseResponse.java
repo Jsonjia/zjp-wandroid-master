@@ -35,5 +35,11 @@ public class BaseResponse<T> {
         this.errorMsg = errorMsg;
     }
 
-
+    public boolean isSuccess() {
+        if (errorCode==0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

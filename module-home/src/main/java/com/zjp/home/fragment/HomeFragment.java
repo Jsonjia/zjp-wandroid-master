@@ -1,18 +1,10 @@
 package com.zjp.home.fragment;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
@@ -28,17 +20,14 @@ import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
 import com.zjp.base.fragment.BaseFragment;
-import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.common.page.PageInfo;
+import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.adapter.HomeArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.bean.ArticleEntity;
-import com.zjp.home.bean.BannerEntity;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
-import com.zjp.home.databinding.ProjectFragmentBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
 
 import java.util.List;

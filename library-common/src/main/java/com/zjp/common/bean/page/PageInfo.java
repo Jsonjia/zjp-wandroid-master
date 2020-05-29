@@ -1,4 +1,4 @@
-package com.zjp.common.page;
+package com.zjp.common.bean.page;
 
 /**
  * Created by zjp on 2020/5/24 15:22.

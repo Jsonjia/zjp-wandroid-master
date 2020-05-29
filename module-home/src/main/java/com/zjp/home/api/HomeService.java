@@ -17,15 +17,15 @@ import retrofit2.http.Path;
 public interface HomeService {
 
     //首页Banner
-    @GET("/banner/json")
+    @GET("banner/json")
     Observable<BaseResponse<List<BannerEntity>>> getBanner();
 
     //获取首页【置顶】文章数据
-    @GET("/article/top/json")
+    @GET("article/top/json")
     Observable<BaseResponse<List<ArticleEntity.DatasBean>>> getTopList();
 
     //首页文章列表
-    @GET("/article/list/{page}/json")
+    @GET("article/list/{page}/json")
     Observable<BaseResponse<ArticleEntity>> getHomeList(@Path("page") int pageNo);
 
 }
