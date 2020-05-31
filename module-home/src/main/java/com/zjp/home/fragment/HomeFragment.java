@@ -113,13 +113,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
         loadData();
 
-        mViewDataBinding.ivSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mViewDataBinding.ivSearch, "search");
-                Intent intent = new Intent(getActivity(), SearchActivity.class);
-                ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
-            }
+        mViewDataBinding.ivSearch.setOnClickListener(v -> {
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), mViewDataBinding.ivSearch, "search");
+            Intent intent = new Intent(getActivity(), SearchActivity.class);
+            ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
         });
     }
 
@@ -137,7 +134,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
                 mViewDataBinding.banner.setIndicator(new CircleIndicator(getActivity()));
                 mViewDataBinding.banner.setIndicatorGravity(IndicatorConfig.Direction.RIGHT);
                 mViewDataBinding.banner.setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
-                        BannerConfig.INDICATOR_MARGIN, (int) BannerUtils.dp2px(40)));
+                        BannerConfig.INDICATOR_SELECTED_WIDTH, (int) BannerUtils.dp2px(40)));
             }
         });
 
