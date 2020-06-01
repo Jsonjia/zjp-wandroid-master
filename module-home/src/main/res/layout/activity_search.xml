@@ -152,18 +152,28 @@
                         android:text="热门搜索"
                         android:textColor="@color/c_999999" />
 
-                    <com.google.android.flexbox.FlexboxLayout
-                        android:id="@+id/flex_layout_history"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recy_flex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="@dimen/dp16"
                         android:layout_marginTop="@dimen/dp10"
                         android:layout_marginRight="@dimen/dp12"
-                        android:layout_marginBottom="@dimen/dp30"
-                        app:alignContent="stretch"
-                        app:alignItems="stretch"
-                        app:flexWrap="wrap" />
+                        android:layout_marginBottom="@dimen/dp30" />
+
+                    <!--  <com.google.android.flexbox.FlexboxLayout
+                          android:id="@+id/flex_layout_history"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center"
+                          android:layout_marginLeft="@dimen/dp16"
+                          android:layout_marginTop="@dimen/dp10"
+                          android:layout_marginRight="@dimen/dp12"
+                          android:layout_marginBottom="@dimen/dp30"
+                          app:alignContent="stretch"
+                          app:alignItems="stretch"
+                          app:flexWrap="wrap" />-->
 
                 </LinearLayout>
             </LinearLayout>

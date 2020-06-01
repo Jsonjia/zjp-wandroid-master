@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="hotkey"
+            type="com.zjp.home.bean.HotSearchEntity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_label"
+            style="@style/textview_14sp_style"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="@dimen/dp10"
+            android:background="@drawable/bg_shape_4_radius"
+            android:paddingLeft="@dimen/dp8"
+            android:paddingTop="@dimen/dp5"
+            android:paddingRight="@dimen/dp8"
+            android:paddingBottom="@dimen/dp5"
+            android:singleLine="true"
+            android:textSize="@dimen/sp12"
+            android:text="@{hotkey.name}"
+            android:textColor="@color/c_7F7F7F"
+            tools:text="呷哺呷哺" />
+    </LinearLayout>
+</layout>
+

@@ -12,6 +12,7 @@ import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.home.api.HomeService;
 import com.zjp.home.bean.ArticleEntity;
 import com.zjp.home.bean.BannerEntity;
+import com.zjp.home.bean.HotSearchEntity;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;
 import com.zjp.network.observer.NetCallback;
@@ -36,6 +37,8 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<List<BannerEntity>> mBannerListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> mArticleMutable = new MutableLiveData<>();
+    public MutableLiveData<ArticleEntity> mArticleSearch = new MutableLiveData<>();
+    public MutableLiveData<List<HotSearchEntity>> mHotSearchMutable = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -98,7 +101,7 @@ public class HomeViewModel extends BaseViewModel {
         RetrofitHelper.getInstance().create(HomeService.class)
                 .getHomeList(page)
                 .compose(new IoMainScheduler<>())
-                .doOnSubscribe(this)  //  请求与ViewModel周期同步
+                .doOnSubscribe(this)
                 .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
                     @Override
                     public void success(BaseResponse<ArticleEntity> response) {
@@ -112,6 +115,45 @@ public class HomeViewModel extends BaseViewModel {
 
                     }
                 }));
+    }
 
+    public void search(int page,String k){
+        RetrofitHelper.getInstance().create(HomeService.class)
+                .search(page,k)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
+                    @Override
+                    public void success(BaseResponse<ArticleEntity> response) {
+                        if (response.getData() != null) {
+                            mArticleSearch.postValue(response.getData());
+                        }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void hotSearch(){
+        RetrofitHelper.getInstance().create(HomeService.class)
+                .hotSearch()
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<HotSearchEntity>>>() {
+                    @Override
+                    public void success(BaseResponse<List<HotSearchEntity>> response) {
+                        if (response.getData() != null) {
+                            mHotSearchMutable.postValue(response.getData());
+                        }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
     }
 }

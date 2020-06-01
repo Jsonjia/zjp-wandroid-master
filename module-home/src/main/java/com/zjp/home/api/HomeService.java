@@ -2,6 +2,7 @@ package com.zjp.home.api;
 
 import com.zjp.home.bean.ArticleEntity;
 import com.zjp.home.bean.BannerEntity;
+import com.zjp.home.bean.HotSearchEntity;
 import com.zjp.network.bean.BaseResponse;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by zjp on 2020/5/10 14:19.
@@ -27,5 +29,16 @@ public interface HomeService {
     //首页文章列表
     @GET("article/list/{page}/json")
     Observable<BaseResponse<ArticleEntity>> getHomeList(@Path("page") int pageNo);
+
+    //搜索
+    @POST("article/query/{pageNum}/json")
+    Observable<BaseResponse<ArticleEntity>> search(@Path("page") int pageNo, @Query("k") String k);
+
+    //热门搜索
+    @GET("hotkey/json")
+    Observable<BaseResponse<List<HotSearchEntity>>> hotSearch();
+
+
+
 
 }
