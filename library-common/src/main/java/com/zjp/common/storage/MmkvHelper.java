@@ -1,6 +1,7 @@
 package com.zjp.common.storage;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.tencent.mmkv.MMKV;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.network.constant.ApiConstants;
@@ -9,7 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,6 +21,7 @@ import java.util.Map;
 public class MmkvHelper {
 
     private static MMKV mmkv;
+    private final Gson mGson = new Gson();
 
     private MmkvHelper() {
         mmkv = MMKV.defaultMMKV();
@@ -37,9 +41,6 @@ public class MmkvHelper {
 
     /**
      * 存入map集合
-     *
-     * @param key 标识
-     * @param map 数据集合
      */
     public void saveInfo(String key, Map<String, Object> map) {
         Gson gson = new Gson();
@@ -81,16 +82,41 @@ public class MmkvHelper {
     }
 
     /**
+     * 保存list
+     */
+    public <T> void saveList(String tag, List<T> dataList) {
+        if (null == dataList || dataList.size() <= 0)
+            return;
+        //转换成json数据，再保存
+        String strJson = mGson.toJson(dataList);
+        mmkv.encode(tag, strJson);
+    }
+
+    /**
+     * 获取list
+     */
+    public <T> List<T> getDataList(String tag) {
+        List<T> dataList = new ArrayList<>();
+        String strJson = mmkv.decodeString(tag, null);
+        if (null == strJson) {
+            return dataList;
+        }
+        dataList = mGson.fromJson(strJson, new TypeToken<List<T>>() {
+        }.getType());
+        return dataList;
+    }
+
+    /**
      * 是否是第一次启动app
      */
     public boolean isFirst() {
         MMKV mmkv = MMKV.defaultMMKV();
-        return mmkv.encode("first", false);
+        return mmkv.encode(ApiConstants.FIRST, false);
     }
 
     public boolean getFirst() {
         MMKV mmkv = MMKV.defaultMMKV();
-        return mmkv.decodeBool("first", true);
+        return mmkv.decodeBool(ApiConstants.FIRST, true);
     }
 
     /**
@@ -102,6 +128,11 @@ public class MmkvHelper {
 
     public UserInfo getUserInfo() {
         return mmkv.decodeParcelable(ApiConstants.USER_INFO, UserInfo.class);
+    }
+
+
+    public void clearHistory() {
+        mmkv.remove(ApiConstants.SEARCH_HISTORY);
     }
 
 }

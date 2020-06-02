@@ -19,6 +19,10 @@
             app:srlEnableOverScrollBounce="true"
             app:srlEnableRefresh="true">
 
+            <com.scwang.smartrefresh.header.MaterialHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <androidx.coordinatorlayout.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">

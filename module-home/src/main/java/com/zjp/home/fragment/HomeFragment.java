@@ -25,6 +25,7 @@ import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.activity.SearchActivity;
+import com.zjp.home.activity.WebViewActivity;
 import com.zjp.home.adapter.HomeArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.bean.ArticleEntity;
@@ -162,11 +163,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             }
         });
 
-        articleListAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                ToastUtils.showShort("啦啦啦啦");
-            }
+        articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
+            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+            intent.putExtra("link", datasBean.getLink());
+            startActivity(intent);
         });
     }
 

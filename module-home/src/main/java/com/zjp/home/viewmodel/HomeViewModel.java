@@ -37,8 +37,6 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<List<BannerEntity>> mBannerListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> mArticleMutable = new MutableLiveData<>();
-    public MutableLiveData<ArticleEntity> mArticleSearch = new MutableLiveData<>();
-    public MutableLiveData<List<HotSearchEntity>> mHotSearchMutable = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -117,43 +115,4 @@ public class HomeViewModel extends BaseViewModel {
                 }));
     }
 
-    public void search(int page,String k){
-        RetrofitHelper.getInstance().create(HomeService.class)
-                .search(page,k)
-                .compose(new IoMainScheduler<>())
-                .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
-                    @Override
-                    public void success(BaseResponse<ArticleEntity> response) {
-                        if (response.getData() != null) {
-                            mArticleSearch.postValue(response.getData());
-                        }
-                    }
-
-                    @Override
-                    public void error(String msg) {
-
-                    }
-                }));
-    }
-
-    public void hotSearch(){
-        RetrofitHelper.getInstance().create(HomeService.class)
-                .hotSearch()
-                .compose(new IoMainScheduler<>())
-                .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<HotSearchEntity>>>() {
-                    @Override
-                    public void success(BaseResponse<List<HotSearchEntity>> response) {
-                        if (response.getData() != null) {
-                            mHotSearchMutable.postValue(response.getData());
-                        }
-                    }
-
-                    @Override
-                    public void error(String msg) {
-
-                    }
-                }));
-    }
 }

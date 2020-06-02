@@ -5,11 +5,16 @@
 
     <data>
 
+<!--        <variable-->
+<!--            name="viewModel"-->
+<!--            type="com.zjp.home.viewmodel.SearchViewModel" />-->
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/head_input"
@@ -128,7 +133,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/dp5"
-                        android:overScrollMode="never" />
+                        android:overScrollMode="never"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/adapter_search_history_item" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/clear_history_tv"
@@ -137,6 +144,12 @@
                         android:layout_marginTop="@dimen/dp20"
                         android:text="清除全部历史记录"
                         android:textColor="@color/c_999999" />
+
+                    <View
+                        android:id="@+id/underline"
+                        style="@style/divider_style"
+                        android:layout_marginTop="@dimen/dp24"
+                        android:layout_marginBottom="@dimen/dp10" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -160,7 +173,9 @@
                         android:layout_marginLeft="@dimen/dp16"
                         android:layout_marginTop="@dimen/dp10"
                         android:layout_marginRight="@dimen/dp12"
-                        android:layout_marginBottom="@dimen/dp30" />
+                        android:layout_marginBottom="@dimen/dp30"
+                        app:layoutManager="com.google.android.flexbox.FlexboxLayoutManager"
+                        tools:listitem="@layout/hotkeywords_item" />
 
                     <!--  <com.google.android.flexbox.FlexboxLayout
                           android:id="@+id/flex_layout_history"

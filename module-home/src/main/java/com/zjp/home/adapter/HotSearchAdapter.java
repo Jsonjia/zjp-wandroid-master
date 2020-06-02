@@ -9,7 +9,7 @@ import com.zjp.home.databinding.HotkeywordsItemBinding;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.List;
+
 
 /**
  * Created by zjp on 2020/6/1 13:22
