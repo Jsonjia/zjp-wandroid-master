@@ -7,9 +7,11 @@ public class PageInfo {
 
     public int page = 1;
 
+
     public void nextPage() {
         page++;
     }
+
 
     public void reset() {
         page = 1;
@@ -17,6 +19,21 @@ public class PageInfo {
 
     public boolean isFirstPage() {
         return page == 1;
+    }
+
+    /**************************************  分割线   ***************************************/
+    public int mPage = 0;
+
+    public void nextZeroPage() {
+        mPage++;
+    }
+
+    public void resetZero() {
+        mPage = 0;
+    }
+
+    public boolean isZeroPage() {
+        return mPage == 0;
     }
 
 }

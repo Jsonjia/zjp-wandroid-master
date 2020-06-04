@@ -10,14 +10,12 @@ import android.content.Intent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.youth.banner.config.BannerConfig;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.util.BannerUtils;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.common.bean.page.PageInfo;
@@ -131,11 +129,20 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             }
 
             if (bannerEntities != null && bannerEntities.size() > 0) {
-                mViewDataBinding.banner.setAdapter(new HomeHeadBannerAdapter(bannerEntities));
-                mViewDataBinding.banner.setIndicator(new CircleIndicator(getActivity()));
-                mViewDataBinding.banner.setIndicatorGravity(IndicatorConfig.Direction.RIGHT);
-                mViewDataBinding.banner.setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
-                        BannerConfig.INDICATOR_SELECTED_WIDTH, (int) BannerUtils.dp2px(40)));
+                mViewDataBinding.banner.setAdapter(new HomeHeadBannerAdapter(bannerEntities))
+                        .setIndicator(new CircleIndicator(getActivity()))
+                        .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
+                        .setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
+                                BannerConfig.INDICATOR_SELECTED_WIDTH, (int) BannerUtils.dp2px(40)))
+                .setOnBannerListener(new OnBannerListener() {
+                    @Override
+                    public void OnBannerClick(Object data, int position) {
+                        ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra("link", bannerEntities.get(position).getUrl());
+                        startActivity(intent);
+                    }
+                });
             }
         });
 

@@ -18,6 +18,7 @@ import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.adapter.HomeArticleListAdapter;
+import com.zjp.home.adapter.HotSearchAdapter;
 import com.zjp.home.bean.ArticleEntity;
 import com.zjp.home.databinding.ActivitySearchresultBinding;
 import com.zjp.home.viewmodel.SearchViewModel;
@@ -87,35 +88,33 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
                 mViewDataBinding.refresh.finishRefresh();
                 mViewDataBinding.refresh.finishLoadMore();
             }
+            List<ArticleEntity.DatasBean> datas = articleEntity.getDatas();
 
-            if (articleEntity.getDatas() != null && articleEntity.getDatas().size() > 0) {
-                if (pageInfo.isFirstPage()) {
-
-                }
+            if (pageInfo.isZeroPage()) {
+                articleListAdapter.setList(datas);
             } else {
-
+                articleListAdapter.addData(datas);
             }
-//            if (isLoading)
-//                showContent();
-//
-//            if (null != articleEntity) {
-//                List<ArticleEntity.DatasBean> datas = articleEntity.getDatas();
-//                articleListAdapter.setList(datas);
-//                pageInfo.nextPage();
-//                isLoading = false;
-//            }
+            pageInfo.nextZeroPage();
+        });
+
+        articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
+            Intent intent = new Intent(this, WebViewActivity.class);
+            intent.putExtra("link", datasBean.getLink());
+            startActivity(intent);
         });
 
         mViewDataBinding.refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-                loadData("");
+                loadData(keyword);
             }
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageInfo.reset();
-                loadData("");
+                pageInfo.resetZero();
+                loadData(keyword);
             }
         });
 
@@ -138,10 +137,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
     }
 
     private void loadData(String keyword) {
-        /**
-         * 由于其他页面，page第一次传的是1，但是这里搜索结果页，需要从0开始传，固 -1
-         */
-        mViewModel.search(pageInfo.page - 1, keyword);
+        mViewModel.search(pageInfo.mPage, keyword);
     }
 
 }

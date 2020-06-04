@@ -51,7 +51,7 @@ ext {
             "arouter_compiler"      : "com.alibaba:arouter-compiler:1.2.2",
 
             //banner
-            "banner"                : "com.youth.banner:banner:2.0.8",
+            "banner"                : "com.youth.banner:banner:2.0.10",
 
             //refresh
             "refreshlayout"         : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
