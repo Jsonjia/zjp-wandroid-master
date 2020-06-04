@@ -6,8 +6,15 @@
     <application>
 
 
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.WebViewActivity" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SearchResultActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

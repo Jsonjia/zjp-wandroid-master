@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/head_rootview"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <View
+                android:id="@+id/view_status"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="@dimen/dp0"
+                android:background="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_height="@dimen/dp28" />
+
+            <LinearLayout
+                android:id="@+id/l_head"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="@dimen/dp35"
+                android:layout_marginLeft="@dimen/dp10"
+                android:background="@drawable/shape_4_corner_f4f4f4_bg"
+                android:orientation="horizontal"
+                android:transitionName="viewll"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/tv_cancel"
+                app:layout_constraintTop_toBottomOf="@+id/view_status">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_search"
+                    android:layout_width="@dimen/dp21"
+                    android:layout_height="@dimen/dp21"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:background="@mipmap/home_search"
+                    android:transitionName="search" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/search_et"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp9"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="请输入关键字进行搜索"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColorHint="@color/c_999999"
+                    android:textSize="@dimen/sp14" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp0"
+                android:gravity="center"
+                android:paddingStart="@dimen/dp10"
+                android:paddingEnd="@dimen/dp10"
+                android:text="取消"
+                android:textColor="@color/c_999999"
+                android:textSize="@dimen/sp15"
+                app:layout_constraintBottom_toBottomOf="@+id/l_head"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/l_head" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="@dimen/dp0"
+            android:layout_marginTop="@dimen/dp10"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/head_rootview"
+            app:srlEnableAutoLoadMore="false"
+            app:srlEnableLoadMore="true"
+            app:srlEnableOverScrollBounce="true"
+            app:srlEnableRefresh="true">
+
+            <com.scwang.smartrefresh.header.MaterialHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

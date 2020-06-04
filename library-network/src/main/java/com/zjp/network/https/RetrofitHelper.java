@@ -2,7 +2,7 @@ package com.zjp.network.https;
 
 
 import com.zjp.base.application.BaseApplication;
-import com.zjp.network.constant.ApiConstants;
+import com.zjp.network.constant.C;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +40,7 @@ public class RetrofitHelper {
                 .build();
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(ApiConstants.BASE_URL)
+                .baseUrl(C.BASE_URL)
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

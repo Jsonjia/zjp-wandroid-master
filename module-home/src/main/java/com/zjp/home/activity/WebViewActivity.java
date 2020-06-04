@@ -59,7 +59,7 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseVi
                 .go(getUrl());
     }
 
-    private com.just.agentweb.WebViewClient mWebViewClient = new WebViewClient() {
+    private WebViewClient mWebViewClient = new WebViewClient() {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
             return super.shouldOverrideUrlLoading(view, request);

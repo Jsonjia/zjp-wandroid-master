@@ -3,7 +3,7 @@ package com.zjp.home.bean;
 import android.text.TextUtils;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
-import com.zjp.common.constant.C;
+import com.zjp.network.constant.C;
 
 import java.util.List;
 

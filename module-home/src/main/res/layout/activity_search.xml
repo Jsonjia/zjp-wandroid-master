@@ -5,9 +5,9 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.zjp.home.viewmodel.SearchViewModel" />-->
+        <!--        <variable-->
+        <!--            name="viewModel"-->
+        <!--            type="com.zjp.home.viewmodel.SearchViewModel" />-->
 
     </data>
 
@@ -39,22 +39,22 @@
                 android:layout_width="@dimen/dp20"
                 android:layout_height="@dimen/dp20"
                 android:layout_marginLeft="@dimen/dp16"
-                android:layout_marginTop="@dimen/dp10"
                 android:background="@drawable/back_left"
                 android:padding="@dimen/dp8"
+                app:layout_constraintBottom_toBottomOf="@+id/l_head"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_status" />
+                app:layout_constraintTop_toTopOf="@+id/l_head" />
 
             <LinearLayout
+                android:id="@+id/l_head"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="@dimen/dp35"
                 android:layout_marginLeft="@dimen/dp10"
                 android:background="@drawable/shape_4_corner_f4f4f4_bg"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_back"
                 app:layout_constraintLeft_toRightOf="@+id/iv_back"
                 app:layout_constraintRight_toLeftOf="@+id/tv_cancel"
-                app:layout_constraintTop_toTopOf="@+id/iv_back">
+                app:layout_constraintTop_toBottomOf="@+id/view_status">
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_search"
@@ -94,7 +94,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/iv_back"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/iv_back"
-                tools:text="确定" />
+                tools:text="取消" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

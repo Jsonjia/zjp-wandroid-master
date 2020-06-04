@@ -151,9 +151,8 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         });
 
         mViewModel.mArticleMutable.observe(this, articleEntity -> {
-            if (mViewDataBinding.refresh.getState().isOpening) {
+            if (mViewDataBinding.refresh.getState().isOpening)
                 mViewDataBinding.refresh.finishLoadMore();
-            }
             if (null != articleEntity) {
                 List<ArticleEntity.DatasBean> entityDatas = articleEntity.getDatas();
                 if (null != entityDatas && entityDatas.size() > 0) {

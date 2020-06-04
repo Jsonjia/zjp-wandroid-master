@@ -1,10 +1,12 @@
 package com.zjp.common.storage;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.mmkv.MMKV;
 import com.zjp.common.bean.UserInfo;
-import com.zjp.network.constant.ApiConstants;
+import com.zjp.network.constant.C;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +14,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -111,28 +114,50 @@ public class MmkvHelper {
      */
     public boolean isFirst() {
         MMKV mmkv = MMKV.defaultMMKV();
-        return mmkv.encode(ApiConstants.FIRST, false);
+        return mmkv.encode(C.FIRST, false);
     }
 
     public boolean getFirst() {
         MMKV mmkv = MMKV.defaultMMKV();
-        return mmkv.decodeBool(ApiConstants.FIRST, true);
+        return mmkv.decodeBool(C.FIRST, true);
     }
 
     /**
      * 保存用户信息
      */
     public void saveUserInfo(UserInfo userInfo) {
-        mmkv.encode(ApiConstants.USER_INFO, userInfo);
+        mmkv.encode(C.USER_INFO, userInfo);
     }
 
     public UserInfo getUserInfo() {
-        return mmkv.decodeParcelable(ApiConstants.USER_INFO, UserInfo.class);
+        return mmkv.decodeParcelable(C.USER_INFO, UserInfo.class);
     }
 
 
-    public void clearHistory() {
-        mmkv.remove(ApiConstants.SEARCH_HISTORY);
+    public void clearHistory(String key) {
+        mmkv.remove(key);
+    }
+
+    public void removeKeywords(String keywords) {
+        List<String> dataList = getDataList(C.SEARCH_HISTORY);
+        if (null == dataList || dataList.size() == 0) {
+            return;
+        }
+        //用这个方法出错，原因：https://www.cnblogs.com/zhuyeshen/p/10956822.html
+//        for (String str : dataList) {
+//            if (TextUtils.equals(keywords, str)) {
+//                dataList.remove(str);
+//                saveList(C.SEARCH_HISTORY, dataList);
+//            }
+//        }
+        Iterator<String> iterator = dataList.iterator();
+        while (iterator.hasNext()) {
+            String str = iterator.next();
+            if (TextUtils.equals(keywords, str)) {
+                iterator.remove();
+                saveList(C.SEARCH_HISTORY, dataList);
+            }
+        }
     }
 
 }

@@ -29,9 +29,9 @@ public class SearchViewModel extends BaseViewModel {
         super(application);
     }
 
-    public void search(int page,String k){
+    public void search(int page, String k) {
         RetrofitHelper.getInstance().create(HomeService.class)
-                .search(page,k)
+                .search(page, k)
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
                 .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
@@ -49,7 +49,7 @@ public class SearchViewModel extends BaseViewModel {
                 }));
     }
 
-    public void hotSearch(){
+    public void hotSearch() {
         RetrofitHelper.getInstance().create(HomeService.class)
                 .hotSearch()
                 .compose(new IoMainScheduler<>())

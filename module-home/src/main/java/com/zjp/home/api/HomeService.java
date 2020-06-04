@@ -30,13 +30,13 @@ public interface HomeService {
     @GET("article/list/{page}/json")
     Observable<BaseResponse<ArticleEntity>> getHomeList(@Path("page") int pageNo);
 
-    //搜索
-    @POST("article/query/{pageNum}/json")
-    Observable<BaseResponse<ArticleEntity>> search(@Path("page") int pageNo, @Query("k") String k);
-
     //热门搜索
     @GET("hotkey/json")
     Observable<BaseResponse<List<HotSearchEntity>>> hotSearch();
+
+    //搜索内容
+    @POST("article/query/{page}/json")
+    Observable<BaseResponse<ArticleEntity>> search(@Path("page") int pageNo, @Query("k") String k);
 
 
 
