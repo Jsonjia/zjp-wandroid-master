@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -23,6 +24,7 @@ import com.zjp.common.router.RouterFragmentPath;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.activity.SearchActivity;
+import com.zjp.home.activity.SearchResultActivity;
 import com.zjp.home.activity.WebViewActivity;
 import com.zjp.home.adapter.HomeArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;

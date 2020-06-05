@@ -1,6 +1,7 @@
 package com.zjp.main;
 
 
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 
@@ -43,6 +44,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
     @Override
     protected void initView() {
         super.initView();
+
         mFragmentManager = getSupportFragmentManager();
         mFragmentMap = new SparseArray<>();
         pageTo(FRAGMENT_HOME);

@@ -98,7 +98,10 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
 
     @Override
     public void showContent() {
-
+        if (null != mLoadService) {
+            isShowedContent = true;
+            mLoadService.showSuccess();
+        }
     }
 
     @Override

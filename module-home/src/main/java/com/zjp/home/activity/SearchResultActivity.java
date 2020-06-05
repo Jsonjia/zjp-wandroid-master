@@ -57,7 +57,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
         ViewGroup.LayoutParams layoutParams = mViewDataBinding.viewStatus.getLayoutParams();
         layoutParams.height = ImmersionBar.getStatusBarHeight(this);
         mViewDataBinding.viewStatus.setLayoutParams(layoutParams);
-
+        setLoadSir(mViewDataBinding.refresh);
         pageInfo = new PageInfo();
         Intent intent = getIntent();
         if (intent != null) {
@@ -88,14 +88,25 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
                 mViewDataBinding.refresh.finishRefresh();
                 mViewDataBinding.refresh.finishLoadMore();
             }
+            if (isLoading)
+                showContent();
             List<ArticleEntity.DatasBean> datas = articleEntity.getDatas();
-
-            if (pageInfo.isZeroPage()) {
-                articleListAdapter.setList(datas);
+            if (datas != null && datas.size() > 0) {
+                if (pageInfo.isZeroPage()) {
+                    articleListAdapter.setList(datas);
+                } else {
+                    articleListAdapter.addData(datas);
+                }
+                pageInfo.nextZeroPage();
             } else {
-                articleListAdapter.addData(datas);
+                if (pageInfo.isZeroPage()) {
+                    showEmpty();
+                } else {
+                    articleListAdapter.addData(datas);
+                    mViewDataBinding.refresh.finishLoadMoreWithNoMoreData();
+                }
             }
-            pageInfo.nextZeroPage();
+            isLoading = false;
         });
 
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
@@ -134,6 +145,8 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
             mViewDataBinding.searchEt.requestFocus();
             return false;
         });
+
+        mViewDataBinding.tvCancel.setOnClickListener(v -> finishAfterTransition());
     }
 
     private void loadData(String keyword) {
