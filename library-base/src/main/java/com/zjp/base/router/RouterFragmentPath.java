@@ -1,4 +1,4 @@
-package com.zjp.common.router;
+package com.zjp.base.router;
 
 /**
  * Created by zjp on 2020/5/6 17:05

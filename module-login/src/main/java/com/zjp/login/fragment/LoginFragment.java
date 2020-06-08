@@ -4,21 +4,15 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.fragment.BaseFragment;
-import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.common.bean.UserInfo;
-import com.zjp.common.router.RouterActivityPath;
+import com.zjp.base.router.RouterActivityPath;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.common.textwatcher.SimpleTextWatcher;
 import com.zjp.login.R;

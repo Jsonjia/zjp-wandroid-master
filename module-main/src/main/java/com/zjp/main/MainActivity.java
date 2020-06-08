@@ -1,7 +1,6 @@
 package com.zjp.main;
 
 
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.MenuItem;
 
@@ -15,8 +14,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.common.router.RouterActivityPath;
-import com.zjp.common.router.RouterFragmentPath;
+import com.zjp.base.router.RouterActivityPath;
+import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.main.databinding.ActivityMainBinding;
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)

@@ -4,7 +4,7 @@ package com.zjp.project;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.common.router.RouterFragmentPath;
+import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.project.databinding.FragmentProjectFragmentBinding;
 
 @Route(path = RouterFragmentPath.Project.PAGER_PROJECT)
