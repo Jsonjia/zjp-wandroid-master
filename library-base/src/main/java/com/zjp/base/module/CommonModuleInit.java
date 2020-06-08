@@ -12,8 +12,8 @@ import com.zjp.base.application.BaseApplication;
 import com.zjp.base.loadsir.EmptyCallback;
 import com.zjp.base.loadsir.ErrorCallback;
 import com.zjp.base.loadsir.LoadingCallback;
+import com.zjp.base.router.RouterActivityPath;
 
-import org.aspectj.lang.annotation.Around;
 
 /**
  * Created by zjp on 2020/5/9 16:37
@@ -53,7 +53,7 @@ public class CommonModuleInit implements IModuleInit {
         public void login(Context ctx, int loginDefine) {
             switch (loginDefine) {
                 case 0:
-//                    ARouter.getInstance().build(RouterActivityPath.Login.LOGIN).navigation();
+                    ARouter.getInstance().build(RouterActivityPath.Login.LOGIN).navigation();
                     break;
 
             }

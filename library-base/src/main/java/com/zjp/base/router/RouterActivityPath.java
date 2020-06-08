@@ -10,7 +10,7 @@ public class RouterActivityPath {
      * Login 组件
      */
     public static class Login {
-        private static final String LOGIN = "/login/Login";
+        public static final String LOGIN = "/login/Login";
     }
 
     /**
