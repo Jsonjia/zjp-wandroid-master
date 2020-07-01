@@ -59,7 +59,7 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
         articleListAdapter = new ArticleListAdapter(null);
         mViewDataBinding.recy.setAdapter(articleListAdapter);
 
-        Log.d("zjp1", "initView");
+//        Log.d("zjp1", "initView");
     }
 
     @Override
