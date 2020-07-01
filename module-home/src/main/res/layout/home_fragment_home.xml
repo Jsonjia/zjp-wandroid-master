@@ -109,7 +109,7 @@
                             android:background="@color/white"
                             android:overScrollMode="never"
                             tools:itemCount="4"
-                            tools:listitem="@layout/home_adapter_item_article" />
+                            tools:listitem="@layout/article_txt_item" />
 
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>

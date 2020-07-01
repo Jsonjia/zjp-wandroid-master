@@ -24,9 +24,9 @@ import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.activity.SearchActivity;
 import com.zjp.home.activity.WebViewActivity;
-import com.zjp.home.adapter.HomeArticleListAdapter;
+import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
-import com.zjp.home.bean.ArticleEntity;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
 
@@ -35,7 +35,7 @@ import java.util.List;
 @Route(path = RouterFragmentPath.Home.PAGER_HOME)
 public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeViewModel> {
 
-    private HomeArticleListAdapter articleListAdapter;
+    private ArticleListAdapter articleListAdapter;
     private PageInfo pageInfo;
     private boolean isLoading = true;
 
@@ -62,7 +62,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(getActivity()));
         mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
                 CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
-        articleListAdapter = new HomeArticleListAdapter(null);
+        articleListAdapter = new ArticleListAdapter(null);
         mViewDataBinding.recy.setAdapter(articleListAdapter);
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -134,15 +134,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
                         .setIndicatorGravity(IndicatorConfig.Direction.RIGHT)
                         .setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
                                 BannerConfig.INDICATOR_SELECTED_WIDTH, (int) BannerUtils.dp2px(40)))
-                .setOnBannerListener(new OnBannerListener() {
-                    @Override
-                    public void OnBannerClick(Object data, int position) {
-                        ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                        intent.putExtra("link", bannerEntities.get(position).getUrl());
-                        startActivity(intent);
-                    }
-                });
+                        .setOnBannerListener((data, position) -> {
+                            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                            intent.putExtra("link", bannerEntities.get(position).getUrl());
+                            startActivity(intent);
+                        });
             }
         });
 
@@ -150,6 +146,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             if (mViewDataBinding.refresh.getState().isOpening) {
                 mViewDataBinding.refresh.finishRefresh();
             }
+
             if (isLoading)
                 showContent();
             articleListAdapter.setList(datasBeans);
@@ -157,6 +154,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             isLoading = false;
         });
 
+        //加载更多
         mViewModel.mArticleMutable.observe(this, articleEntity -> {
             if (mViewDataBinding.refresh.getState().isOpening)
                 mViewDataBinding.refresh.finishLoadMore();

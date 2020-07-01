@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -54,14 +55,13 @@ public class GlideUtil {
     }
 
 
-
     /**
      * 加载圆角图片
      */
     public void loadRoundImage(ImageView iv, String url, int round) {
         Glide.with(iv.getContext())
                 .load(url)
-                .transform(new RoundedCorners(round))
+                .transform(new CenterCrop(), new RoundedCorners(round))
                 .into(iv);
     }
 

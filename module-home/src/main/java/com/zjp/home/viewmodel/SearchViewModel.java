@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.home.api.HomeService;
-import com.zjp.home.bean.ArticleEntity;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.bean.HotSearchEntity;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;

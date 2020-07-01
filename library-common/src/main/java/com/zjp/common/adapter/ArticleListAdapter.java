@@ -1,18 +1,17 @@
-package com.zjp.home.adapter;
+package com.zjp.common.adapter;
 
 import android.text.Html;
 import android.text.TextUtils;
-import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.zjp.common.R;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.network.constant.C;
 import com.zjp.common.utils.GlideUtil;
-import com.zjp.home.R;
-import com.zjp.home.bean.ArticleEntity;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,12 +20,12 @@ import java.util.List;
 /**
  * Created by zjp on 2020/5/15 14:18
  */
-public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.DatasBean, BaseViewHolder> implements LoadMoreModule {
+public class ArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.DatasBean, BaseViewHolder> implements LoadMoreModule {
 
-    public HomeArticleListAdapter(List<ArticleEntity.DatasBean> data) {
+    public ArticleListAdapter(List<ArticleEntity.DatasBean> data) {
         super(data);
-        addItemType(C.ARTICLE_ITEM, R.layout.home_adapter_item_article);
-        addItemType(C.ARTICLE_ITEM_PIC, R.layout.item_project);
+        addItemType(C.ARTICLE_ITEM, R.layout.article_txt_item);
+        addItemType(C.ARTICLE_ITEM_PIC, R.layout.article_img_item);
     }
 
     @Override
@@ -40,14 +39,13 @@ public class HomeArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEnt
 
             case C.ARTICLE_ITEM_PIC:
                 AppCompatImageView mIvCover = baseViewHolder.getView(R.id.iv_cover);
-                GlideUtil.getInstance().loadRoundImage(mIvCover, datasBean.getEnvelopePic(), 4);
+                GlideUtil.getInstance().loadRoundImage(mIvCover, datasBean.getEnvelopePic(), 8);
                 baseViewHolder.setText(R.id.tv_desc, datasBean.getDesc());
                 break;
         }
 
-        baseViewHolder
-                .setText(R.id.tv_author, TextUtils.isEmpty(datasBean.getAuthor()) ? datasBean.getShareUser()
-                        : datasBean.getAuthor())
+        baseViewHolder.setText(R.id.tv_author, TextUtils.isEmpty(datasBean.getAuthor()) ?
+                datasBean.getShareUser() : datasBean.getAuthor())
                 .setText(R.id.tv_title, Html.fromHtml(datasBean.getTitle()));
     }
 }

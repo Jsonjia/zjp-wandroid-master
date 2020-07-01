@@ -16,8 +16,7 @@
         android:layout_marginTop="@dimen/dp15"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="@mipmap/ic_launcher" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_title"
@@ -25,9 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/dp15"
         android:ellipsize="end"
-        android:maxLines="1"
+        android:maxLines="2"
         android:textColor="@color/black"
         android:textSize="@dimen/sp15"
+        android:textStyle="bold"
         app:layout_constraintLeft_toRightOf="@+id/iv_cover"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/iv_cover"
@@ -39,10 +39,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:maxLines="3"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp14"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/c_666666"
+        android:textSize="@dimen/sp13"
         app:layout_constraintLeft_toLeftOf="@+id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title"
         tools:text="描述" />
 
@@ -50,8 +52,8 @@
         android:id="@+id/tv_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sp14"
+        android:textColor="@color/c_999999"
+        android:textSize="@dimen/sp12"
         app:layout_constraintBottom_toBottomOf="@+id/iv_cover"
         app:layout_constraintLeft_toLeftOf="@+id/tv_title"
         tools:text="2020-03-14 | zskingking" />

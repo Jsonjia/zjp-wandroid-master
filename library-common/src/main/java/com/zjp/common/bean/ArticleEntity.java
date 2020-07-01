@@ -1,4 +1,4 @@
-package com.zjp.home.bean;
+package com.zjp.common.bean;
 
 import android.text.TextUtils;
 

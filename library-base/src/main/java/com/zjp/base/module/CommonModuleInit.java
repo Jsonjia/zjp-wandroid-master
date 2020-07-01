@@ -39,7 +39,6 @@ public class CommonModuleInit implements IModuleInit {
         ARouter.init(application);
 
         LoginManager.getInstance().init(application, iLoginFilter);
-//        LoginManger.getInstance().init(this,iLoginFilter);
         return false;
     }
 

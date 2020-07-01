@@ -7,11 +7,9 @@ public class PageInfo {
 
     public int page = 1;
 
-
     public void nextPage() {
         page++;
     }
-
 
     public void reset() {
         page = 1;
@@ -21,7 +19,7 @@ public class PageInfo {
         return page == 1;
     }
 
-    /**************************************  分割线   ***************************************/
+    /**************************************  我是分割线   ***************************************/
     public int mPage = 0;
 
     public void nextZeroPage() {

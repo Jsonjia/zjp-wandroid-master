@@ -2,32 +2,25 @@ package com.zjp.home.viewmodel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.home.api.HomeService;
-import com.zjp.home.bean.ArticleEntity;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.bean.BannerEntity;
-import com.zjp.home.bean.HotSearchEntity;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;
 import com.zjp.network.observer.NetCallback;
 import com.zjp.network.observer.NetHelperObserver;
 import com.zjp.network.scheduler.IoMainScheduler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by zjp on 2020/5/11 14:37

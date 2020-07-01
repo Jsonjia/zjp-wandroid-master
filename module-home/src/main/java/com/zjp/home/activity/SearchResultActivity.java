@@ -3,11 +3,9 @@ package com.zjp.home.activity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gyf.immersionbar.ImmersionBar;
@@ -17,9 +15,8 @@ import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
-import com.zjp.home.adapter.HomeArticleListAdapter;
-import com.zjp.home.adapter.HotSearchAdapter;
-import com.zjp.home.bean.ArticleEntity;
+import com.zjp.common.adapter.ArticleListAdapter;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.databinding.ActivitySearchresultBinding;
 import com.zjp.home.viewmodel.SearchViewModel;
 import com.zjp.network.constant.C;
@@ -34,7 +31,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
     private String keyword;
     private PageInfo pageInfo;
 
-    private HomeArticleListAdapter articleListAdapter;
+    private ArticleListAdapter articleListAdapter;
     private boolean isLoading = true;
 
     @Override
@@ -72,7 +69,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(this));
         mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(this,
                 CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
-        articleListAdapter = new HomeArticleListAdapter(null);
+        articleListAdapter = new ArticleListAdapter(null);
         mViewDataBinding.recy.setAdapter(articleListAdapter);
 
         loadData(keyword);
