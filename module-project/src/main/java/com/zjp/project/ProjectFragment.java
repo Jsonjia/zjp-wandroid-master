@@ -11,7 +11,21 @@ import com.zjp.project.databinding.FragmentProjectFragmentBinding;
 public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding, BaseViewModel> {
 
     @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar
+                .statusBarDarkFont(true)
+                .init();
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_project_fragment;
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+
     }
 }
