@@ -20,6 +20,6 @@ dependencies {
     implementation support.navigation_fragment
     implementation support.navigation_ui
 
-
+    implementation support.particleview
 
 }

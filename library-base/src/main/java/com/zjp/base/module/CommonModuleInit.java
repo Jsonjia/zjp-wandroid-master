@@ -31,7 +31,7 @@ public class CommonModuleInit implements IModuleInit {
                 .addCallback(new EmptyCallback())
                 .setDefaultCallback(LoadingCallback.class)
                 .commit();
-
+        
         if (application.isDebug()) {
             ARouter.openLog();
             ARouter.openDebug();

@@ -11,6 +11,8 @@ import com.zjp.common.storage.MmkvHelper;
 import com.zjp.login.R;
 import com.zjp.login.databinding.ActivitySplashBinding;
 
+import me.wangyuwei.particleview.ParticleView;
+
 public class SplashActivity extends BaseActivity<ActivitySplashBinding, BaseViewModel> {
 
     @Override
@@ -22,12 +24,15 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, BaseView
     protected void initView() {
         super.initView();
 
-        UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
-        if (userInfo == null) {
-            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-        } else {
-            ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
-        }
-        finish();
+        mViewDataBinding.particleview.startAnim();
+        mViewDataBinding.particleview.setOnParticleAnimListener(() -> {
+            UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
+            if (userInfo == null) {
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+            } else {
+                ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+            }
+            finish();
+        });
     }
 }
