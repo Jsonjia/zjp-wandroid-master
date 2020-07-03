@@ -28,8 +28,7 @@ ext {
             "material"        : "com.google.android.material:material:${version["materialVersion"]}",
             "lifecycle"       : "androidx.lifecycle:lifecycle-extensions:2.1.0",
     ]
-
-
+    
     dependencies = [
 
             //retrofit
