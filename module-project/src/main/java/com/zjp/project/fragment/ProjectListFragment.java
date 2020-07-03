@@ -1,5 +1,6 @@
 package com.zjp.project.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,6 +15,7 @@ import com.zjp.base.fragment.BaseLazyFragment;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.project.R;
 import com.zjp.project.databinding.FragmentProjectListBinding;
@@ -58,19 +60,16 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
                 CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
         articleListAdapter = new ArticleListAdapter(null);
         mViewDataBinding.recy.setAdapter(articleListAdapter);
-
-//        Log.d("zjp1", "initView");
     }
 
     @Override
     protected void initData() {
         super.initData();
-        Log.d("zjp1", "initData");
 
         mViewModel.mArticleListMutable.observe(this, datasBeans -> {
             if (mViewDataBinding.refresh.getState().isOpening) {
                 mViewDataBinding.refresh.finishRefresh();
-                mViewDataBinding.refresh.finishRefresh();
+                mViewDataBinding.refresh.finishLoadMore();
             }
             if (isLoading)
                 showContent();
@@ -80,7 +79,7 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
                 } else {
                     articleListAdapter.addData(datasBeans);
                 }
-                pageInfo.nextPage();
+//                pageInfo.nextPage();
             } else {
                 if (pageInfo.isFirstPage()) {
                     showEmpty();
@@ -94,12 +93,17 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
 
     @Override
     protected void lazyLoadData() {
-//        pageInfo = new PageInfo();
-//        isLoading = true;
-        Log.d("zjp1", "lazyLoadData");
-        setLoadSir(mViewDataBinding.lRootview);
-//        mViewDataBinding.refresh.setOnRefreshLoadMoreListener(this);
-//        onRetryBtnClick();
+        pageInfo = new PageInfo();
+        isLoading = true;
+        showLoading();
+        mViewDataBinding.refresh.setOnRefreshLoadMoreListener(this);
+        articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
+            Intent intent = new Intent(getActivity(), WebViewActivity.class);
+            intent.putExtra("link", datasBean.getLink());
+            startActivity(intent);
+        });
+        onRetryBtnClick();
     }
 
     @Override
@@ -110,13 +114,13 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        pageInfo.reset();
+        pageInfo.nextPage();
         onRetryBtnClick();
     }
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        pageInfo.nextPage();
+        pageInfo.reset();
         onRetryBtnClick();
     }
 }

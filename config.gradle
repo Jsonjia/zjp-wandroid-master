@@ -1,11 +1,11 @@
 ext {
 
     androidId = [
-            compileSdkVersion: 29,
-            buildToolsVersion: '29.0.3',
+            compileSdkVersion: 30,
+            buildToolsVersion: '30.0.0',
             applicationId    : "com.zjp.wandroid",
             minSdkVersion    : 21,
-            targetSdkVersion : 29,
+            targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0",
     ]
@@ -17,7 +17,7 @@ ext {
     ]
 
     androidXTest = [
-            "junit"                               : "junit:junit:4.12",
+            "junit"                               : "junit:junit:4.13",
             "androidx.test.ext_junit"             : "androidx.test.ext:junit:1.1.1",
             "androidx.test.espresso:espresso_core": "androidx.test.espresso:espresso-core:3.2.0",
     ]
@@ -68,7 +68,7 @@ ext {
             "navigation_fragment"   : "androidx.navigation:navigation-fragment:2.3.0-alpha06",
             "navigation_ui"         : "androidx.navigation:navigation-ui:2.3.0-alpha06",
 
-            "mmkv"                  : "com.tencent:mmkv:1.1.1",
+            "mmkv"                  : "com.tencent:mmkv:1.2.0",
 
             "smartRefreshLayout"    : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
             "smartheadRefreshLayout": "com.scwang.smartrefresh:SmartRefreshHeader:1.1.2",

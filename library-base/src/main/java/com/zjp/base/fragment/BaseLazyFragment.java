@@ -62,7 +62,14 @@ public abstract class BaseLazyFragment<V extends ViewDataBinding, VM extends Bas
         mViewDataBinding =
                 DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         mViewDataBinding.setLifecycleOwner(this);
-        return mViewDataBinding.getRoot();
+
+        mLoadService = LoadSir.getDefault().register(mViewDataBinding.getRoot(), new Callback.OnReloadListener() {
+            @Override
+            public void onReload(View v) {
+
+            }
+        });
+        return mLoadService.getLoadLayout();
     }
 
     @Override
@@ -140,21 +147,9 @@ public abstract class BaseLazyFragment<V extends ViewDataBinding, VM extends Bas
     protected void initView() {
 
     }
+
     protected void initData() {
 
-    }
-
-    /**
-     * 注册LoadSir
-     *
-     * @param view 替换视图
-     */
-    public void setLoadSir(View view) {
-        if (mLoadService == null) {
-            mLoadService = LoadSir.getDefault()
-                    .register(view, (Callback.OnReloadListener) v -> onRetryBtnClick());
-        }
-        showLoading();
     }
 
     @Override

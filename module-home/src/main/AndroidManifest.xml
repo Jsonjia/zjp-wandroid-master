@@ -10,7 +10,7 @@
             android:name=".activity.SearchActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.WebViewActivity"
+            android:name="com.zjp.common.ui.WebViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SearchResultActivity"

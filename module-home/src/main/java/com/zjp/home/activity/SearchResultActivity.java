@@ -13,6 +13,7 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.common.adapter.ArticleListAdapter;

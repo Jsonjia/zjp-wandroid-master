@@ -1,11 +1,13 @@
 package com.zjp.project.fragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.gyf.immersionbar.ImmersionBar;
@@ -49,9 +51,12 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
     @Override
     protected void initView() {
         super.initView();
-        ViewGroup.LayoutParams layoutParams = mViewDataBinding.viewStatus.getLayoutParams();
-        layoutParams.height = ImmersionBar.getStatusBarHeight(getActivity());
-        mViewDataBinding.viewStatus.setLayoutParams(layoutParams);
+//        ViewGroup.LayoutParams layoutParams = mViewDataBinding.viewStatus.getLayoutParams();
+//        layoutParams.height = ImmersionBar.getStatusBarHeight(getActivity());
+//        mViewDataBinding.viewStatus.setLayoutParams(layoutParams);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mViewDataBinding.fl.setElevation(10f);
+        }
 
         mViewModel.getProjectTab();
     }

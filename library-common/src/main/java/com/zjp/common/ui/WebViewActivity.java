@@ -1,4 +1,4 @@
-package com.zjp.home.activity;
+package com.zjp.common.ui;
 
 import android.graphics.Bitmap;
 import android.util.Log;
@@ -9,13 +9,13 @@ import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
-import com.zjp.base.activity.BaseActivity;
-import com.zjp.base.viewmodel.BaseViewModel;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
-import com.zjp.home.R;
-import com.zjp.home.databinding.ActivityWebviewBinding;
-import com.zjp.home.view.WebLayout;
+import com.zjp.base.activity.BaseActivity;
+import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.common.R;
+import com.zjp.common.databinding.ActivityWebviewBinding;
+import com.zjp.common.view.WebLayout;
 
 /**
  * Created by zjp on 2020/6/2 13:38

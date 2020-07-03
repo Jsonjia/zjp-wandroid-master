@@ -17,5 +17,4 @@ dependencies {
 
     implementation support.banner
     implementation support.flexbox
-    implementation support.agentweb
 }

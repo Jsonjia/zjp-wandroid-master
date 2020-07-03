@@ -1,4 +1,4 @@
-package com.zjp.home.view;
+package com.zjp.common.view;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.just.agentweb.IWebLayout;
-import com.zjp.home.R;
+import com.zjp.common.R;
 
 /**
  * Created by zjp on 2020/6/2 13:52

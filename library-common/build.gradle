@@ -48,6 +48,6 @@ dependencies {
     api support.refreshlayout
     api support.glide
     api support.baseadapterhelper
-
+    implementation support.agentweb
 
 }

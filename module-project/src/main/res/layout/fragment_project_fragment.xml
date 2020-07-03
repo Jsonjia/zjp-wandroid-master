@@ -8,24 +8,32 @@
         android:layout_height="match_parent"
         tools:context=".fragment.ProjectFragment">
 
-        <View
-            android:id="@+id/view_status"
+        <!--   <View
+               android:id="@+id/view_status"
+               android:layout_width="@dimen/dp0"
+               android:layout_height="@dimen/dp0"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toTopOf="parent"
+               tools:layout_height="@dimen/dp28" />-->
+
+        <FrameLayout
+            android:id="@+id/fl"
             android:layout_width="@dimen/dp0"
-            android:layout_height="@dimen/dp0"
+            android:layout_height="84dp"
+            android:background="@color/white"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_height="@dimen/dp28" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <net.lucode.hackware.magicindicator.MagicIndicator
-            android:id="@+id/magic_inticator"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="@dimen/dp40"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_status" />
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/magic_inticator"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp40"
+                android:layout_marginTop="34dp" />
+        </FrameLayout>
 
-        <androidx.viewpager.widget.ViewPager
+        <com.zjp.common.view.NoAnimationViewpager
             android:id="@+id/vp"
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp0"
@@ -33,7 +41,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/magic_inticator" />
+            app:layout_constraintTop_toBottomOf="@+id/fl" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
