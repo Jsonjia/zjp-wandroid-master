@@ -10,16 +10,119 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MineFragment">
+        tools:context=".fragment.MineFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <FrameLayout
+            android:layout_width="@dimen/dp0"
+            android:layout_height="150dp"
+            android:background="@color/colorPrimary"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.zjp.mine.widget.WaveView
+                android:id="@+id/waveview"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp15"
+                android:layout_gravity="bottom" />
+
+<!--            <androidx.appcompat.widget.AppCompatImageView-->
+<!--                android:id="@+id/iv_avatar"-->
+<!--                android:layout_width="@dimen/dp40"-->
+<!--                android:layout_height="@dimen/dp40"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:background="@mipmap/ic_launcher" />-->
+        </FrameLayout>
+
+        <!--         <View
+                android:id="@+id/iv_bg"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="250dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp15"
+                android:layout_marginTop="@dimen/dp30"
+                android:text="去登录"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp16"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="等级：3"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp14"
+                app:layout_constraintLeft_toLeftOf="@+id/tv_username"
+                app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+
+       <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/dp55"
+                android:layout_height="@dimen/dp55"
+                android:layout_marginRight="@dimen/dp16"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_username" />-->
+
+        <!--
+
+           <androidx.appcompat.widget.AppCompatImageView
+               android:id="@+id/iv_avatar"
+               android:layout_width="@dimen/dp35"
+               android:layout_height="@dimen/dp35"
+               app:layout_constraintBottom_toBottomOf="@id/iv_bg"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toTopOf="@+id/iv_bg" />
+
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_gologin"
+               android:layout_width="@dimen/dp0"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/dp10"
+               android:gravity="center"
+               android:text="去登录"
+               android:textColor="@color/white"
+               android:textSize="@dimen/sp16"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
+
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_id"
+               android:layout_width="@dimen/dp0"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/dp10"
+               android:gravity="center"
+               android:textColor="@color/white"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_gologin"
+               tools:text="12345" />
+
+           <androidx.appcompat.widget.AppCompatTextView
+               android:id="@+id/tv_rank"
+               android:layout_width="@dimen/dp0"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="@dimen/dp10"
+               android:gravity="center"
+               android:textColor="@color/white"
+               app:layout_constraintLeft_toLeftOf="parent"
+               app:layout_constraintRight_toRightOf="parent"
+               app:layout_constraintTop_toBottomOf="@+id/tv_id"
+               tools:text="等级3" />-->
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
