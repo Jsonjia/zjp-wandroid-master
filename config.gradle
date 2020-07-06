@@ -80,6 +80,5 @@ ext {
 
             "particleview"          : "me.wangyuwei:ParticleView:1.0.4"
 
-
     ]
 }
