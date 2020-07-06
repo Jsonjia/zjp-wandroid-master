@@ -30,15 +30,5 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Base
     @Override
     protected void initView() {
         super.initView();
-        final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(-2, -2);
-        lp.gravity = Gravity.BOTTOM | Gravity.CENTER;
-//        mViewDataBinding.waveview.setOnWaveAnimationListener(new WaveView.OnWaveAnimationListener() {
-//            @Override
-//            public void OnWaveAnimation(float y) {
-//                lp.setMargins(0, 0, 0, (int) y + 2);
-//                mViewDataBinding.ivAvatar.setLayoutParams(lp);
-//            }
-//        });
-
     }
 }
