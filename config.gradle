@@ -28,7 +28,7 @@ ext {
             "material"        : "com.google.android.material:material:${version["materialVersion"]}",
             "lifecycle"       : "androidx.lifecycle:lifecycle-extensions:2.1.0",
     ]
-    
+
     dependencies = [
 
             //retrofit
@@ -68,7 +68,7 @@ ext {
             "navigation_fragment"   : "androidx.navigation:navigation-fragment:2.3.0-alpha06",
             "navigation_ui"         : "androidx.navigation:navigation-ui:2.3.0-alpha06",
 
-            "mmkv"                  : "com.tencent:mmkv:1.2.0",
+            "mmkv"                  : "com.tencent:mmkv:1.2.1",
 
             "smartRefreshLayout"    : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
             "smartheadRefreshLayout": "com.scwang.smartrefresh:SmartRefreshHeader:1.1.2",
@@ -78,7 +78,7 @@ ext {
 
             "magicindicator"        : "com.github.hackware1993:MagicIndicator:1.6.0",
 
-            "particleview"        : "me.wangyuwei:ParticleView:1.0.4"
+            "particleview"          : "me.wangyuwei:ParticleView:1.0.4"
 
     ]
 }
