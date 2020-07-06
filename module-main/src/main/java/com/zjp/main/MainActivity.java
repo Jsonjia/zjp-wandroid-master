@@ -1,6 +1,7 @@
 package com.zjp.main;
 
 
+import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.MenuItem;
 
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
         pageTo(FRAGMENT_HOME);
         mViewDataBinding.bottomnavigation.setOnNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

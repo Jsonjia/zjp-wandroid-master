@@ -1,9 +1,6 @@
 apply plugin: 'com.android.library'
 
 def androidId = rootProject.ext.androidId
-def androidXTest = rootProject.ext.androidXTest
-def androidx = rootProject.ext.androidx
-def support = rootProject.ext.dependencies
 
 android {
     compileSdkVersion androidId.compileSdkVersion
