@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 def androidId = rootProject.ext.androidId
 def androidXTest = rootProject.ext.androidXTest
 def support = rootProject.ext.dependencies
+
 android {
     compileSdkVersion androidId.compileSdkVersion
     buildToolsVersion androidId.buildToolsVersion

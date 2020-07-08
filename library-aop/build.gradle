@@ -1,7 +1,8 @@
 apply plugin: 'com.android.library'
+//apply plugin: 'android-aspectjx' //或者apply plugin: 'com.hujiang.android-aspectjx'
+apply plugin: 'com.hujiang.android-aspectjx'
 
 def androidId = rootProject.ext.androidId
-def androidXTest = rootProject.ext.androidXTest
 def androidx = rootProject.ext.androidx
 def support = rootProject.ext.dependencies
 
@@ -16,7 +17,7 @@ android {
         versionName androidId.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles 'consumer-rules.pro'
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -25,38 +26,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+aspectjx {
+//排除所有package路径中包含`android.support`的class文件及库（jar文件）
+    exclude 'android.support'
+}
 
-    buildFeatures {
-        dataBinding = true
-    }
+aspectjx {
+//忽略所有的class文件及jar文件，相当于AspectJX不生效
+    exclude '*'
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(':library-common')
 
     androidXTest.each { k, v -> api v }
-    
     api androidx.appcompat
+    api support.aspectjrt
 
-    api support.retrofit
-    api support.converter_gson
-    api support.adapter_rxjava
-    api support.converter_scalars
-    api support.okhttp
-    api support.logging_interceptor
-    api support.rxjava
-    api support.rxandroid
-    api support.lifecycle
-    api support.arouter_api
-    api support.immersionbar
-    api support.loadsir
-    api support.utilcodex
-    api support.smartRefreshLayout
-    api support.smartheadRefreshLayout
-    api support.mmkv
 }

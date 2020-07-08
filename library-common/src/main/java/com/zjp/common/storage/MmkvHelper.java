@@ -133,7 +133,6 @@ public class MmkvHelper {
         return mmkv.decodeParcelable(C.USER_INFO, UserInfo.class);
     }
 
-
     public void clearHistory(String key) {
         mmkv.remove(key);
     }

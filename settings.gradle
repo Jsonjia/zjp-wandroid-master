@@ -1,3 +1,4 @@
+include ':library-aop'
 rootProject.name = 'zjp-wandroid-master'
 include ':app'
 include ':library-base'

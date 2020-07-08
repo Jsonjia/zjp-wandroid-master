@@ -15,11 +15,11 @@ public class UserInfo implements Parcelable {
      * collectIds : [12554]
      * email :
      * icon :
-     * id : 20382
+     * id : 30132
      * password :
      * token :
      * type : 0
-     * username : goweii
+     * username : zjp
      */
 
     private String email;

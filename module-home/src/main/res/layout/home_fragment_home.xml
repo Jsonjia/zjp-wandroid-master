@@ -6,6 +6,8 @@
 
     <FrameLayout
         android:id="@+id/rootview"
+        android:background="@android:color/white"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

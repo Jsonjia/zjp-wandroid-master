@@ -26,12 +26,12 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, BaseView
 
         mViewDataBinding.particleview.startAnim();
         mViewDataBinding.particleview.setOnParticleAnimListener(() -> {
-            UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
-            if (userInfo == null) {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-            } else {
-                ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
-            }
+//            UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
+//            if (userInfo == null) {
+//                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+//            } else {
+            ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+//            }
             finish();
         });
     }

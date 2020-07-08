@@ -36,7 +36,7 @@ public class BaseResponse<T> {
     }
 
     public boolean isSuccess() {
-        if (errorCode==0) {
+        if (errorCode == 0) {
             return true;
         } else {
             return false;

@@ -44,6 +44,14 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
     }
 
     @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initImmersionBar();
+        }
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.fragment_project_fragment;
     }

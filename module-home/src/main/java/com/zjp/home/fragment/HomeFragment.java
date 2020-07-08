@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -44,6 +45,14 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         mImmersionBar
                 .statusBarDarkFont(true)
                 .init();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initImmersionBar();
+        }
     }
 
     @Override
