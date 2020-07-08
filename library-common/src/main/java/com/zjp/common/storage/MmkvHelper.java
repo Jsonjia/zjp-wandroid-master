@@ -113,12 +113,12 @@ public class MmkvHelper {
      * 是否是第一次启动app
      */
     public boolean isFirst() {
-        MMKV mmkv = MMKV.defaultMMKV();
+//        MMKV mmkv = MMKV.defaultMMKV();
         return mmkv.encode(C.FIRST, false);
     }
 
     public boolean getFirst() {
-        MMKV mmkv = MMKV.defaultMMKV();
+//        MMKV mmkv = MMKV.defaultMMKV();
         return mmkv.decodeBool(C.FIRST, true);
     }
 
@@ -157,6 +157,16 @@ public class MmkvHelper {
                 saveList(C.SEARCH_HISTORY, dataList);
             }
         }
+    }
+
+
+    //首页文章是否显示置顶
+    public boolean showTopArticle(boolean showTop) {
+        return mmkv.encode(C.SHOW_TOP_ARTICLE, showTop);
+    }
+
+    public boolean getShowTopArticle() {
+        return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, true);
     }
 
 }

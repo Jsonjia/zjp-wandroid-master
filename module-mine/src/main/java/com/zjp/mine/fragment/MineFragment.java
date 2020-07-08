@@ -1,27 +1,20 @@
 package com.zjp.mine.fragment;
 
-import android.util.Log;
-import android.view.Gravity;
+import android.content.Intent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.aop.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
-import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
-import com.zjp.mine.bean.Integral;
+import com.zjp.mine.activity.SetingActivity;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
-import com.zjp.mine.widget.WaveView;
 
 @Route(path = RouterFragmentPath.Mine.PAGER_MINE)
 public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, MineViewModel> {
@@ -78,6 +71,12 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         });
 
         mViewDataBinding.tvName.setOnClickListener(view -> skip());
+        mViewDataBinding.ivSet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SetingActivity.class));
+            }
+        });
     }
 
     private void loadUserInfo() {

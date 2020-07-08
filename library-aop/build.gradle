@@ -29,22 +29,19 @@ android {
 }
 
 aspectjx {
-//排除所有package路径中包含`android.support`的class文件及库（jar文件）
-    exclude 'android.support'
+    //AspectJX功能 是否生效
+    enabled true
 }
 
 aspectjx {
-//忽略所有的class文件及jar文件，相当于AspectJX不生效
-    exclude '*'
+    //排除所有package路径中包含`android.support`的class文件及库（jar文件）
+    exclude 'android.support'
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     implementation project(':library-common')
-
-    androidXTest.each { k, v -> api v }
-    api androidx.appcompat
     api support.aspectjrt
 
 }
