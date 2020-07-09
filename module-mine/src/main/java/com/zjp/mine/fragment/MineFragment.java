@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.aop.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
@@ -70,7 +71,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         });
 
-        mViewDataBinding.tvName.setOnClickListener(view -> skip());
+        mViewDataBinding.tvName.setOnClickListener(view -> skipActivity());
         mViewDataBinding.ivSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -84,7 +85,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     }
 
     @CheckLogin()
-    public void skip() {
-//        ToastUtils.showShort("我登录成功了");
+    private void skipActivity() {
+        ToastUtils.showShort("我登录成功了");
     }
 }

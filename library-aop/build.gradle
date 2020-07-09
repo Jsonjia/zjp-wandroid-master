@@ -1,9 +1,7 @@
 apply plugin: 'com.android.library'
-//apply plugin: 'android-aspectjx' //或者apply plugin: 'com.hujiang.android-aspectjx'
-apply plugin: 'com.hujiang.android-aspectjx'
+apply plugin: 'android-aspectjx' //或者apply plugin: 'com.hujiang.android-aspectjx'
 
 def androidId = rootProject.ext.androidId
-def androidx = rootProject.ext.androidx
 def support = rootProject.ext.dependencies
 
 android {
@@ -18,6 +16,12 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -29,12 +33,10 @@ android {
 }
 
 aspectjx {
-    //AspectJX功能 是否生效
     enabled true
 }
 
 aspectjx {
-    //排除所有package路径中包含`android.support`的class文件及库（jar文件）
     exclude 'android.support'
 }
 
@@ -43,5 +45,6 @@ dependencies {
 
     implementation project(':library-common')
     api support.aspectjrt
-
+    annotationProcessor support.arouter_compiler
+//    api 'org.aspectj:aspectjrt:1.9.5'
 }

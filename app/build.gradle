@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'android-aspectjx'
 
 def androidId = rootProject.ext.androidId
-def androidXTest = rootProject.ext.androidXTest
 def support = rootProject.ext.dependencies
 
 android {

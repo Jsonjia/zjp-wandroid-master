@@ -1,5 +1,5 @@
 apply from: "../module.build.gradle"
-apply plugin: 'com.hujiang.android-aspectjx'
+apply plugin: 'android-aspectjx'
 
 def support = rootProject.ext.dependencies
 
@@ -13,7 +13,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':library-common')
-    api project(':library-aop')
+    implementation project(':library-common')
+    implementation project(':library-aop')
     annotationProcessor support.arouter_compiler
 }

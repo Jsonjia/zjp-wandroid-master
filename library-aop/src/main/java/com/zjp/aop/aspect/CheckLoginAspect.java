@@ -1,10 +1,8 @@
 package com.zjp.aop.aspect;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.blankj.utilcode.util.ToastUtils;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.zjp.aop.annotation.CheckLogin;
+import com.zjp.base.router.RouterActivityPath;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 
@@ -34,18 +32,14 @@ public class CheckLoginAspect {
     }
 
     @Around("pointcutCheckLogin(checkLogin)")
-    public void aroundCheckPoint(ProceedingJoinPoint joinPoint) throws Throwable {
-        ToastUtils.showShort("ddddd");
-        Log.d("zjp1", "测迟到吃到迟到");
+    public Object aroundCheckLogin(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-        CheckLogin checkLogin = signature.getMethod().getAnnotation(CheckLogin.class);
-        Context context = (Context) joinPoint.getThis();
         UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
-//        if (userInfo == null) {
-//            ARouter.getInstance().build(RouterActivityPath.Login.LOGIN).navigation();
-//            return null;
-//        } else {
-//            return joinPoint.proceed();
-//        }
+        if (userInfo == null) {
+            ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+            return null;
+        } else {
+            return joinPoint.proceed();
+        }
     }
 }
