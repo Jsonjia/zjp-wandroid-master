@@ -1,6 +1,10 @@
 package com.zjp.network.https;
 
 
+import com.franmontiel.persistentcookiejar.ClearableCookieJar;
+import com.franmontiel.persistentcookiejar.PersistentCookieJar;
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache;
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.zjp.base.application.BaseApplication;
 import com.zjp.network.constant.C;
 
@@ -21,6 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitHelper {
 
     private Retrofit mRetrofit;
+    private ClearableCookieJar cookieJar;
 
     private RetrofitHelper() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor("OKHttp");
@@ -36,6 +41,7 @@ public class RetrofitHelper {
                 .readTimeout(10000, TimeUnit.MILLISECONDS)
                 .connectTimeout(10000, TimeUnit.MILLISECONDS)
                 .addInterceptor(httpLoggingInterceptor)
+                .cookieJar(getCookieJar())
                 .cache(cache)
                 .build();
 
@@ -45,6 +51,13 @@ public class RetrofitHelper {
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
+    }
+
+    public ClearableCookieJar getCookieJar() {
+        if (cookieJar == null) {
+            cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(BaseApplication.getInstance()));
+        }
+        return cookieJar;
     }
 
     private static class RetrofitHolder {

@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.aop.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
@@ -29,14 +28,6 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     }
 
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden) {
-            initImmersionBar();
-        }
-    }
-
-    @Override
     public int getLayoutId() {
         return R.layout.fragment_mine_fragment;
     }
@@ -44,17 +35,6 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     @Override
     protected void initView() {
         super.initView();
-
-        UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
-
-        if (userInfo == null) {
-            mViewDataBinding.tvName.setText("未登录");
-            mViewDataBinding.tvLevel.setVisibility(View.GONE);
-        } else {
-            mViewDataBinding.tvLevel.setVisibility(View.VISIBLE);
-            loadUserInfo();
-        }
-
         ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) mViewDataBinding.cl.getLayoutParams();
         mViewDataBinding.waveview.setOnWaveAnimationListener(y -> {
             lp.setMargins(0, 0, 0, (int) y + 90);
@@ -66,9 +46,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     protected void initData() {
         super.initData();
         mViewModel.mIntegralLiveData.observe(this, integral -> {
-            mViewDataBinding.tvName.setText(integral.getUsername());
-            mViewDataBinding.tvLevel.setText(integral.getLevel());
-
+            mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
         });
 
         mViewDataBinding.tvName.setOnClickListener(view -> skipActivity());
@@ -80,12 +58,27 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
+
+        if (userInfo == null) {
+            mViewDataBinding.tvName.setText("未登录");
+            mViewDataBinding.tvLevel.setVisibility(View.GONE);
+        } else {
+            mViewDataBinding.tvName.setText(userInfo.getUsername());
+            mViewDataBinding.tvLevel.setVisibility(View.VISIBLE);
+            loadUserInfo();
+        }
+    }
+
     private void loadUserInfo() {
         mViewModel.getIntegral();
     }
 
     @CheckLogin()
     private void skipActivity() {
-        ToastUtils.showShort("我登录成功了");
+
     }
 }

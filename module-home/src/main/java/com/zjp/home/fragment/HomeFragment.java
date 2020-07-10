@@ -1,14 +1,13 @@
 package com.zjp.home.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.util.Log;
-import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -18,15 +17,15 @@ import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
 import com.zjp.base.fragment.BaseFragment;
-import com.zjp.common.bean.page.PageInfo;
 import com.zjp.base.router.RouterFragmentPath;
+import com.zjp.common.adapter.ArticleListAdapter;
+import com.zjp.common.bean.ArticleEntity;
+import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
 import com.zjp.home.activity.SearchActivity;
-import com.zjp.common.ui.WebViewActivity;
-import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
-import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
 
@@ -186,7 +185,10 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     private void loadData() {
         if (pageInfo.isFirstPage()) {
             mViewModel.getBanner();
-            mViewModel.getArticleMultiList(pageInfo.page);
+
+//            if (MmkvHelper.getInstance().getShowTopArticle()) {
+                mViewModel.getArticleMultiList(pageInfo.page);
+//            }
         } else {
             mViewModel.getArticleList(pageInfo.page);
         }

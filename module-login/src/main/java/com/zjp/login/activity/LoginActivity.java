@@ -1,15 +1,13 @@
 package com.zjp.login.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
-
-import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.navigation.fragment.NavHostFragment;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zjp.base.activity.BaseActivity;
+import com.zjp.base.router.RouterActivityPath;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.login.R;
 import com.zjp.login.databinding.ActivityLoginBinding;
@@ -18,6 +16,7 @@ import com.zjp.login.fragment.LoginFragment;
 /**
  * Created by zjp on 2020/5/16 23:24.
  */
+@Route(path = RouterActivityPath.Login.PAGER_LOGIN)
 public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewModel> {
 
     public TextView tvRight;

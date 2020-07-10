@@ -10,7 +10,6 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.aspectj.lang.reflect.MethodSignature;
 
 /**
  * Created by zjp on 2020/07/07 17:17
@@ -32,11 +31,10 @@ public class CheckLoginAspect {
     }
 
     @Around("pointcutCheckLogin(checkLogin)")
-    public Object aroundCheckLogin(ProceedingJoinPoint joinPoint) throws Throwable {
-        MethodSignature signature = (MethodSignature) joinPoint.getSignature();
+    public Object aroundCheckLogin(ProceedingJoinPoint joinPoint, final CheckLogin checkLogin) throws Throwable {
         UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
         if (userInfo == null) {
-            ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
+            ARouter.getInstance().build(RouterActivityPath.Login.PAGER_LOGIN).navigation();
             return null;
         } else {
             return joinPoint.proceed();

@@ -79,7 +79,8 @@ ext {
             "magicindicator"        : "com.github.hackware1993:MagicIndicator:1.6.0",
 
             "particleview"          : "me.wangyuwei:ParticleView:1.0.4",
-            "aspectjrt"             : "org.aspectj:aspectjrt:1.9.5"
+            "aspectjrt"             : "org.aspectj:aspectjrt:1.9.5",
+            "cooiejar"              : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
 
     ]
 }

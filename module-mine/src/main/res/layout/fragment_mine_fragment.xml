@@ -89,11 +89,11 @@
                     android:paddingTop="@dimen/dp3"
                     android:paddingRight="@dimen/dp12"
                     android:paddingBottom="@dimen/dp3"
-                    android:text="lv.3"
                     android:textColor="@color/white"
                     android:textSize="9sp"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    app:text="lv.3" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 

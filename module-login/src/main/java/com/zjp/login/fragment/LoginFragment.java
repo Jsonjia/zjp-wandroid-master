@@ -8,11 +8,9 @@ import android.view.View;
 
 import androidx.navigation.Navigation;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.fragment.BaseFragment;
-import com.zjp.base.router.RouterActivityPath;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.common.textwatcher.SimpleTextWatcher;
 import com.zjp.login.R;
@@ -110,7 +108,6 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding, LoginViewM
         mViewModel.loginLiveData.observe(this, userInfo -> {
             if (null != userInfo) {
                 MmkvHelper.getInstance().saveUserInfo(userInfo);
-                ARouter.getInstance().build(RouterActivityPath.Main.PAGER_MAIN).navigation();
                 getActivity().finish();
             } else {
                 mViewDataBinding.btnLogin.setVisibility(View.VISIBLE);

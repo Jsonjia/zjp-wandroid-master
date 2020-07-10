@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 def androidId = rootProject.ext.androidId
+def support = rootProject.ext.dependencies
 
 android {
     compileSdkVersion androidId.compileSdkVersion
@@ -29,5 +30,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     api project(':library-base')
-
+    implementation support.cooiejar
 }
