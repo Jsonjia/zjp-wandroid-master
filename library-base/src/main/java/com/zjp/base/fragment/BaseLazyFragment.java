@@ -20,10 +20,13 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 import com.zjp.base.interf.IBaseView;
+import com.zjp.base.event.IEventBus;
 import com.zjp.base.loadsir.EmptyCallback;
 import com.zjp.base.loadsir.ErrorCallback;
 import com.zjp.base.loadsir.LoadingCallback;
 import com.zjp.base.viewmodel.BaseViewModel;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -69,6 +72,8 @@ public abstract class BaseLazyFragment<V extends ViewDataBinding, VM extends Bas
 
             }
         });
+        if (this instanceof IEventBus)
+            EventBus.getDefault().register(this);
         return mLoadService.getLoadLayout();
     }
 
@@ -189,5 +194,12 @@ public abstract class BaseLazyFragment<V extends ViewDataBinding, VM extends Bas
      * 失败重试,重新加载事件
      */
     protected void onRetryBtnClick() {
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (this instanceof IEventBus)
+            EventBus.getDefault().unregister(this);
     }
 }

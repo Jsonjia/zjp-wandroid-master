@@ -16,11 +16,14 @@ import com.youth.banner.config.BannerConfig;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
+import com.zjp.base.event.IEventBus;
+import com.zjp.base.event.SettingEvent;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.storage.MmkvHelper;
 import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
@@ -29,10 +32,12 @@ import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import java.util.List;
 
 @Route(path = RouterFragmentPath.Home.PAGER_HOME)
-public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeViewModel> {
+public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeViewModel> implements IEventBus {
 
     private ArticleListAdapter articleListAdapter;
     private PageInfo pageInfo;
@@ -186,9 +191,11 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         if (pageInfo.isFirstPage()) {
             mViewModel.getBanner();
 
-//            if (MmkvHelper.getInstance().getShowTopArticle()) {
+            if (MmkvHelper.getInstance().getHideTopArticle()) { //隐藏置顶文章
+
+            } else {
                 mViewModel.getArticleMultiList(pageInfo.page);
-//            }
+            }
         } else {
             mViewModel.getArticleList(pageInfo.page);
         }
@@ -196,6 +203,22 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
     @Override
     protected void onRetryBtnClick() {
+
+    }
+
+    @Subscribe
+    public void onEvent(SettingEvent settingEvent) {
+        if (settingEvent != null) {
+            if (settingEvent.isHideTopArticle()) {//隐藏
+                removeTopItems();
+            } else {
+
+            }
+
+        }
+    }
+
+    private void removeTopItems() {
 
     }
 }

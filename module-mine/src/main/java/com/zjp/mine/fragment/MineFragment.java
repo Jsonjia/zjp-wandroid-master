@@ -12,7 +12,7 @@ import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
-import com.zjp.mine.activity.SetingActivity;
+import com.zjp.mine.activity.SettingActivity;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
@@ -53,7 +53,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         mViewDataBinding.ivSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SetingActivity.class));
+                startActivity(new Intent(getActivity(), SettingActivity.class));
             }
         });
     }

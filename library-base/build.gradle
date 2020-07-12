@@ -59,4 +59,5 @@ dependencies {
     api support.smartRefreshLayout
     api support.smartheadRefreshLayout
     api support.mmkv
+    api support.eventbus
 }

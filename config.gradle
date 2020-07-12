@@ -82,5 +82,7 @@ ext {
             "aspectjrt"             : "org.aspectj:aspectjrt:1.9.5",
             "cooiejar"              : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
 
+            "eventbus"              : "org.greenrobot:eventbus:3.2.0",
+
     ]
 }

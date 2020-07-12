@@ -161,12 +161,12 @@ public class MmkvHelper {
 
 
     //首页文章是否显示置顶
-    public boolean showTopArticle(boolean showTop) {
-        return mmkv.encode(C.SHOW_TOP_ARTICLE, showTop);
+    public boolean hideTopArticle(boolean hideTop) {
+        return mmkv.encode(C.HIDE_TOP_ARTICLE, hideTop);
     }
 
-    public boolean getShowTopArticle() {
-        return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, true);
+    public boolean getHideTopArticle() {
+        return mmkv.decodeBool(C.HIDE_TOP_ARTICLE, true);
     }
 
 }
