@@ -69,6 +69,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     protected void initView() {
         super.initView();
 
+
         pageInfo = new PageInfo();
         setLoadSir(mViewDataBinding.rootview);
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(getActivity()));
