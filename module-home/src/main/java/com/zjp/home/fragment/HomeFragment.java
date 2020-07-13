@@ -31,6 +31,7 @@ import com.zjp.home.activity.SearchActivity;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
+import com.zjp.network.constant.C;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -68,7 +69,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     @Override
     protected void initView() {
         super.initView();
-
 
         pageInfo = new PageInfo();
         setLoadSir(mViewDataBinding.rootview);
@@ -118,7 +118,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                pageInfo.reset();
+                pageInfo.resetZero();
                 loadData();
             }
         });
@@ -163,7 +163,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             if (isLoading)
                 showContent();
             articleListAdapter.setList(datasBeans);
-            pageInfo.nextPage();
+            pageInfo.nextZeroPage();
             isLoading = false;
         });
 
@@ -174,8 +174,13 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             if (null != articleEntity) {
                 List<ArticleEntity.DatasBean> entityDatas = articleEntity.getDatas();
                 if (null != entityDatas && entityDatas.size() > 0) {
-                    articleListAdapter.addData(entityDatas);
-                    pageInfo.nextPage();
+                    if (!MmkvHelper.getInstance().getshowTopArticle() && pageInfo.isZeroPage()) {
+                        showContent();
+                        articleListAdapter.setList(entityDatas);
+                    } else {
+                        articleListAdapter.addData(entityDatas);
+                    }
+                    pageInfo.nextZeroPage();
                 }
             }
         });
@@ -189,16 +194,16 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     }
 
     private void loadData() {
-        if (pageInfo.isFirstPage()) {
+        if (pageInfo.isZeroPage()) {
             mViewModel.getBanner();
 
-            if (MmkvHelper.getInstance().getHideTopArticle()) { //隐藏置顶文章
-
-            } else {
-                mViewModel.getArticleMultiList(pageInfo.page);
+            if (MmkvHelper.getInstance().getshowTopArticle()) {
+                mViewModel.getArticleMultiList(pageInfo.mPage);
+            } else {  //隐藏置顶文章
+                mViewModel.getArticleList(pageInfo.mPage);
             }
         } else {
-            mViewModel.getArticleList(pageInfo.page);
+            mViewModel.getArticleList(pageInfo.mPage);
         }
     }
 
@@ -210,16 +215,57 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     @Subscribe
     public void onEvent(SettingEvent settingEvent) {
         if (settingEvent != null) {
-            if (settingEvent.isHideTopArticle()) {//隐藏
-                removeTopItems();
-            } else {
+            if (settingEvent.isShowTopArticle()) {
 
+            } else {  //隐藏
+                removeTopItems();
             }
 
         }
     }
 
     private void removeTopItems() {
+        List<ArticleEntity.DatasBean> data = articleListAdapter.getData();
+        for (int i = 0; i < data.size(); i++) {
+            ArticleEntity.DatasBean datasBean = data.get(i);
+            if (datasBean.getItemType() == C.ARTICLE_ITEM) {
+                if (datasBean.getType() == 1) { //说明是置顶文章,此时移除置顶文章
+                    removeIndex(data, i);
+                }
+            }
+        }
 
+//        int from = -1;
+//        int count = 0;
+//        for (int i = 0; i < data.size(); i++) {
+//            ArticleEntity.DatasBean datasBean = data.get(i);
+//            if (from < 0) {
+//                if (datasBean.getItemType() == C.ARTICLE_ITEM) {
+//                    if (datasBean.isTop()) {
+//                        from = i;
+//                    }
+//                }
+//            }
+//
+//            if (from >= 0) {
+//                if (datasBean.getItemType() == C.ARTICLE_ITEM_PIC) {
+//                    if (!datasBean.isTop()) {
+//                        break;
+//                    }
+//                }
+//                count++;
+//            }
+//        }
+//        if (from >= 0) {
+//            for (int i = 0; i < count; i++) {
+//                articleListAdapter.removeAt(from);
+//            }
+//        }
+    }
+
+    private void removeIndex(List<ArticleEntity.DatasBean> data, int position) {
+        data.remove(position);
+        articleListAdapter.notifyItemRemoved(position);
+        articleListAdapter.notifyItemRangeChanged(position, data.size());
     }
 }

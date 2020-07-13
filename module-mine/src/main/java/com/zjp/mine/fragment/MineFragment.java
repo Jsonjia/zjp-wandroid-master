@@ -50,12 +50,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         });
 
         mViewDataBinding.tvName.setOnClickListener(view -> skipActivity());
-        mViewDataBinding.ivSet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getActivity(), SettingActivity.class));
-            }
-        });
+        mViewDataBinding.ivSet.setOnClickListener(view -> skipSettingPage());
     }
 
     @Override
@@ -80,5 +75,10 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     @CheckLogin()
     private void skipActivity() {
 
+    }
+
+    @CheckLogin()
+    private void skipSettingPage() {
+        startActivity(new Intent(getActivity(), SettingActivity.class));
     }
 }

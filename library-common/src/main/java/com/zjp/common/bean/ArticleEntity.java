@@ -135,6 +135,7 @@ public class ArticleEntity {
         private String descMd;
         private String envelopePic;
         private boolean fresh;
+        private boolean top;
         private int id;
         private String link;
         private String niceDate;
@@ -241,6 +242,14 @@ public class ArticleEntity {
 
         public void setEnvelopePic(String envelopePic) {
             this.envelopePic = envelopePic;
+        }
+
+        public boolean isTop() {
+            return top;
+        }
+
+        public void setTop(boolean top) {
+            this.top = top;
         }
 
         public boolean isFresh() {

@@ -10,8 +10,8 @@ import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zjp.common.R;
 import com.zjp.common.bean.ArticleEntity;
-import com.zjp.network.constant.C;
 import com.zjp.common.utils.GlideUtil;
+import com.zjp.network.constant.C;
 
 import org.jetbrains.annotations.NotNull;
 

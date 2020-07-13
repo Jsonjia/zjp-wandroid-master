@@ -5,13 +5,13 @@ package com.zjp.base.event;
  */
 public class SettingEvent {
 
-    private boolean hideTopArticle;
+    private boolean showTopArticle;
 
-    public boolean isHideTopArticle() {
-        return hideTopArticle;
+    public boolean isShowTopArticle() {
+        return showTopArticle;
     }
 
-    public void setHideTopArticle(boolean hideTopArticle) {
-        this.hideTopArticle = hideTopArticle;
+    public void setShowTopArticle(boolean showTopArticle) {
+        this.showTopArticle = showTopArticle;
     }
 }

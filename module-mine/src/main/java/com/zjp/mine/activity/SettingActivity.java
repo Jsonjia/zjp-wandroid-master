@@ -33,11 +33,14 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, BaseVi
     protected void initView() {
         super.initView();
         mViewDataBinding.title.setTitle("设置");
+        boolean hideTopArticle = MmkvHelper.getInstance().getshowTopArticle();
+        mViewDataBinding.swShowTop.setChecked(hideTopArticle);
+
 
         mViewDataBinding.swShowTop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                MmkvHelper.getInstance().hideTopArticle(isChecked);
+                MmkvHelper.getInstance().showTopArticle(isChecked);
             }
         });
     }
@@ -48,9 +51,9 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, BaseVi
     @Override
     protected void onStop() {
         super.onStop();
-        boolean hideTopArticle = MmkvHelper.getInstance().getHideTopArticle();
+        boolean showTopArticle = MmkvHelper.getInstance().getshowTopArticle();
         SettingEvent settingEvent = new SettingEvent();
-        settingEvent.setHideTopArticle(hideTopArticle);
+        settingEvent.setShowTopArticle(showTopArticle);
         EventBus.getDefault().post(settingEvent);
     }
 }
