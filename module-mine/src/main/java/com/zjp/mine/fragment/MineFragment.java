@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.Observer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zjp.aop.annotation.CheckLogin;
@@ -45,6 +46,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     @Override
     protected void initData() {
         super.initData();
+
         mViewModel.mIntegralLiveData.observe(this, integral -> {
             mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
         });

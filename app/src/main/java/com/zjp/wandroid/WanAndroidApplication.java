@@ -1,7 +1,5 @@
 package com.zjp.wandroid;
 
-import android.app.Application;
-
 import com.zjp.base.application.BaseApplication;
 import com.zjp.base.config.ModuleLifecycleConfig;
 

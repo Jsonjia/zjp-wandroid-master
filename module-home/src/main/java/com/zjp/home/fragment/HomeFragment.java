@@ -31,7 +31,6 @@ import com.zjp.home.activity.SearchActivity;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
-import com.zjp.network.constant.C;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -215,25 +214,26 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     @Subscribe
     public void onEvent(SettingEvent settingEvent) {
         if (settingEvent != null) {
+            pageInfo.resetZero();
             if (settingEvent.isShowTopArticle()) {
-
+                mViewModel.getArticleMultiList(pageInfo.mPage);
             } else {  //隐藏
-                removeTopItems();
+//                removeTopItems();
+                mViewModel.getArticleList(pageInfo.mPage);
             }
-
         }
     }
 
     private void removeTopItems() {
         List<ArticleEntity.DatasBean> data = articleListAdapter.getData();
-        for (int i = 0; i < data.size(); i++) {
-            ArticleEntity.DatasBean datasBean = data.get(i);
-            if (datasBean.getItemType() == C.ARTICLE_ITEM) {
-                if (datasBean.getType() == 1) { //说明是置顶文章,此时移除置顶文章
-                    removeIndex(data, i);
-                }
-            }
-        }
+//        for (int i = 0; i < data.size(); i++) {
+//            ArticleEntity.DatasBean datasBean = data.get(i);
+//            if (datasBean.getItemType() == C.ARTICLE_ITEM) {
+//                if (datasBean.getType() == 1) { //说明是置顶文章,此时移除置顶文章
+//                    removeIndex(data, i);
+//                }
+//            }
+//        }
 
 //        int from = -1;
 //        int count = 0;
@@ -263,9 +263,9 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 //        }
     }
 
-    private void removeIndex(List<ArticleEntity.DatasBean> data, int position) {
-        data.remove(position);
-        articleListAdapter.notifyItemRemoved(position);
-        articleListAdapter.notifyItemRangeChanged(position, data.size());
-    }
+//    private void removeIndex(List<ArticleEntity.DatasBean> data, int position) {
+//        data.remove(position);
+//        articleListAdapter.notifyItemRemoved(position);
+//        articleListAdapter.notifyItemRangeChanged(position, data.size());
+//    }
 }

@@ -16,4 +16,5 @@ dependencies {
     implementation project(':library-common')
     implementation project(':library-aop')
     annotationProcessor support.arouter_compiler
+    implementation support.material_dialogs
 }

@@ -7,192 +7,368 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/c_f8f8f8"
+        android:orientation="vertical">
 
         <com.zjp.common.view.CommonHeadTitle
             android:id="@+id/title"
-            android:layout_width="@dimen/dp0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:overScrollMode="never">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_basic_set"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dp16"
-            android:layout_marginTop="@dimen/dp14"
-            android:text="基本设置"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/sp18"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_showtop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp20"
-            android:text="显示置顶"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_basic_set"
-            app:layout_constraintTop_toBottomOf="@+id/tv_basic_set" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp30">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/sw_show_top"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp0"
-            android:layout_marginRight="@dimen/dp16"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_showtop_desc"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_showtop" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp1"
+                    android:background="@color/white"
+                    android:paddingBottom="@dimen/dp14">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_showtop_desc"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="80dp"
-            android:text="开启后首页显示置顶文章"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp12"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
-            app:layout_constraintRight_toLeftOf="@+id/sw_show_top"
-            app:layout_constraintTop_toBottomOf="@+id/tv_showtop" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_basic_set"
+                        style="@style/textview_18sp_style"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp14"
+                        android:text="基本设置"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_showbanner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp28"
-            android:text="显示轮播"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
-            app:layout_constraintTop_toBottomOf="@+id/tv_showtop_desc" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_showtop"
+                        style="@style/textview_15sp_style"
+                        android:layout_marginTop="@dimen/dp20"
+                        android:text="显示置顶"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_basic_set"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_basic_set" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/sw_show_banner"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp0"
-            android:layout_marginRight="@dimen/dp16"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_showtop_banner_desc"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_showbanner" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/sw_show_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp0"
+                        android:layout_marginRight="@dimen/dp16"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_showtop_desc"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_showtop" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_showtop_banner_desc"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="80dp"
-            android:text="开启后首页显示轮播图"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp12"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showbanner"
-            app:layout_constraintRight_toLeftOf="@+id/sw_show_banner"
-            app:layout_constraintTop_toBottomOf="@+id/tv_showbanner" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_showtop_desc"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="80dp"
+                        android:text="开启后首页显示置顶文章"
+                        android:textColor="@color/c_666666"
+                        android:textSize="@dimen/sp12"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
+                        app:layout_constraintRight_toLeftOf="@+id/sw_show_top"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_showtop" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_hide_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp28"
-            android:text="隐藏关于作者"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
-            app:layout_constraintTop_toBottomOf="@+id/tv_showtop_banner_desc" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_showbanner"
+                        style="@style/textview_15sp_style"
+                        android:layout_marginTop="@dimen/dp28"
+                        android:text="显示轮播"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_showtop_desc" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/sw_hide_author"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/dp0"
-            android:layout_marginRight="@dimen/dp16"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_hide_author_desc"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/tv_hide_author" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/sw_show_banner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp0"
+                        android:layout_marginRight="@dimen/dp16"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_showtop_banner_desc"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_showbanner" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_hide_author_desc"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="80dp"
-            android:text="开启后隐藏我的页面关于作者的入口"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp12"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showbanner"
-            app:layout_constraintRight_toLeftOf="@+id/sw_show_banner"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hide_author" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_showtop_banner_desc"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="80dp"
+                        android:text="开启后首页显示轮播图"
+                        android:textColor="@color/c_666666"
+                        android:textSize="@dimen/sp12"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_showbanner"
+                        app:layout_constraintRight_toLeftOf="@+id/sw_show_banner"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_showbanner" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_clear_cache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp30"
-            android:text="清除缓存"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hide_author_desc" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_switch_night"
+                        style="@style/textview_15sp_style"
+                        android:layout_marginTop="@dimen/dp28"
+                        android:text="切换夜间模式"
+                        android:textColor="@color/black"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_showtop_banner_desc" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_clear_cache"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/iv_arrow_right"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_clear_cache"
-            app:layout_constraintRight_toRightOf="@+id/sw_show_top"
-            app:layout_constraintTop_toTopOf="@+id/tv_clear_cache" />
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/sw_switch_night"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/dp0"
+                        android:layout_marginRight="@dimen/dp16"
+                        app:layout_constraintBottom_toBottomOf="@+id/tv_switch_night_desc"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tv_switch_night" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_cache_val"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp8"
-            android:textColor="@color/c_444444"
-            android:textSize="@dimen/sp14"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_clear_cache"
-            app:layout_constraintRight_toLeftOf="@+id/iv_clear_cache"
-            app:layout_constraintTop_toTopOf="@+id/tv_clear_cache"
-            tools:text="23m" />
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_switch_night_desc"
+                        android:layout_width="@dimen/dp0"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="80dp"
+                        android:text="开启后app将变暗"
+                        android:textColor="@color/c_666666"
+                        android:textSize="@dimen/sp12"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_showbanner"
+                        app:layout_constraintRight_toLeftOf="@+id/sw_show_banner"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_switch_night" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_current_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dp30"
-            android:text="当前版本"
-            android:textColor="@color/black"
-            android:textSize="@dimen/sp15"
-            app:layout_constraintLeft_toLeftOf="@+id/tv_showtop"
-            app:layout_constraintTop_toBottomOf="@+id/tv_clear_cache" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_current_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@mipmap/iv_arrow_right"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_current_version"
-            app:layout_constraintRight_toRightOf="@+id/sw_show_top"
-            app:layout_constraintTop_toTopOf="@+id/tv_current_version" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_current_version_val"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/dp8"
-            android:text="V1.0"
-            android:textColor="@color/c_444444"
-            android:textSize="@dimen/sp14"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_current_version"
-            app:layout_constraintRight_toLeftOf="@+id/iv_current_version"
-            app:layout_constraintTop_toTopOf="@+id/tv_current_version" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp14">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_other_set"
+                        style="@style/textview_18sp_style"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp14"
+                        android:text="其他设置"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp55"
+                        android:background="@drawable/ripple_bg">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_set_theme_color"
+                            style="@style/textview_15sp_style"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:text="设置主题颜色"
+                            android:textColor="@color/black"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_set_theme_color_desc"
+                            android:layout_width="@dimen/dp0"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="80dp"
+                            android:text="自定义主题颜色"
+                            android:textColor="@color/c_666666"
+                            android:textSize="@dimen/sp12"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_set_theme_color" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/dp14">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tv_about"
+                        style="@style/textview_18sp_style"
+                        android:layout_marginLeft="@dimen/dp16"
+                        android:layout_marginTop="@dimen/dp14"
+                        android:text="关于"
+                        android:textColor="@color/colorPrimary"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_clear_cache"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp55"
+                        android:background="@drawable/ripple_bg">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_clear_cache"
+                            style="@style/textview_15sp_style"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:text="清除缓存"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_clear_cache"
+                            android:layout_width="@dimen/dp25"
+                            android:layout_height="@dimen/dp25"
+                            android:layout_marginRight="@dimen/dp16"
+                            android:background="@mipmap/iv_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_clear_cache"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_clear_cache" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_cache_val"
+                            style="@style/textview_14sp_style"
+                            android:layout_marginRight="@dimen/dp8"
+                            android:textColor="@color/c_999999"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_clear_cache"
+                            app:layout_constraintRight_toLeftOf="@+id/iv_clear_cache"
+                            app:layout_constraintTop_toTopOf="@+id/tv_clear_cache"
+                            tools:text="23m" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_current_version"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp55"
+                        android:background="@drawable/ripple_bg">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_current_version"
+                            style="@style/textview_15sp_style"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:text="当前版本"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_current_version"
+                            android:layout_width="@dimen/dp25"
+                            android:layout_height="@dimen/dp25"
+                            android:layout_marginRight="@dimen/dp16"
+                            android:background="@mipmap/iv_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_current_version"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_current_version" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_current_version_val"
+                            style="@style/textview_14sp_style"
+                            android:layout_marginRight="@dimen/dp8"
+                            android:text="V1.0"
+                            android:textColor="@color/c_999999"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_current_version"
+                            app:layout_constraintRight_toLeftOf="@+id/iv_current_version"
+                            app:layout_constraintTop_toTopOf="@+id/tv_current_version" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_copyright"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp55"
+                        android:background="@drawable/ripple_bg">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_copyright"
+                            style="@style/textview_15sp_style"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="@dimen/dp5"
+                            android:text="版权声名"
+                            android:textColor="@color/black"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_copyright_version"
+                            android:layout_width="@dimen/dp25"
+                            android:layout_height="@dimen/dp25"
+                            android:layout_marginRight="@dimen/dp16"
+                            android:background="@mipmap/iv_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_copyright_desc"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_copyright" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_copyright_desc"
+                            android:layout_width="@dimen/dp0"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginRight="@dimen/dp16"
+                            android:text="仅作个人学习非商业用途"
+                            android:textColor="@color/c_666666"
+                            android:textSize="@dimen/sp12"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_copyright" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_about_me"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp50"
+                        android:background="@drawable/ripple_bg">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_about_me"
+                            style="@style/textview_15sp_style"
+                            android:layout_marginLeft="@dimen/dp16"
+                            android:text="关于我们"
+                            android:textColor="@color/black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/iv_about_me"
+                            android:layout_width="@dimen/dp25"
+                            android:layout_height="@dimen/dp25"
+                            android:layout_marginRight="@dimen/dp16"
+                            android:background="@mipmap/iv_arrow_right"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_about_me"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tv_about_me" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_login_out"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:background="@drawable/ripple_bg"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/dp10"
+                    android:paddingBottom="@dimen/dp10"
+                    android:text="退出登录"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp18" />
+            </LinearLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
 </layout>

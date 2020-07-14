@@ -18,6 +18,7 @@ public class C {
     public static final String SEARCH_HISTORY = "search_history";
     public static final String KEYWORD = "keyword";
     public static final String SHOW_TOP_ARTICLE = "show_top_article";
+    public static final String KEY_DARK_THEME = "key_dark_theme";
 
     public static final int SEARCH_REQUEST = 0x123;
 }

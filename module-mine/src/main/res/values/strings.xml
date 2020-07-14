@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">module-mine</string>
+
+    <string name="login_out_tips">确定退出登录吗</string>
+    <string name="tips">提示</string>
+    <string name="sure">确定</string>
+    <string name="cancel">取消</string>
+    <string name="copyright_tips">本App中所有的Api均由WanAndroid官网提供，可作为学习参考，禁止作为商业用途</string>
 </resources>

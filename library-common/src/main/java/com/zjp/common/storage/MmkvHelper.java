@@ -169,4 +169,15 @@ public class MmkvHelper {
         return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, false);
     }
 
+    //首页Banner是否显示
+
+
+    public void setDarkTheme(boolean darkTheme) {
+        mmkv.encode(C.KEY_DARK_THEME, darkTheme);
+    }
+
+    public boolean isDarkTheme() {
+        return mmkv.decodeBool(C.KEY_DARK_THEME, false);
+    }
+
 }
