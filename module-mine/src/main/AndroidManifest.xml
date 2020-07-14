@@ -10,7 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.zjp.mine.activity.SettingActivity" />
+        <activity
+            android:name="com.zjp.mine.activity.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.zjp.mine.activity.AboutMeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OpenSourceProjActivity"
+            android:screenOrientation="portrait" />
 
     </application>
 

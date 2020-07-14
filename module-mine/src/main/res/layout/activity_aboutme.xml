@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_f8f8f8">
+
+        <com.zjp.common.view.CommonHeadTitle
+            android:id="@+id/titleview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp80"
+            android:layout_marginTop="@dimen/dp50"
+            android:background="@drawable/ic_launcher_background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleview" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_version_code"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp16"
+            android:gravity="center"
+            android:textColor="@color/c_666666"
+            android:textSize="@dimen/sp18"
+            app:layout_constraintLeft_toLeftOf="@+id/iv_avatar"
+            app:layout_constraintRight_toRightOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            tools:text="版本号" />
+
+        <LinearLayout
+            android:id="@+id/ll_web"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dp50"
+            android:background="@drawable/ripple_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp16"
+            app:layout_constraintTop_toBottomOf="@+id/tv_version_code">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_web"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="官方网站"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp16"
+                android:background="@mipmap/iv_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_about"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp50"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ripple_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp16"
+            app:layout_constraintTop_toBottomOf="@+id/ll_web">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_about"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="网站内容"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp16"
+                android:background="@mipmap/iv_arrow_right" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_github"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ripple_bg"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dp16"
+            android:paddingRight="@dimen/dp16"
+            app:layout_constraintTop_toBottomOf="@+id/ll_about">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_github"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp10"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text="项目仓库"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp15" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/dp25"
+                android:layout_height="@dimen/dp25"
+                android:layout_marginRight="@dimen/dp16"
+                android:background="@mipmap/iv_arrow_right" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/textview_14sp_style"
+            android:layout_marginBottom="16dp"
+            android:text="本App由Jsonjia独立开发"
+            android:textColor="@color/c_999999"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

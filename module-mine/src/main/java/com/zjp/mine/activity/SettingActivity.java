@@ -1,5 +1,6 @@
 package com.zjp.mine.activity;
 
+import android.content.Intent;
 import android.widget.CompoundButton;
 
 import androidx.lifecycle.Observer;
@@ -94,7 +95,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
             }).show();
         });
 
-
+        mViewDataBinding.clAboutMe.setOnClickListener(view -> startActivity(new Intent(SettingActivity.this, AboutMeActivity.class)));
     }
 
     /**
