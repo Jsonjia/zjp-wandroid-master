@@ -1,8 +1,9 @@
 package com.zjp.common.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
-import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -30,6 +31,13 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseVi
         mImmersionBar
                 .statusBarDarkFont(true)
                 .init();
+    }
+
+    public static void start(Activity activity, String title, String link) {
+        Intent intent = new Intent(activity, WebViewActivity.class);
+        intent.putExtra("title", title);
+        intent.putExtra("link", link);
+        activity.startActivity(intent);
     }
 
     @Override

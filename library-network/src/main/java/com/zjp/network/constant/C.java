@@ -12,6 +12,8 @@ public class C {
     public static final int ARTICLE_ITEM_PIC = ARTICLE_ITEM + 1;
 
     public static final String BASE_URL = "https://www.wanandroid.com/";
+    public static final String URL_ABOUT = BASE_URL + "about";
+    public static final String SOURCE_URL = "https://github.com/Jsonjia/zjp-wandroid-master";
 
     public static final String USER_INFO = "user_info";
     public static final String FIRST = "first";

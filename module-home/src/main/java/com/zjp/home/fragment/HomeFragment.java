@@ -147,9 +147,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
                         .setIndicatorMargins(new IndicatorConfig.Margins(0, 0,
                                 BannerConfig.INDICATOR_SELECTED_WIDTH, (int) BannerUtils.dp2px(40)))
                         .setOnBannerListener((data, position) -> {
-                            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-                            intent.putExtra("link", bannerEntities.get(position).getUrl());
-                            startActivity(intent);
+                            WebViewActivity.start(getActivity(), bannerEntities.get(position).getTitle(), bannerEntities.get(position).getUrl());
                         });
             }
         });
@@ -186,9 +184,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
             ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra("link", datasBean.getLink());
-            startActivity(intent);
+            WebViewActivity.start(getActivity(), datasBean.getTitle(), datasBean.getLink());
         });
     }
 

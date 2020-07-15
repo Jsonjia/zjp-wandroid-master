@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="eventlistener"
+            type="com.zjp.mine.activity.AboutMeActivity.EventListener" />
+
+        <variable
+            name="url"
+            type="com.zjp.network.constant.C" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -36,8 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp16"
             android:gravity="center"
-            android:textColor="@color/c_666666"
-            android:textSize="@dimen/sp18"
+            android:textColor="@color/c_999999"
+            android:textSize="@dimen/sp16"
             app:layout_constraintLeft_toLeftOf="@+id/iv_avatar"
             app:layout_constraintRight_toRightOf="@+id/iv_avatar"
             app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
@@ -51,6 +58,7 @@
             android:layout_marginTop="@dimen/dp50"
             android:background="@drawable/ripple_bg"
             android:gravity="center"
+            android:onClick="@{()->eventlistener.clickWebUrl(url.BASE_URL)}"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp16"
             android:paddingRight="@dimen/dp16"
@@ -70,7 +78,6 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp25"
                 android:layout_height="@dimen/dp25"
-                android:layout_marginRight="@dimen/dp16"
                 android:background="@mipmap/iv_arrow_right" />
         </LinearLayout>
 
@@ -81,6 +88,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/ripple_bg"
             android:gravity="center"
+            android:onClick="@{()->eventlistener.clickWebContent(url.URL_ABOUT)}"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp16"
             android:paddingRight="@dimen/dp16"
@@ -100,7 +108,6 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp25"
                 android:layout_height="@dimen/dp25"
-                android:layout_marginRight="@dimen/dp16"
                 android:background="@mipmap/iv_arrow_right" />
         </LinearLayout>
 
@@ -111,6 +118,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/ripple_bg"
             android:gravity="center"
+            android:onClick="@{()->eventlistener.clickWebGithub(url.SOURCE_URL)}"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/dp16"
             android:paddingRight="@dimen/dp16"
@@ -130,7 +138,6 @@
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="@dimen/dp25"
                 android:layout_height="@dimen/dp25"
-                android:layout_marginRight="@dimen/dp16"
                 android:background="@mipmap/iv_arrow_right" />
         </LinearLayout>
 

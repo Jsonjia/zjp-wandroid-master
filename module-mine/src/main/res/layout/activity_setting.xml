@@ -292,14 +292,14 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_copyright"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp55"
+                        android:layout_height="@dimen/dp60"
                         android:background="@drawable/ripple_bg">
 
                         <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/tv_copyright"
                             style="@style/textview_15sp_style"
                             android:layout_marginLeft="@dimen/dp16"
-                            android:layout_marginTop="@dimen/dp5"
+                            android:layout_marginTop="@dimen/dp10"
                             android:text="版权声名"
                             android:textColor="@color/black"
                             app:layout_constraintLeft_toLeftOf="parent"

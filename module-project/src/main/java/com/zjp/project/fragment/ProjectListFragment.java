@@ -1,14 +1,10 @@
 package com.zjp.project.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.fragment.BaseLazyFragment;
@@ -99,9 +95,7 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
         mViewDataBinding.refresh.setOnRefreshLoadMoreListener(this);
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
             ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
-            Intent intent = new Intent(getActivity(), WebViewActivity.class);
-            intent.putExtra("link", datasBean.getLink());
-            startActivity(intent);
+            WebViewActivity.start(getActivity(), datasBean.getTitle(), datasBean.getLink());
         });
         onRetryBtnClick();
     }

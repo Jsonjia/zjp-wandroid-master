@@ -109,9 +109,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
 
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
             ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
-            Intent intent = new Intent(this, WebViewActivity.class);
-            intent.putExtra("link", datasBean.getLink());
-            startActivity(intent);
+            WebViewActivity.start(this, datasBean.getTitle(), datasBean.getLink());
         });
 
         mViewDataBinding.refresh.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
