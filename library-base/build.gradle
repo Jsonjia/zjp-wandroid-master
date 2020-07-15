@@ -60,4 +60,5 @@ dependencies {
     api support.smartheadRefreshLayout
     api support.mmkv
     api support.eventbus
+    api androidx.material
 }

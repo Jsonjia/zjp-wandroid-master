@@ -8,12 +8,15 @@ import androidx.lifecycle.MutableLiveData;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.mine.api.MineService;
 import com.zjp.mine.bean.Integral;
+import com.zjp.mine.bean.Leaderboard;
 import com.zjp.mine.cache.CacheUtil;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;
 import com.zjp.network.observer.NetCallback;
 import com.zjp.network.observer.NetHelperObserver;
 import com.zjp.network.scheduler.IoMainScheduler;
+
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -29,6 +32,7 @@ public class MineViewModel extends BaseViewModel {
     public MutableLiveData<Integral> mIntegralLiveData = new MutableLiveData<>();
     public MutableLiveData<String> mCacheSizeLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> loginoutLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<Leaderboard>> leaderBoardLiveData = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -128,6 +132,24 @@ public class MineViewModel extends BaseViewModel {
                         if (response.getErrorCode() == 0) {
                             loginoutLiveData.postValue(response);
                         }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void getRankList(int page) {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .getRankList(page)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<Leaderboard>>>() {
+                    @Override
+                    public void success(BaseResponse<List<Leaderboard>> response) {
+                        leaderBoardLiveData.postValue(response.getData());
                     }
 
                     @Override

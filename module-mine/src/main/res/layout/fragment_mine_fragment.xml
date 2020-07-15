@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="eventlistener"
+            type="com.zjp.mine.fragment.MineFragment.EventListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,6 +41,7 @@
                 android:layout_marginTop="@dimen/dp40"
                 android:layout_marginRight="@dimen/dp20"
                 android:background="@mipmap/set"
+                android:onClick="@{()->eventlistener.clickSet()}"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,33 +78,40 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/dp10"
                     android:text="未登录"
+                    android:onClick="@{()->eventlistener.clickGoLogin()}"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp16"
                     app:layout_constraintLeft_toRightOf="@+id/iv_avatar"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tv_level"
+                    android:id="@+id/tv_id"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dp5"
-                    android:background="@drawable/bg_coner_14"
-                    android:paddingLeft="@dimen/dp12"
-                    android:paddingTop="@dimen/dp3"
-                    android:paddingRight="@dimen/dp12"
-                    android:paddingBottom="@dimen/dp3"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/dp10"
+                    android:textSize="@dimen/sp12"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_name"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-                <!--                <androidx.appcompat.widget.AppCompatImageView
-                                    android:id="@+id/iv_my_integral"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="@dimen/dp40"
-                                 />-->
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name"
+                    tools:text="id:1234" />
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:background="@drawable/bg_coner_14"
+                    android:paddingLeft="@dimen/dp8"
+                    android:paddingRight="@dimen/dp8"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp10"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_id"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_id"
+                    app:layout_constraintTop_toTopOf="@+id/tv_id"
+                    tools:text="lv.12" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_leaderboard"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp22"
                     android:layout_marginTop="@dimen/dp20"
@@ -108,11 +119,12 @@
                     android:drawableLeft="@mipmap/icon_integral"
                     android:drawablePadding="@dimen/dp5"
                     android:gravity="center"
+                    android:onClick="@{()->eventlistener.clickIntergral()}"
                     android:paddingLeft="@dimen/dp10"
                     android:paddingRight="@dimen/dp10"
-                    android:text="积分排名"
+                    android:text="积分排行榜"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/sp14"
+                    android:textSize="@dimen/sp12"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -129,6 +141,7 @@
                 android:id="@+id/cl_intergral"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickMyIntergral()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -148,6 +161,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_intergral_arrow"
                     android:layout_width="@dimen/dp25"
                     android:layout_height="@dimen/dp25"
                     android:layout_marginRight="@dimen/dp16"
@@ -155,12 +169,25 @@
                     app:layout_constraintBottom_toBottomOf="@+id/tv_intergral"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/tv_intergral" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_intergral_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:textColor="@color/c_666666"
+                    android:textSize="@dimen/sp13"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_intergral"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_intergral_arrow"
+                    app:layout_constraintTop_toTopOf="@+id/tv_intergral"
+                    tools:text="3422" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_collect"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickMyCollect()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_intergral">
@@ -193,6 +220,7 @@
                 android:id="@+id/cl_share"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickMyShare()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_collect">
@@ -225,6 +253,7 @@
                 android:id="@+id/cl_article"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickMyArticle()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_share">
@@ -266,6 +295,7 @@
                 android:id="@+id/cl_read_history"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickReadHistory()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_divider">
@@ -298,6 +328,7 @@
                 android:id="@+id/cl_open_proj"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickOpenSource()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_read_history">
@@ -330,6 +361,7 @@
                 android:id="@+id/cl_about_author"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:onClick="@{()->eventlistener.clickAboutAuthor()}"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cl_open_proj">
@@ -362,9 +394,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="@dimen/dp10"
-                    android:text="请他喝杯咖啡~"
+                    android:text="请他吃份早餐吧~"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="@dimen/sp14"
+                    android:textSize="@dimen/sp13"
                     app:layout_constraintBottom_toBottomOf="@+id/tv_about_author"
                     app:layout_constraintRight_toLeftOf="@+id/iv_about_author_arrow"
                     app:layout_constraintTop_toTopOf="@+id/tv_about_author" />

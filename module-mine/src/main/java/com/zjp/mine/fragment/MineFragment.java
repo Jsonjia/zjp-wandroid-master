@@ -1,6 +1,5 @@
 package com.zjp.mine.fragment;
 
-import android.content.Intent;
 import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -12,6 +11,7 @@ import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
+import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.SettingActivity;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
@@ -46,12 +46,13 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     protected void initData() {
         super.initData();
 
-        mViewModel.mIntegralLiveData.observe(this, integral -> {
-            mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
-        });
+        mViewDataBinding.setEventlistener(new EventListener());
 
-        mViewDataBinding.tvName.setOnClickListener(view -> skipActivity());
-        mViewDataBinding.ivSet.setOnClickListener(view -> skipSettingPage());
+        mViewModel.mIntegralLiveData.observe(this, integral -> {
+            mViewDataBinding.tvId.setText("ID." + integral.getUserId());
+            mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
+            mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
+        });
     }
 
     @Override
@@ -61,9 +62,11 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         if (userInfo == null) {
             mViewDataBinding.tvName.setText("未登录");
+            mViewDataBinding.tvId.setVisibility(View.GONE);
             mViewDataBinding.tvLevel.setVisibility(View.GONE);
         } else {
             mViewDataBinding.tvName.setText(userInfo.getUsername());
+            mViewDataBinding.tvId.setVisibility(View.VISIBLE);
             mViewDataBinding.tvLevel.setVisibility(View.VISIBLE);
             loadUserInfo();
         }
@@ -73,13 +76,50 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         mViewModel.getIntegral();
     }
 
-    @CheckLogin()
-    private void skipActivity() {
 
-    }
+    public class EventListener {
 
-    @CheckLogin()
-    private void skipSettingPage() {
-        startActivity(new Intent(getActivity(), SettingActivity.class));
+        @CheckLogin()
+        public void clickSet() {
+            SettingActivity.start(getActivity());
+        }
+
+        @CheckLogin()
+        public void clickGoLogin() {
+
+        }
+
+        public void clickIntergral() {
+            LeaderboardActivity.start(getActivity());
+        }
+
+        public void clickMyIntergral() {
+
+        }
+
+        public void clickMyCollect() {
+
+        }
+
+        public void clickMyShare() {
+
+        }
+
+        public void clickMyArticle() {
+
+        }
+
+        public void clickReadHistory() {
+
+        }
+
+        public void clickOpenSource() {
+
+        }
+
+        public void clickAboutAuthor() {
+
+        }
+
     }
 }

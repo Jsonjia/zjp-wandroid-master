@@ -1,5 +1,6 @@
 package com.zjp.mine.activity;
 
+import android.content.Context;
 import android.content.Intent;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -20,6 +21,10 @@ import org.greenrobot.eventbus.EventBus;
 public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineViewModel> {
 
     private MaterialDialog materialDialog;
+
+    public static void start(Context context){
+        context.startActivity(new Intent(context, SettingActivity.class));
+    }
 
     @Override
     protected int getLayoutId() {
