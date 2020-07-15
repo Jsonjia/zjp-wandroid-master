@@ -14,4 +14,8 @@ public interface MineService {
     //获取个人积分
     @GET("lg/coin/userinfo/json")
     Observable<BaseResponse<Integral>> getIntegral();
+
+    //退出登录
+    @GET("user/logout/json")
+    Observable<BaseResponse> logout();
 }

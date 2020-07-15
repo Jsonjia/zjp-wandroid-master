@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.View;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.lifecycle.Observer;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.zjp.aop.annotation.CheckLogin;

@@ -59,8 +59,8 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/iv_avatar"
-                    android:layout_width="@dimen/dp40"
-                    android:layout_height="@dimen/dp40"
+                    android:layout_width="@dimen/dp45"
+                    android:layout_height="@dimen/dp45"
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dp20"
                     android:background="@mipmap/ic_launcher"
@@ -93,9 +93,30 @@
                     android:textSize="@dimen/dp10"
                     app:layout_constraintLeft_toLeftOf="@+id/tv_name"
                     app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+                <!--                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/iv_my_integral"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/dp40"
+                                 />-->
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp22"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:background="@mipmap/half_corner_bg"
+                    android:drawableLeft="@mipmap/icon_integral"
+                    android:drawablePadding="@dimen/dp5"
+                    android:gravity="center"
+                    android:paddingLeft="@dimen/dp10"
+                    android:paddingRight="@dimen/dp10"
+                    android:text="积分排名"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp14"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv_avatar" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="@dimen/dp0"
@@ -105,12 +126,44 @@
             app:layout_constraintTop_toBottomOf="@+id/cl_head">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_collect"
+                android:id="@+id/cl_intergral"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_intergral"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/dp60"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:drawableLeft="@mipmap/iv_integral"
+                    android:drawablePadding="@dimen/dp10"
+                    android:gravity="center"
+                    android:text="我的积分"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/sp16"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/dp25"
+                    android:layout_height="@dimen/dp25"
+                    android:layout_marginRight="@dimen/dp16"
+                    android:background="@mipmap/iv_arrow_right"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_intergral"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_intergral" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_collect"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cl_intergral">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tv_collect"

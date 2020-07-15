@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">module-mine</string>
 
-    <string name="login_out_tips">确定退出登录吗</string>
+    <!--设置 page-->
+    <string name="setting_base">基本设置</string>
+    <string name="show_top">显示置顶</string>
+    <string name="show_top_article">开启后首页显示置顶文章</string>
+
+    <string name="clear_cache">确定要清除缓存吗？</string>
+    <string name="login_out_tips">确定退出登录吗？</string>
     <string name="tips">提示</string>
     <string name="sure">确定</string>
     <string name="cancel">取消</string>

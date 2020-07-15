@@ -23,7 +23,7 @@ import com.zjp.common.view.WebLayout;
  */
 public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseViewModel> {
 
-    private String links;
+    private String mTitle, links;
 
     @Override
     protected void initImmersionBar() {
@@ -50,6 +50,7 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseVi
         super.initView();
         if (getIntent() != null) {
             links = getIntent().getStringExtra("link");
+            mTitle = getIntent().getStringExtra("title");
         }
 
         AgentWeb.with(this)
@@ -84,7 +85,7 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseVi
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            mViewDataBinding.title.setTitle(title);
+            mViewDataBinding.title.setTitle(mTitle);
         }
     };
 

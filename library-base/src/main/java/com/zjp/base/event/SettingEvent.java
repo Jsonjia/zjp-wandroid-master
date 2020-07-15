@@ -5,7 +5,7 @@ package com.zjp.base.event;
  */
 public class SettingEvent {
 
-    private boolean showTopArticle;
+    private boolean showTopArticle, showBanner;
 
     public boolean isShowTopArticle() {
         return showTopArticle;
@@ -13,5 +13,13 @@ public class SettingEvent {
 
     public void setShowTopArticle(boolean showTopArticle) {
         this.showTopArticle = showTopArticle;
+    }
+
+    public boolean isShowBanner() {
+        return showBanner;
+    }
+
+    public void setShowBanner(boolean showBanner) {
+        this.showBanner = showBanner;
     }
 }

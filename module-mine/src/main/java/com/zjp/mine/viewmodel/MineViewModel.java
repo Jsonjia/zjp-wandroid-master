@@ -28,6 +28,7 @@ public class MineViewModel extends BaseViewModel {
 
     public MutableLiveData<Integral> mIntegralLiveData = new MutableLiveData<>();
     public MutableLiveData<String> mCacheSizeLiveData = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> loginoutLiveData = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -64,7 +65,7 @@ public class MineViewModel extends BaseViewModel {
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        addDisposable(d);
                     }
 
                     @Override
@@ -83,4 +84,57 @@ public class MineViewModel extends BaseViewModel {
                     }
                 });
     }
+
+    public void clearCache() {
+        Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                CacheUtil.clearAllCache();
+                String size = CacheUtil.getTotalCacheSize();
+                if (!emitter.isDisposed()) {
+                    emitter.onNext(size);
+                }
+            }
+        }).compose(new IoMainScheduler<>())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        addDisposable(d);
+                    }
+
+                    @Override
+                    public void onNext(String size) {
+                        mCacheSizeLiveData.postValue(size);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+    }
+
+    public void loginout() {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .logout()
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        if (response.getErrorCode() == 0) {
+                            loginoutLiveData.postValue(response);
+                        }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
 }

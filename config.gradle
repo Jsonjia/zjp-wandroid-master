@@ -84,7 +84,7 @@ ext {
 
             "eventbus"              : "org.greenrobot:eventbus:3.2.0",
 
-            "material_dialogs"              : "com.afollestad.material-dialogs:core:3.3.0",
+            "material_dialogs"      : "com.afollestad.material-dialogs:core:3.3.0",
 
     ]
 }

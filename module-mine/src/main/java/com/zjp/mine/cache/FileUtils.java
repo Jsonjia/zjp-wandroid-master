@@ -56,4 +56,20 @@ public class FileUtils {
         BigDecimal result4 = new BigDecimal(teraBytes);
         return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString() + "TB";
     }
+
+    public static boolean delete(File file) {
+        if (file == null) {
+            return false;
+        }
+        if (file.isDirectory()) {
+            String[] children = file.list();
+            for (String c : children) {
+                boolean success = delete(new File(file, c));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        return file.delete();
+    }
 }

@@ -1,13 +1,12 @@
 package com.zjp.mine.activity;
 
 import android.content.Intent;
-import android.widget.CompoundButton;
-
-import androidx.lifecycle.Observer;
 
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.event.SettingEvent;
+import com.zjp.common.BuildConfig;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
 import com.zjp.mine.databinding.ActivitySettingBinding;
@@ -42,60 +41,77 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         boolean hideTopArticle = MmkvHelper.getInstance().getshowTopArticle();
         mViewDataBinding.swShowTop.setChecked(hideTopArticle);
 
+        mViewDataBinding.tvCurrentVersionVal.setText("v" + BuildConfig.VERSION_NAME);
+
         mViewModel.getCacheSize();
     }
 
     @Override
     protected void initData() {
         super.initData();
-        mViewModel.mCacheSizeLiveData.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                mViewDataBinding.tvCacheVal.setText(s);
+        mViewModel.mCacheSizeLiveData.observe(this, s -> mViewDataBinding.tvCacheVal.setText(s));
+        mViewModel.loginoutLiveData.observe(this, baseResponse -> {
+            if (baseResponse.getErrorCode() == 0) {
+                MmkvHelper.getInstance().logout();
+                finish();
             }
         });
 
 
-        mViewDataBinding.swShowTop.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                MmkvHelper.getInstance().showTopArticle(isChecked);
-            }
-        });
+        mViewDataBinding.swShowTop.setOnCheckedChangeListener((compoundButton, isChecked) -> MmkvHelper.getInstance().showTopArticle(isChecked));
 
-        mViewDataBinding.swSwitchNight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                MmkvHelper.getInstance().setDarkTheme(isChecked);
-            }
-        });
+//        mViewDataBinding.swSwitchNight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+//                MmkvHelper.getInstance().setDarkTheme(isChecked);
+//            }
+//        });
 
-//        mViewDataBinding.
+        mViewDataBinding.setEventlistener(new EventListener());
+    }
 
-        mViewDataBinding.clClearCache.setOnClickListener(view -> {
+    public class EventListener {
+
+        public void clickClearCache() {
             materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
             materialDialog.title(R.string.tips, null);
-            materialDialog.message(R.string.login_out_tips, null, null);
+            materialDialog.message(R.string.clear_cache, null, null);
             materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
-//                    MmkvHelper.getInstance().cl
-
+                mViewModel.clearCache();
                 return null;
             }).negativeButton(R.string.cancel, null, materialDialog2 -> {
-
                 return null;
             }).show();
-        });
+        }
 
-        mViewDataBinding.clCopyright.setOnClickListener(view -> {
+        public void clickCurrentVersion() {
+            ToastUtils.showShort("已经是最新版本");
+        }
+
+        public void clickCopyright() {
             materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
             materialDialog.title(R.string.tips, null);
             materialDialog.message(R.string.copyright_tips, null, null);
             materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
                 return null;
             }).show();
-        });
+        }
 
-        mViewDataBinding.clAboutMe.setOnClickListener(view -> startActivity(new Intent(SettingActivity.this, AboutMeActivity.class)));
+        public void clickAboutMe() {
+            startActivity(new Intent(SettingActivity.this, AboutMeActivity.class));
+        }
+
+        public void clickLoginout() {
+            materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
+            materialDialog.title(R.string.tips, null);
+            materialDialog.message(R.string.login_out_tips, null, null);
+            materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
+                mViewModel.loginout();
+                return null;
+            }).negativeButton(R.string.cancel, null, materialDialog2 -> {
+                return null;
+            }).show();
+        }
     }
 
     /**

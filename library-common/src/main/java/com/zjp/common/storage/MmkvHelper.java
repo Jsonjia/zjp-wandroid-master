@@ -161,15 +161,14 @@ public class MmkvHelper {
 
 
     //首页文章是否显示置顶
-    public boolean showTopArticle(boolean hideTop) {
-        return mmkv.encode(C.SHOW_TOP_ARTICLE, hideTop);
+    public boolean showTopArticle(boolean showTop) {
+        return mmkv.encode(C.SHOW_TOP_ARTICLE, showTop);
     }
 
     public boolean getshowTopArticle() {
-        return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, false);
+        return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, true);
     }
 
-    //首页Banner是否显示
 
 
     public void setDarkTheme(boolean darkTheme) {
@@ -178,6 +177,11 @@ public class MmkvHelper {
 
     public boolean isDarkTheme() {
         return mmkv.decodeBool(C.KEY_DARK_THEME, false);
+    }
+
+    public void logout() {
+        mmkv.remove(C.SHOW_TOP_ARTICLE);
+        mmkv.remove(C.USER_INFO);
     }
 
 }

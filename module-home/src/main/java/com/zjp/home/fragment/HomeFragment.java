@@ -209,13 +209,21 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
 
     @Subscribe
     public void onEvent(SettingEvent settingEvent) {
+        if (isDetached()) {
+            return;
+        }
+
         if (settingEvent != null) {
-            pageInfo.resetZero();
-            if (settingEvent.isShowTopArticle()) {
-                mViewModel.getArticleMultiList(pageInfo.mPage);
-            } else {  //隐藏
+
+
+            if (settingEvent.isShowTopArticle()) { //置顶
+                pageInfo.resetZero();
+                if (MmkvHelper.getInstance().getshowTopArticle()) {
+                    mViewModel.getArticleMultiList(pageInfo.mPage);
+                } else {  //隐藏
 //                removeTopItems();
-                mViewModel.getArticleList(pageInfo.mPage);
+                    mViewModel.getArticleList(pageInfo.mPage);
+                }
             }
         }
     }

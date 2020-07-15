@@ -17,4 +17,11 @@ public class CacheUtil {
         }
         return FileUtils.formatSize(cacheSize);
     }
+
+    public static void clearAllCache() {
+        FileUtils.delete(BaseApplication.getInstance().getCacheDir());
+        if (FileUtils.isSDCardAlive()) {
+            FileUtils.delete(BaseApplication.getInstance().getExternalCacheDir());
+        }
+    }
 }
