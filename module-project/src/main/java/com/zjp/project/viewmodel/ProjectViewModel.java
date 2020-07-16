@@ -24,6 +24,8 @@ public class ProjectViewModel extends BaseViewModel {
 
     public MutableLiveData<List<ProjectTabBean>> mProjectListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
 
     public ProjectViewModel(@NonNull Application application) {
         super(application);
@@ -66,6 +68,42 @@ public class ProjectViewModel extends BaseViewModel {
                         } else {
 
                         }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void collect(int id) {
+        RetrofitHelper.getInstance().create(ProjectService.class)
+                .collect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mCollectMutable.postValue(response);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void uncollect(int id) {
+        RetrofitHelper.getInstance().create(ProjectService.class)
+                .unCollect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mUnCollectMutable.postValue(response);
                     }
 
                     @Override

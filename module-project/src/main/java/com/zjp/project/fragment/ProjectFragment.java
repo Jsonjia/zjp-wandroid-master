@@ -2,15 +2,11 @@ package com.zjp.project.fragment;
 
 
 import android.os.Build;
-import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.gyf.immersionbar.ImmersionBar;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.adapter.TabPagerAdapter;
@@ -98,12 +94,7 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
 
     @Override
     public Fragment getFragment(int position) {
-        ProjectListFragment projectListFragment = new ProjectListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putInt("id", tabBeanList.get(position).getId());
-        bundle.putString("name", tabBeanList.get(position).getName());
-        projectListFragment.setArguments(bundle);
-        return projectListFragment;
+        return ProjectListFragment.newInstance(tabBeanList.get(position).getId());
     }
 
     @Override

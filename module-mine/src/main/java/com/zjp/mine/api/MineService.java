@@ -1,5 +1,6 @@
 package com.zjp.mine.api;
 
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.bean.Leaderboard;
 import com.zjp.network.bean.BaseResponse;
@@ -26,4 +27,8 @@ public interface MineService {
     //积分排行榜接口
     @GET("coin/rank/{page}/json")
     Observable<BaseResponse<List<Leaderboard>>> getRankList(@Path("page") int page);
+
+    //获取收藏文章数据
+    @GET("lg/collect/list/{page}/json")
+    Observable<BaseResponse<ArticleEntity>> getCollectArticleList(@Path("page") int pageNo);
 }

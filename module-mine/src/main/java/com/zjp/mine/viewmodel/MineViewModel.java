@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.mine.api.MineService;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.bean.Leaderboard;
@@ -33,6 +34,7 @@ public class MineViewModel extends BaseViewModel {
     public MutableLiveData<String> mCacheSizeLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> loginoutLiveData = new MutableLiveData<>();
     public MutableLiveData<List<Leaderboard>> leaderBoardLiveData = new MutableLiveData<>();
+    public MutableLiveData<ArticleEntity> articleLiveData = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -150,6 +152,24 @@ public class MineViewModel extends BaseViewModel {
                     @Override
                     public void success(BaseResponse<List<Leaderboard>> response) {
                         leaderBoardLiveData.postValue(response.getData());
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void getCollectArticleList(int page) {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .getCollectArticleList(page)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
+                    @Override
+                    public void success(BaseResponse<ArticleEntity> response) {
+                        articleLiveData.postValue(response.getData());
                     }
 
                     @Override

@@ -46,7 +46,4 @@ public interface HomeService {
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResponse> unCollect(@Path("id") int id);
 
-
-
-
 }

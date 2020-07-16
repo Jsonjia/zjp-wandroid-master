@@ -145,6 +145,4 @@ public class HomeViewModel extends BaseViewModel {
                     }
                 }));
     }
-
-
 }

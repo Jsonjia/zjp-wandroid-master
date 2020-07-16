@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.zjp.aop.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseLazyFragment;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
+import com.zjp.network.constant.C;
 import com.zjp.project.R;
 import com.zjp.project.databinding.FragmentProjectListBinding;
 import com.zjp.project.viewmodel.ProjectViewModel;
@@ -25,10 +27,26 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
         implements OnRefreshLoadMoreListener {
 
     private int id;
-    private String name;
     private PageInfo pageInfo;
     private ArticleListAdapter articleListAdapter;
     private boolean isLoading;
+
+    /**
+     * 点击收藏后将点击事件上锁,等接口有相应结果再解锁
+     * 避免重复点击产生的bug
+     */
+    private boolean lockCollectClick = true;
+
+    //记录当前点击收藏的position
+    private int currentPosition = 0;
+
+    public static ProjectListFragment newInstance(int id) {
+        ProjectListFragment projectListFragment = new ProjectListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id", id);
+        projectListFragment.setArguments(bundle);
+        return projectListFragment;
+    }
 
     @Override
     protected void initImmersionBar() {
@@ -49,7 +67,6 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
         Bundle bundle = getArguments();
         if (null != bundle) {
             id = bundle.getInt("id", 0);
-            name = bundle.getString("name");
         }
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(getActivity()));
         mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
@@ -85,6 +102,26 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
             }
             isLoading = false;
         });
+
+        mViewModel.mCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(true);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
+        mViewModel.mUnCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(false);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
     }
 
     @Override
@@ -98,6 +135,12 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
             WebViewActivity.start(getActivity(), datasBean.getTitle(), datasBean.getLink());
         });
         onRetryBtnClick();
+
+        articleListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.iv_collect) {
+                collectArticle(position);
+            }
+        });
     }
 
     @Override
@@ -116,5 +159,18 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         pageInfo.reset();
         onRetryBtnClick();
+    }
+
+    @CheckLogin
+    private void collectArticle(int position) {
+        if (position < articleListAdapter.getData().size() && lockCollectClick) {
+            lockCollectClick = false;
+            currentPosition = position;
+            if (articleListAdapter.getData().get(position).isCollect()) {
+                mViewModel.uncollect(articleListAdapter.getData().get(position).getId());
+            } else {
+                mViewModel.collect(articleListAdapter.getData().get(position).getId());
+            }
+        }
     }
 }
