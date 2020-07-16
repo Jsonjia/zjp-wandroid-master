@@ -23,6 +23,7 @@ public class C {
     public static final String SHOW_BANNER = "show_banner";
     public static final String KEY_DARK_THEME = "key_dark_theme";
     public static final String THEME_COLOR = "theme_color";
+    public static final String REFRESH_COLLECT = "refresh_collect";
 
     public static final int SEARCH_REQUEST = 0x123;
 }

@@ -89,34 +89,42 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         }
 
+        @CheckLogin()
         public void clickIntergral() {
             LeaderboardActivity.start(getActivity());
         }
 
+        @CheckLogin()
         public void clickMyIntergral() {
 
         }
 
+        @CheckLogin()
         public void clickMyCollect() {
 
         }
 
+        @CheckLogin()
         public void clickMyShare() {
 
         }
 
+        @CheckLogin()
         public void clickMyArticle() {
 
         }
 
+        @CheckLogin()
         public void clickReadHistory() {
 
         }
 
+        @CheckLogin()
         public void clickOpenSource() {
 
         }
 
+        @CheckLogin()
         public void clickAboutAuthor() {
 
         }

@@ -6,8 +6,20 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="textview_11sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp11</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <style name="textview_12sp_style" parent="wrap_content_style">
         <item name="android:textSize">@dimen/sp12</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="textview_13sp_style" parent="wrap_content_style">
+        <item name="android:textSize">@dimen/sp13</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>
     </style>

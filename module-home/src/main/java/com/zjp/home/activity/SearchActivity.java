@@ -1,27 +1,19 @@
 package com.zjp.home.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexWrap;
 import com.google.android.flexbox.FlexboxLayoutManager;
@@ -137,12 +129,9 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
             fillEtInput(hotSearchEntity.getName());
         });
 
-        homeSearchHistoryAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                String str = homeSearchHistoryAdapter.getData().get(position);
-                fillEtInput(str);
-            }
+        homeSearchHistoryAdapter.setOnItemClickListener((adapter, view, position) -> {
+            String str = homeSearchHistoryAdapter.getData().get(position);
+            fillEtInput(str);
         });
 
         homeSearchHistoryAdapter.setOnItemChildClickListener((adapter, view, position) -> {
@@ -211,10 +200,7 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
                 this,
                 search,
                 ll);
-
-        Intent intent = new Intent(this, SearchResultActivity.class);
-        intent.putExtra(C.KEYWORD, keyword);
-        ActivityCompat.startActivityForResult(this, intent, C.SEARCH_REQUEST, optionsCompat.toBundle());
+        SearchResultActivity.start(this, keyword, optionsCompat);
     }
 
     public void showSoftInputFromWindow(Activity activity, EditText editText) {

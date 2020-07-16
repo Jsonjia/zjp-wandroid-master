@@ -38,6 +38,14 @@ public interface HomeService {
     @POST("article/query/{page}/json")
     Observable<BaseResponse<ArticleEntity>> search(@Path("page") int pageNo, @Query("k") String k);
 
+    //收藏
+    @POST("/lg/collect/{id}/json")
+    Observable<BaseResponse> collect(@Path("id") int id);
+
+    //取消收藏
+    @POST("lg/uncollect_originId/{id}/json")
+    Observable<BaseResponse> unCollect(@Path("id") int id);
+
 
 
 

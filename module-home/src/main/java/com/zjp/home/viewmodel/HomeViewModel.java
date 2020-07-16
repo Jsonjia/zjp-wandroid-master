@@ -30,6 +30,8 @@ public class HomeViewModel extends BaseViewModel {
     public MutableLiveData<List<BannerEntity>> mBannerListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> mArticleMutable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
 
     public HomeViewModel(@NonNull Application application) {
         super(application);
@@ -107,5 +109,42 @@ public class HomeViewModel extends BaseViewModel {
                     }
                 }));
     }
+
+    public void collect(int id) {
+        RetrofitHelper.getInstance().create(HomeService.class)
+                .collect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mCollectMutable.postValue(response);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void uncollect(int id) {
+        RetrofitHelper.getInstance().create(HomeService.class)
+                .unCollect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mUnCollectMutable.postValue(response);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
 
 }

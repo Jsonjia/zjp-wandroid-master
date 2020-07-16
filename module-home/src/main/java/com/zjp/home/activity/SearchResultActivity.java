@@ -1,23 +1,26 @@
 package com.zjp.home.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
+import com.zjp.common.adapter.ArticleListAdapter;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.home.R;
-import com.zjp.common.adapter.ArticleListAdapter;
-import com.zjp.common.bean.ArticleEntity;
 import com.zjp.home.databinding.ActivitySearchresultBinding;
 import com.zjp.home.viewmodel.SearchViewModel;
 import com.zjp.network.constant.C;
@@ -34,6 +37,12 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
 
     private ArticleListAdapter articleListAdapter;
     private boolean isLoading = true;
+
+    public static void start(Activity activity, String keyword, ActivityOptionsCompat optionsCompat) {
+        Intent intent = new Intent(activity, SearchResultActivity.class);
+        intent.putExtra(C.KEYWORD, keyword);
+        ActivityCompat.startActivityForResult(activity, intent, C.SEARCH_REQUEST, optionsCompat.toBundle());
+    }
 
     @Override
     protected void initImmersionBar() {

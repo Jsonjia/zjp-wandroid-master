@@ -154,7 +154,7 @@ public class ArticleEntity {
         private int userId;
         private int visible;
         private int zan;
-        private List<?> tags;
+        private List<TagsBean> tags;
 
         public String getApkLink() {
             return apkLink;
@@ -404,12 +404,38 @@ public class ArticleEntity {
             this.zan = zan;
         }
 
-        public List<?> getTags() {
+        public List<TagsBean> getTags() {
             return tags;
         }
 
-        public void setTags(List<?> tags) {
+        public void setTags(List<TagsBean> tags) {
             this.tags = tags;
+        }
+
+        public static class TagsBean {
+            /**
+             * name : 公众号
+             * url : /wxarticle/list/410/1
+             */
+
+            private String name;
+            private String url;
+
+            public String getName() {
+                return name;
+            }
+
+            public void setName(String name) {
+                this.name = name;
+            }
+
+            public String getUrl() {
+                return url;
+            }
+
+            public void setUrl(String url) {
+                this.url = url;
+            }
         }
 
         @Override

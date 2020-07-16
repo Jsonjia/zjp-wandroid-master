@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/dp60"
                     android:layout_marginLeft="@dimen/dp16"
-                    android:drawableLeft="@mipmap/iv_collect"
+                    android:drawableLeft="@mipmap/collect_unfocus"
                     android:drawablePadding="@dimen/dp10"
                     android:gravity="center"
                     android:text="我的收藏"

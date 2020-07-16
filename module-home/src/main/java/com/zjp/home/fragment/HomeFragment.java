@@ -16,6 +16,7 @@ import com.youth.banner.config.BannerConfig;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
+import com.zjp.aop.annotation.CheckLogin;
 import com.zjp.base.event.IEventBus;
 import com.zjp.base.event.SettingEvent;
 import com.zjp.base.fragment.BaseFragment;
@@ -31,6 +32,7 @@ import com.zjp.home.activity.SearchActivity;
 import com.zjp.home.adapter.HomeHeadBannerAdapter;
 import com.zjp.home.databinding.HomeFragmentHomeBinding;
 import com.zjp.home.viewmodel.HomeViewModel;
+import com.zjp.network.constant.C;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -42,6 +44,15 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
     private ArticleListAdapter articleListAdapter;
     private PageInfo pageInfo;
     private boolean isLoading = true;
+
+    /**
+     * 点击收藏后将点击事件上锁,等接口有相应结果再解锁
+     * 避免重复点击产生的bug
+     */
+    private boolean lockCollectClick = true;
+
+    //记录当前点击收藏的position
+    private int currentPosition = 0;
 
     @Override
     protected void initImmersionBar() {
@@ -182,16 +193,54 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
             }
         });
 
+        mViewModel.mCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(true);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
+        mViewModel.mUnCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(false);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
             ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
             WebViewActivity.start(getActivity(), datasBean.getTitle(), datasBean.getLink());
         });
+
+        articleListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.iv_collect) {
+                collectArticle(position);
+            }
+        });
+    }
+
+    @CheckLogin
+    private void collectArticle(int position) {
+        if (position < articleListAdapter.getData().size() && lockCollectClick) {
+            lockCollectClick = false;
+            currentPosition = position;
+            if (articleListAdapter.getData().get(position).isCollect()) {
+                mViewModel.uncollect(articleListAdapter.getData().get(position).getId());
+            } else {
+                mViewModel.collect(articleListAdapter.getData().get(position).getId());
+            }
+        }
     }
 
     private void loadData() {
         if (pageInfo.isZeroPage()) {
             mViewModel.getBanner();
-
             if (MmkvHelper.getInstance().getshowTopArticle()) {
                 mViewModel.getArticleMultiList(pageInfo.mPage);
             } else {  //隐藏置顶文章
@@ -214,7 +263,6 @@ public class HomeFragment extends BaseFragment<HomeFragmentHomeBinding, HomeView
         }
 
         if (settingEvent != null) {
-
 
             if (settingEvent.isShowTopArticle()) { //置顶
                 pageInfo.resetZero();
