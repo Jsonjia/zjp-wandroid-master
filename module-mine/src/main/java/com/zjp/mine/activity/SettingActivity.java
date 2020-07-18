@@ -47,7 +47,6 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         mViewDataBinding.swShowTop.setChecked(hideTopArticle);
 
         mViewDataBinding.tvCurrentVersionVal.setText("v" + BuildConfig.VERSION_NAME);
-
         mViewModel.getCacheSize();
     }
 

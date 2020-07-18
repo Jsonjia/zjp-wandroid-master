@@ -13,7 +13,7 @@ import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
-import com.zjp.mine.activity.SettingActivity;
+import com.zjp.mine.activity.UserCenterActivity;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
@@ -82,7 +82,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickSet() {
-            SettingActivity.start(getActivity());
+            UserCenterActivity.start(getActivity());
         }
 
         @CheckLogin()
