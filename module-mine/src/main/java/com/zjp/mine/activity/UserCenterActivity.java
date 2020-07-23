@@ -2,7 +2,6 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,7 +11,7 @@ import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.mine.R;
 import com.zjp.mine.adapter.SimpleAdapter;
-import com.zjp.mine.databinding.ActivityUsercenterBinding;
+import com.zjp.mine.databinding.ActivityUsercenter1Binding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ import java.util.List;
 /**
  * Created by zjp on 2020/7/17 21:54.
  */
-public class UserCenterActivity extends BaseActivity<ActivityUsercenterBinding, BaseViewModel> {
+public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, BaseViewModel> {
 
     @Override
     protected void initImmersionBar() {
@@ -37,14 +36,13 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenterBinding, 
 
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_usercenter;
+        return R.layout.activity_usercenter1;
     }
 
     @Override
     protected void initView() {
         super.initView();
 
-        ViewGroup.LayoutParams layoutParams = mViewDataBinding.co.getLayoutParams();
 //        layoutParams.height = ImmersionBar.getStatusBarHeight(this);
 //        mViewDataBinding.appbar.setLayoutParams(layoutParams);
         mViewDataBinding.co.setPadding(0, ImmersionBar.getStatusBarHeight(this), 0, 0);
@@ -54,7 +52,7 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenterBinding, 
             list.add("items+" + i);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recyleView);
+        RecyclerView recyclerView = findViewById(R.id.recy);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SimpleAdapter(list));
     }

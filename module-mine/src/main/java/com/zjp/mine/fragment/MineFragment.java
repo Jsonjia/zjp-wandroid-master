@@ -82,6 +82,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickSet() {
+//            SettingActivity.start(getActivity());
             UserCenterActivity.start(getActivity());
         }
 
