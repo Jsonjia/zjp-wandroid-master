@@ -3,7 +3,6 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.zjp.base.activity.BaseActivity;
@@ -64,29 +63,26 @@ public class MyCollectArticleActivity extends BaseActivity<ActivityMycollectArti
     protected void initData() {
         super.initData();
 
-        mViewModel.articleLiveData.observe(this, new Observer<ArticleEntity>() {
-            @Override
-            public void onChanged(ArticleEntity articleEntity) {
-                if (mViewDataBinding.includeRefresh.refresh.getState().isOpening) {
-                    mViewDataBinding.includeRefresh.refresh.finishRefresh();
-                    mViewDataBinding.includeRefresh.refresh.finishLoadMore();
+        mViewModel.articleLiveData.observe(this, articleEntity -> {
+            if (mViewDataBinding.includeRefresh.refresh.getState().isOpening) {
+                mViewDataBinding.includeRefresh.refresh.finishRefresh();
+                mViewDataBinding.includeRefresh.refresh.finishLoadMore();
+            }
+
+            List<ArticleEntity.DatasBean> datas = articleEntity.getDatas();
+            if (datas != null && datas.size() > 0) {
+                if (pageInfo.isZeroPage()) {
+                    showContent();
+                    articleListAdapter.setList(datas);
+                } else {
+                    articleListAdapter.addData(datas);
                 }
 
-                List<ArticleEntity.DatasBean> datas = articleEntity.getDatas();
-                if (datas != null && datas.size() > 0) {
-                    if (pageInfo.isZeroPage()) {
-                        showContent();
-                        articleListAdapter.setList(datas);
-                    } else {
-                        articleListAdapter.addData(datas);
-                    }
-
+            } else {
+                if (pageInfo.isZeroPage()) {
+                    showEmpty();
                 } else {
-                    if (pageInfo.isZeroPage()) {
-                        showEmpty();
-                    } else {
 //                        articleListAdapter.
-                    }
                 }
             }
         });

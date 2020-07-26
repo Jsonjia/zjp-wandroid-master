@@ -3,9 +3,8 @@ package com.zjp.mine.api;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.bean.Leaderboard;
+import com.zjp.mine.bean.UserCenter;
 import com.zjp.network.bean.BaseResponse;
-
-import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
@@ -26,9 +25,14 @@ public interface MineService {
 
     //积分排行榜接口
     @GET("coin/rank/{page}/json")
-    Observable<BaseResponse<List<Leaderboard>>> getRankList(@Path("page") int page);
+    Observable<BaseResponse<Leaderboard>> getRankList(@Path("page") int page);
 
     //获取收藏文章数据
     @GET("lg/collect/list/{page}/json")
     Observable<BaseResponse<ArticleEntity>> getCollectArticleList(@Path("page") int pageNo);
+
+    //用户中心
+    @GET("user/{userId}/share_articles/{page}/json")
+    Observable<BaseResponse<UserCenter>> getUserCenter(@Path("userId") int userId,
+                                                       @Path("page") int page);
 }

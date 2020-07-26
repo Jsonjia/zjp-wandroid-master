@@ -13,7 +13,8 @@ import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
-import com.zjp.mine.activity.UserCenterActivity;
+import com.zjp.mine.activity.SettingActivity;
+import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
@@ -47,12 +48,12 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     protected void initData() {
         super.initData();
 
-        mViewDataBinding.setEventlistener(new EventListener());
-
         mViewModel.mIntegralLiveData.observe(this, integral -> {
             mViewDataBinding.tvId.setText("ID." + integral.getUserId());
             mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
             mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
+
+            mViewDataBinding.setEventlistener(new EventListener(integral));
         });
     }
 
@@ -80,10 +81,15 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
     public class EventListener {
 
+        private Integral integral;
+
+        public EventListener(Integral integral) {
+            this.integral = integral;
+        }
+
         @CheckLogin()
         public void clickSet() {
-//            SettingActivity.start(getActivity());
-            UserCenterActivity.start(getActivity());
+            SettingActivity.start(getActivity());
         }
 
         @CheckLogin()
@@ -93,7 +99,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickIntergral() {
-            LeaderboardActivity.start(getActivity());
+            LeaderboardActivity.start(getActivity(), integral);
         }
 
         @CheckLogin()

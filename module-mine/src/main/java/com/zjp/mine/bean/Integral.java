@@ -1,9 +1,11 @@
 package com.zjp.mine.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by zjp on 2020/07/07 15:59
  */
-public class Integral {
+public class Integral implements Serializable {
 
     private String coinCount;
     private int level;

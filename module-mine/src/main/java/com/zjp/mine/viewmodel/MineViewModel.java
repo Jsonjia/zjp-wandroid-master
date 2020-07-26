@@ -10,6 +10,7 @@ import com.zjp.common.bean.ArticleEntity;
 import com.zjp.mine.api.MineService;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.bean.Leaderboard;
+import com.zjp.mine.bean.UserCenter;
 import com.zjp.mine.cache.CacheUtil;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;
@@ -33,8 +34,9 @@ public class MineViewModel extends BaseViewModel {
     public MutableLiveData<Integral> mIntegralLiveData = new MutableLiveData<>();
     public MutableLiveData<String> mCacheSizeLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> loginoutLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<Leaderboard>> leaderBoardLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<Leaderboard.DatasBean>> leaderBoardLiveData = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> articleLiveData = new MutableLiveData<>();
+    public MutableLiveData<UserCenter> userCenterLiveData = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -148,15 +150,18 @@ public class MineViewModel extends BaseViewModel {
                 .getRankList(page)
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<Leaderboard>>>() {
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<Leaderboard>>() {
                     @Override
-                    public void success(BaseResponse<List<Leaderboard>> response) {
-                        leaderBoardLiveData.postValue(response.getData());
+                    public void success(BaseResponse<Leaderboard> response) {
+                        List<Leaderboard.DatasBean> datas = response.getData().getDatas();
+                        if (null != datas && datas.size() > 0) {
+                            leaderBoardLiveData.postValue(datas);
+                        }
+
                     }
 
                     @Override
                     public void error(String msg) {
-
                     }
                 }));
     }
@@ -170,6 +175,24 @@ public class MineViewModel extends BaseViewModel {
                     @Override
                     public void success(BaseResponse<ArticleEntity> response) {
                         articleLiveData.postValue(response.getData());
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void getUserCenter(int userId, int page) {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .getUserCenter(userId, page)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<UserCenter>>() {
+                    @Override
+                    public void success(BaseResponse<UserCenter> response) {
+                        userCenterLiveData.postValue(response.getData());
                     }
 
                     @Override

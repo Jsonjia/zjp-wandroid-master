@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_rank"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@mipmap/gold_crown" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_rank"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp30"
+            android:layout_marginLeft="@dimen/dp11"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp13"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_name"
+            style="@style/textview_14sp_style"
+            android:layout_marginLeft="40dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rank"
+            app:layout_constraintLeft_toRightOf="@+id/tv_rank"
+            app:layout_constraintTop_toTopOf="@+id/tv_rank"
+            tools:text="三胖是个瘦子" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_integral"
+            style="@style/textview_14sp_style"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rank"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_rank"
+            tools:text="130" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -2,16 +2,20 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.mine.R;
 import com.zjp.mine.adapter.LeaderboardAdapter;
+import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.ActivityLeaderBoardBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
@@ -22,9 +26,12 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
 
     private PageInfo pageInfo;
     private LeaderboardAdapter leaderboardAdapter;
+    private Integral integral;
 
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, LeaderboardActivity.class));
+    public static void start(Context context, Integral integral) {
+        Intent intent = new Intent(context, LeaderboardActivity.class);
+        intent.putExtra("integral", integral);
+        context.startActivity(intent);
     }
 
     @Override
@@ -46,6 +53,12 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
         mViewDataBinding.titleview.setTitle("积分排行榜");
         pageInfo = new PageInfo();
 
+        Intent intent = getIntent();
+        if (intent != null) {
+            integral = (Integral) intent.getSerializableExtra("integral");
+            mViewDataBinding.setMyselfIntergral(integral);
+        }
+        setLoadSir(mViewDataBinding.clContent);
         loadData();
 
         mViewDataBinding.includeRefresh.recy.setLayoutManager(new LinearLayoutManager(this));
@@ -62,15 +75,15 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
                 mViewDataBinding.includeRefresh.refresh.finishLoadMore();
             }
             if (leaderboards != null && leaderboards.size() > 0) {
-                if (pageInfo.isZeroPage()) {
+                if (pageInfo.isFirstPage()) {
                     showContent();
                     leaderboardAdapter.setList(leaderboards);
                 } else {
                     leaderboardAdapter.addData(leaderboards);
                 }
-                pageInfo.nextZeroPage();
+                pageInfo.nextPage();
             } else {
-                if (pageInfo.isZeroPage()) {
+                if (pageInfo.isFirstPage()) {
                     showEmpty();
                 } else {
                     leaderboardAdapter.addData(leaderboards);
@@ -78,8 +91,15 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
                 }
             }
         });
-    }
 
+        leaderboardAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+
+                UserCenterActivity.start(LeaderboardActivity.this,leaderboardAdapter.getData().get(position).getUserId());
+            }
+        });
+    }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
@@ -88,11 +108,11 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
 
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        pageInfo.resetZero();
+        pageInfo.reset();
         loadData();
     }
 
     private void loadData() {
-        mViewModel.getRankList(pageInfo.mPage);
+        mViewModel.getRankList(pageInfo.page);
     }
 }

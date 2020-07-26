@@ -4,14 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.zjp.base.activity.BaseActivity;
-import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.common.bean.page.PageInfo;
 import com.zjp.mine.R;
 import com.zjp.mine.adapter.SimpleAdapter;
+import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.ActivityUsercenter1Binding;
+import com.zjp.mine.viewmodel.MineViewModel;
+import com.zjp.network.constant.C;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,10 @@ import java.util.List;
 /**
  * Created by zjp on 2020/7/17 21:54.
  */
-public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, BaseViewModel> {
+public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> {
+
+    private int userId;
+    private PageInfo pageInfo;
 
     @Override
     protected void initImmersionBar() {
@@ -30,8 +35,10 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
                 .init();
     }
 
-    public static void start(Context context) {
-        context.startActivity(new Intent(context, UserCenterActivity.class));
+    public static void start(Context context, int userId) {
+        Intent intent = new Intent(context, UserCenterActivity.class);
+        intent.putExtra(C.USERID, userId);
+        context.startActivity(intent);
     }
 
     @Override
@@ -42,18 +49,35 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
     @Override
     protected void initView() {
         super.initView();
+        Intent intent = getIntent();
+        if (null != intent) {
+            userId = intent.getIntExtra(C.USERID, 0);
+        }
 
-//        layoutParams.height = ImmersionBar.getStatusBarHeight(this);
-//        mViewDataBinding.appbar.setLayoutParams(layoutParams);
         mViewDataBinding.co.setPadding(0, ImmersionBar.getStatusBarHeight(this), 0, 0);
+        pageInfo = new PageInfo();
 
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             list.add("items+" + i);
         }
 
-        RecyclerView recyclerView = findViewById(R.id.recy);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new SimpleAdapter(list));
+        mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(this));
+        mViewDataBinding.recy.setAdapter(new SimpleAdapter(list));
+
+        mViewModel.getUserCenter(userId, pageInfo.page);
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mViewModel.userCenterLiveData.observe(this, userCenter -> {
+            if (userCenter != null) {
+                Integral coinInfo = userCenter.getCoinInfo();
+                mViewDataBinding.setUserinfo(coinInfo);
+
+
+            }
+        });
     }
 }
