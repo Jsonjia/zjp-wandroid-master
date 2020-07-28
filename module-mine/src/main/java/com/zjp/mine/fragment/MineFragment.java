@@ -21,6 +21,8 @@ import com.zjp.mine.viewmodel.MineViewModel;
 @Route(path = RouterFragmentPath.Mine.PAGER_MINE)
 public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, MineViewModel> {
 
+    private Integral mIntegral;
+
     @Override
     protected void initImmersionBar() {
         super.initImmersionBar();
@@ -49,12 +51,13 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
         super.initData();
 
         mViewModel.mIntegralLiveData.observe(this, integral -> {
+            this.mIntegral = integral;
             mViewDataBinding.tvId.setText("ID." + integral.getUserId());
             mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
             mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
+
         });
 
-        mViewDataBinding.setEventlistener(new EventListener(null));
     }
 
     @Override
@@ -72,6 +75,8 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
             mViewDataBinding.tvLevel.setVisibility(View.VISIBLE);
             loadUserInfo();
         }
+
+        mViewDataBinding.setEventlistener(new EventListener(mIntegral));
     }
 
     private void loadUserInfo() {

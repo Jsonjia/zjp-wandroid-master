@@ -3,6 +3,7 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
     private Integral integral;
 
     public static void start(Context context, Integral integral) {
+        Log.d("zjp11", "ddddd=" + integral);
         Intent intent = new Intent(context, LeaderboardActivity.class);
         intent.putExtra("integral", integral);
         context.startActivity(intent);
@@ -61,6 +63,7 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
         Intent intent = getIntent();
         if (intent != null) {
             integral = (Integral) intent.getSerializableExtra("integral");
+            Log.d("zjp11", "integral=" + integral);
             mViewDataBinding.setMyselfIntergral(integral);
         }
         setLoadSir(mViewDataBinding.clContent);
@@ -100,7 +103,7 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
         leaderboardAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                UserCenterActivity.start(LeaderboardActivity.this,leaderboardAdapter.getData().get(position).getUserId());
+                UserCenterActivity.start(LeaderboardActivity.this, leaderboardAdapter.getData().get(position).getUserId());
             }
         });
     }
