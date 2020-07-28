@@ -17,30 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
-
-                <ImageView
-                    android:id="@android:id/home"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@null"
-                    android:paddingStart="16dp"
-                    android:paddingTop="16dp"
-                    android:paddingEnd="16dp"
-                    android:paddingBottom="16dp"
-                    android:src="@drawable/abc_ic_ab_back_material"
-                    android:tint="?android:attr/textColorPrimaryInverse"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="PrivateResource" />
-
-
-                <include layout="@layout/motion_coordinatorlayout_header" />
-            </LinearLayout>
+            <include layout="@layout/motion_coordinatorlayout_header" />
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView

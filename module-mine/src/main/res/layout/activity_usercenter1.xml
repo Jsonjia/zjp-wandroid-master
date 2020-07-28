@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="userinfo"
+            name="userInfo"
             type="com.zjp.mine.bean.Integral" />
     </data>
 
@@ -46,7 +46,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view_status"
             app:srcCompat="@drawable/back_left" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/iv_avatar"
             android:layout_width="75dp"
             android:layout_height="75dp"
@@ -55,6 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_back_left"
+            app:roundPercent="1"
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -62,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp10"
-            android:text="@{userinfo.username}"
+            android:text="@{userInfo.username}"
             android:textColor="@color/white"
             android:textSize="@dimen/sp18"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -75,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp5"
-            android:text='@{"ID:"+userinfo.rank}'
+            android:text='@{"ID:"+userInfo.userId}'
             android:textColor="@color/white"
             android:textSize="@dimen/sp14"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -88,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp5"
             android:paddingBottom="@dimen/dp10"
-            android:text='@{"积分："+userinfo.coinCount+"\t排名："+userinfo.rank}'
+            android:text='@{"积分："+userInfo.coinCount+"\t排名："+userInfo.rank}'
             android:textColor="@color/white"
             android:textSize="@dimen/sp14"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -104,15 +105,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_rank" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recy"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/smart"
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp0"
-            android:overScrollMode="never"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarDivider" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbarDivider"
+            app:srlEnableAutoLoadMore="false"
+            app:srlEnableLoadMore="true"
+            app:srlEnableOverScrollBounce="true"
+            app:srlEnableRefresh="false">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:overScrollMode="never" />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

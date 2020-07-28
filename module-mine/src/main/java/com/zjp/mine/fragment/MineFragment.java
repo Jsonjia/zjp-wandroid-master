@@ -52,9 +52,9 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
             mViewDataBinding.tvId.setText("ID." + integral.getUserId());
             mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
             mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
-
-            mViewDataBinding.setEventlistener(new EventListener(integral));
         });
+
+        mViewDataBinding.setEventlistener(new EventListener(null));
     }
 
     @Override

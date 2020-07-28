@@ -3,28 +3,33 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gyf.immersionbar.ImmersionBar;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
+import com.zjp.common.adapter.ArticleListAdapter;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.mine.R;
-import com.zjp.mine.adapter.SimpleAdapter;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.ActivityUsercenter1Binding;
 import com.zjp.mine.viewmodel.MineViewModel;
 import com.zjp.network.constant.C;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zjp on 2020/7/17 21:54.
  */
-public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> {
+public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> implements OnRefreshLoadMoreListener {
 
     private int userId;
     private PageInfo pageInfo;
+    private ArticleListAdapter articleListAdapter;
 
     @Override
     protected void initImmersionBar() {
@@ -53,19 +58,14 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
         if (null != intent) {
             userId = intent.getIntExtra(C.USERID, 0);
         }
-
-        mViewDataBinding.co.setPadding(0, ImmersionBar.getStatusBarHeight(this), 0, 0);
         pageInfo = new PageInfo();
-
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            list.add("items+" + i);
-        }
-
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(this));
-        mViewDataBinding.recy.setAdapter(new SimpleAdapter(list));
-
-        mViewModel.getUserCenter(userId, pageInfo.page);
+        mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(this,
+                CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
+        mViewDataBinding.recy.setAdapter(articleListAdapter = new ArticleListAdapter(null));
+        mViewDataBinding.co.setPadding(0, ImmersionBar.getStatusBarHeight(this), 0, 0);
+        setLoadSir(mViewDataBinding.co);
+        loadData();
     }
 
     @Override
@@ -73,11 +73,45 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
         super.initData();
         mViewModel.userCenterLiveData.observe(this, userCenter -> {
             if (userCenter != null) {
-                Integral coinInfo = userCenter.getCoinInfo();
-                mViewDataBinding.setUserinfo(coinInfo);
+                ArticleEntity shareArticles = userCenter.getShareArticles();
+                List<ArticleEntity.DatasBean> datas = shareArticles.getDatas();
+                pageInfo.nextPage();
+                if (shareArticles.getCurPage() == 1) {
+                    Integral coinInfo = userCenter.getCoinInfo();
+                    mViewDataBinding.setUserInfo(coinInfo);
+                    if (datas != null && datas.size() > 0) {
+                        showContent();
+                        articleListAdapter.setList(datas);
+                    } else {
+                        showEmpty();
+                    }
+                } else {
+                    articleListAdapter.addData(datas);
+                }
 
-
+                if (shareArticles.isOver()) {
+                    mViewDataBinding.smart.finishLoadMoreWithNoMoreData();
+                }
+                mViewDataBinding.smart.finishRefresh(true);
+                mViewDataBinding.smart.finishLoadMore(true);
             }
         });
+
+        mViewDataBinding.smart.setOnRefreshLoadMoreListener(this);
+    }
+
+    @Override
+    public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+        loadData();
+    }
+
+    @Override
+    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+        pageInfo.reset();
+        loadData();
+    }
+
+    private void loadData() {
+        mViewModel.getUserCenter(userId, pageInfo.page);
     }
 }

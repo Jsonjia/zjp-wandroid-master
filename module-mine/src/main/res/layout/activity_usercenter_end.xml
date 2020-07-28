@@ -36,7 +36,7 @@
             app:layout_constraintTop_toBottomOf="@+id/view_status"
             app:srcCompat="@drawable/back_left" />
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/iv_avatar"
             android:layout_width="25dp"
             android:layout_height="25dp"
@@ -45,7 +45,8 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="@+id/iv_back_left"
             app:layout_constraintLeft_toRightOf="@+id/iv_back_left"
-            app:layout_constraintTop_toTopOf="@+id/iv_back_left" />
+            app:layout_constraintTop_toTopOf="@+id/iv_back_left"
+            app:roundPercent="1" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_name"

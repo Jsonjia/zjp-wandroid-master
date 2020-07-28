@@ -2,6 +2,7 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,10 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
         mViewDataBinding.titleview.setTitle("积分排行榜");
         pageInfo = new PageInfo();
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mViewDataBinding.titleview.setElevation(10f);
+        }
+
         Intent intent = getIntent();
         if (intent != null) {
             integral = (Integral) intent.getSerializableExtra("integral");
@@ -95,7 +100,6 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
         leaderboardAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-
                 UserCenterActivity.start(LeaderboardActivity.this,leaderboardAdapter.getData().get(position).getUserId());
             }
         });
