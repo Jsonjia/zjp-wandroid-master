@@ -13,6 +13,7 @@ import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
+import com.zjp.mine.activity.MyIntergralActivity;
 import com.zjp.mine.activity.SettingActivity;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
@@ -109,7 +110,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickMyIntergral() {
-
+            MyIntergralActivity.start(getActivity());
         }
 
         @CheckLogin()
