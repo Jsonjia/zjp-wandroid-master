@@ -173,7 +173,13 @@ public class ArticleEntity {
         }
 
         public String getAuthor() {
-            return author;
+            if (!TextUtils.isEmpty(author)) {
+                return author;
+            }
+            if (!TextUtils.isEmpty(shareUser)) {
+                return shareUser;
+            }
+            return "匿名";
         }
 
         public void setAuthor(String author) {

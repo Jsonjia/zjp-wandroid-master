@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.gyf.immersionbar.ImmersionBar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Created by zjp on 2020/7/17 21:54.
  */
-public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> implements OnRefreshLoadMoreListener {
+public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> implements OnLoadMoreListener {
 
     private int userId;
     private PageInfo pageInfo;
@@ -97,17 +97,11 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
             }
         });
 
-        mViewDataBinding.smart.setOnRefreshLoadMoreListener(this);
+        mViewDataBinding.smart.setOnLoadMoreListener(this);
     }
 
     @Override
     public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
-        loadData();
-    }
-
-    @Override
-    public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-        pageInfo.reset();
         loadData();
     }
 

@@ -37,7 +37,7 @@ public class ArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.
         switch (baseViewHolder.getItemViewType()) {
             case C.ARTICLE_ITEM:
                 baseViewHolder.setText(R.id.tv_date, datasBean.getNiceDate())
-                        .setText(R.id.tv_chapter_name, datasBean.getSuperChapterName())
+                        .setText(R.id.tv_chapter_name, Html.fromHtml(formatChapterName(datasBean.getSuperChapterName(), datasBean.getChapterName())))
                         .setGone(R.id.view_label, datasBean.getType() != 1)
                         .setGone(R.id.tv_new, !datasBean.isFresh());
 
@@ -56,10 +56,22 @@ public class ArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.
                 break;
         }
 
-        baseViewHolder.setText(R.id.tv_author, TextUtils.isEmpty(datasBean.getAuthor()) ?
-                datasBean.getShareUser() : datasBean.getAuthor())
+        baseViewHolder.setText(R.id.tv_author, datasBean.getAuthor())
                 .setText(R.id.tv_title, Html.fromHtml(datasBean.getTitle()))
                 .setImageResource(R.id.iv_collect, datasBean.isCollect() ? R.mipmap.article_collect : R.mipmap.article_un_collect);
+    }
+
+    private static String formatChapterName(String... names) {
+        StringBuilder format = new StringBuilder();
+        for (String name : names) {
+            if (!TextUtils.isEmpty(name)) {
+                if (format.length() > 0) {
+                    format.append("·");
+                }
+                format.append(name);
+            }
+        }
+        return format.toString();
     }
 
     @Override
@@ -71,5 +83,13 @@ public class ArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.
                 holder.setImageResource(R.id.iv_collect, item.isCollect() ? R.mipmap.article_collect : R.mipmap.article_un_collect);
             }
         }
+    }
+
+    /**
+     * 取消收藏，做单个删除
+     */
+    public void cancelCollect(int position) {
+        getData().remove(position);
+        notifyItemRemoved(position);
     }
 }

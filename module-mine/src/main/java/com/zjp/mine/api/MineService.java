@@ -8,6 +8,7 @@ import com.zjp.network.bean.BaseResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -35,4 +36,8 @@ public interface MineService {
     @GET("user/{userId}/share_articles/{page}/json")
     Observable<BaseResponse<UserCenter>> getUserCenter(@Path("userId") int userId,
                                                        @Path("page") int page);
+
+    //取消收藏
+    @POST("/lg/uncollect_originId/{id}/json")
+    Observable<BaseResponse> unCollect(@Path("id") int id);
 }

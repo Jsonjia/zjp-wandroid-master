@@ -41,7 +41,7 @@
                 android:id="@+id/view_divider"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="@dimen/dp05"
-                android:background="@color/c_999999"
+                android:background="@color/ripple_gray"
                 app:layout_constraintBottom_toTopOf="@+id/cl_item_rank"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent" />

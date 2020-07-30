@@ -37,6 +37,7 @@ public class MineViewModel extends BaseViewModel {
     public MutableLiveData<List<Leaderboard.DatasBean>> leaderBoardLiveData = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> articleLiveData = new MutableLiveData<>();
     public MutableLiveData<UserCenter> userCenterLiveData = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -193,6 +194,24 @@ public class MineViewModel extends BaseViewModel {
                     @Override
                     public void success(BaseResponse<UserCenter> response) {
                         userCenterLiveData.postValue(response.getData());
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void unCollect(int id) {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .unCollect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mUnCollectMutable.postValue(response);
                     }
 
                     @Override

@@ -31,7 +31,6 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
     private Integral integral;
 
     public static void start(Context context, Integral integral) {
-        Log.d("zjp11", "ddddd=" + integral);
         Intent intent = new Intent(context, LeaderboardActivity.class);
         intent.putExtra("integral", integral);
         context.startActivity(intent);
