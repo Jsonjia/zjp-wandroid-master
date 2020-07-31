@@ -40,4 +40,8 @@ public interface MineService {
     //取消收藏
     @POST("/lg/uncollect_originId/{id}/json")
     Observable<BaseResponse> unCollect(@Path("id") int id);
+
+    //收藏
+    @POST("/lg/collect/{id}/json")
+    Observable<BaseResponse> collect(@Path("id") int id);
 }

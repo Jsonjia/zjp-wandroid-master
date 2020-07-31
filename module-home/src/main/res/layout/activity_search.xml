@@ -39,7 +39,7 @@
                 android:layout_width="@dimen/dp20"
                 android:layout_height="@dimen/dp20"
                 android:layout_marginLeft="@dimen/dp16"
-                android:background="@drawable/back_left"
+                android:background="@drawable/back_left_black"
                 android:padding="@dimen/dp8"
                 app:layout_constraintBottom_toBottomOf="@+id/l_head"
                 app:layout_constraintLeft_toLeftOf="parent"

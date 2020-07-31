@@ -34,7 +34,7 @@
             android:layout_marginTop="@dimen/dp8"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_status"
-            app:srcCompat="@drawable/back_left" />
+            app:srcCompat="@drawable/back_left_black" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/iv_avatar"

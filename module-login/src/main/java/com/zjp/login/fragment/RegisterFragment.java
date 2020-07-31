@@ -2,20 +2,15 @@ package com.zjp.login.fragment;
 
 import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.TextView;
 
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 
 import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.fragment.BaseFragment;
-import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.common.textwatcher.SimpleTextWatcher;
 import com.zjp.login.R;
@@ -50,7 +45,7 @@ public class RegisterFragment extends BaseFragment<FragmentRegisterBinding, Logi
     protected void initView() {
         super.initView();
         activity = (LoginActivity) getActivity();
-        activity.backView.setBackgroundResource(R.drawable.back_left);
+        activity.backView.setBackgroundResource(R.drawable.back_left_black);
         activity.backView.setOnClickListener(v -> Navigation.findNavController(getView()).navigateUp());
 
         mViewDataBinding.etUsername.addTextChangedListener(new SimpleTextWatcher() {

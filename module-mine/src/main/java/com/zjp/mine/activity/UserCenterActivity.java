@@ -30,6 +30,12 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
     private int userId;
     private PageInfo pageInfo;
     private ArticleListAdapter articleListAdapter;
+    private int currentPosition = 0;
+    /**
+     * 点击收藏后将点击事件上锁,等接口有相应结果再解锁
+     * 避免重复点击产生的bug
+     */
+    private boolean lockCollectClick = true;
 
     @Override
     protected void initImmersionBar() {
@@ -97,7 +103,22 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
             }
         });
 
+        mViewModel.mUnCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(false);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
         mViewDataBinding.smart.setOnLoadMoreListener(this);
+        articleListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
+            if (view.getId() == R.id.iv_collect) {
+                collectArticle(position);
+            }
+        });
     }
 
     @Override
@@ -107,5 +128,17 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
 
     private void loadData() {
         mViewModel.getUserCenter(userId, pageInfo.page);
+    }
+
+    private void collectArticle(int position) {
+        if (position < articleListAdapter.getData().size() && lockCollectClick) {
+            lockCollectClick = false;
+            currentPosition = position;
+            if (articleListAdapter.getData().get(position).isCollect()) {
+                mViewModel.unCollect(articleListAdapter.getData().get(position).getId());
+            } else {
+                mViewModel.collect(articleListAdapter.getData().get(position).getId());
+            }
+        }
     }
 }

@@ -4,13 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
@@ -99,12 +96,7 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
             }
         });
 
-        leaderboardAdapter.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
-                UserCenterActivity.start(LeaderboardActivity.this, leaderboardAdapter.getData().get(position).getUserId());
-            }
-        });
+        leaderboardAdapter.setOnItemClickListener((adapter, view, position) -> UserCenterActivity.start(LeaderboardActivity.this, leaderboardAdapter.getData().get(position).getUserId()));
     }
 
     @Override
