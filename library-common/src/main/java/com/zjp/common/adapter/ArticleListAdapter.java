@@ -10,7 +10,6 @@ import com.chad.library.adapter.base.module.LoadMoreModule;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.zjp.common.R;
 import com.zjp.common.bean.ArticleEntity;
-import com.zjp.common.callback.OnCollectClickListener;
 import com.zjp.common.utils.GlideUtil;
 import com.zjp.network.constant.C;
 
@@ -22,8 +21,6 @@ import java.util.List;
  * Created by zjp on 2020/5/15 14:18
  */
 public class ArticleListAdapter extends BaseMultiItemQuickAdapter<ArticleEntity.DatasBean, BaseViewHolder> implements LoadMoreModule {
-
-    private OnCollectClickListener onCollectClickListener;
 
     public ArticleListAdapter(List<ArticleEntity.DatasBean> data) {
         super(data);

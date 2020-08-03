@@ -14,6 +14,7 @@ import com.zjp.mine.R;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
 import com.zjp.mine.activity.MyIntergralActivity;
+import com.zjp.mine.activity.MyShareActivity;
 import com.zjp.mine.activity.OpenSourceProjActivity;
 import com.zjp.mine.activity.SettingActivity;
 import com.zjp.mine.bean.Integral;
@@ -120,7 +121,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickMyShare() {
-
+            MyShareActivity.start(getActivity());
         }
 
         @CheckLogin()

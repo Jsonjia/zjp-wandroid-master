@@ -113,6 +113,17 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
             }
         });
 
+        mViewModel.mCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(true);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
+        mViewDataBinding.ivBackLeft.setOnClickListener(view -> finish());
         mViewDataBinding.smart.setOnLoadMoreListener(this);
         articleListAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             if (view.getId() == R.id.iv_collect) {

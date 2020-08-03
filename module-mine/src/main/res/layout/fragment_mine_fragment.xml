@@ -257,6 +257,7 @@
                 android:id="@+id/cl_article"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@drawable/ripple_bg"
                 android:onClick="@{()->eventlistener.clickMyArticle()}"
                 app:layout_constraintLeft_toLeftOf="parent"

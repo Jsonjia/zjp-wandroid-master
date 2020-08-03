@@ -31,5 +31,6 @@
         <activity
             android:name=".activity.MyIntergralActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".activity.MyShareActivity" />
     </application>
 </manifest>

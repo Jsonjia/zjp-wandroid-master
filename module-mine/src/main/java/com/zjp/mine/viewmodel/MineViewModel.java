@@ -240,4 +240,22 @@ public class MineViewModel extends BaseViewModel {
                 }));
     }
 
+    public void myShare(int pageNum){
+        RetrofitHelper.getInstance().create(MineService.class)
+                .myShare(pageNum)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
+                    @Override
+                    public void success(BaseResponse<ArticleEntity> response) {
+                        articleLiveData.postValue(response.getData());
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
 }

@@ -18,6 +18,14 @@ public class MyIntergralActivity extends BaseActivity<ActivityMyIntergralBinding
     }
 
     @Override
+    protected void initImmersionBar() {
+        super.initImmersionBar();
+        mImmersionBar
+                .statusBarDarkFont(true)
+                .init();
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.activity_my_intergral;
     }
@@ -25,6 +33,6 @@ public class MyIntergralActivity extends BaseActivity<ActivityMyIntergralBinding
     @Override
     protected void initView() {
         super.initView();
-
+        mViewDataBinding.titleview.setTitle("我的收藏");
     }
 }
