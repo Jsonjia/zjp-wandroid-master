@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="opensource"
+            type="com.zjp.mine.bean.OpenSourceProj" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ripple_bg"
+        android:padding="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_project"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{opensource.author}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp16"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="zjp/wananroid" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_description"
+            android:layout_width="@dimen/dp0"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:text="@{opensource.content}"
+            android:textColor="@color/c_666666"
+            android:textSize="@dimen/sp14"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_project"
+            tools:text="自定义view" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

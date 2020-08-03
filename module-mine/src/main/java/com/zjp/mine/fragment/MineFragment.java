@@ -14,6 +14,7 @@ import com.zjp.mine.R;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
 import com.zjp.mine.activity.MyIntergralActivity;
+import com.zjp.mine.activity.OpenSourceProjActivity;
 import com.zjp.mine.activity.SettingActivity;
 import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
@@ -56,7 +57,6 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
             mViewDataBinding.tvId.setText("ID." + integral.getUserId());
             mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
             mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
-
         });
 
     }
@@ -133,9 +133,8 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         }
 
-        @CheckLogin()
         public void clickOpenSource() {
-
+            OpenSourceProjActivity.start(getActivity());
         }
 
         @CheckLogin()

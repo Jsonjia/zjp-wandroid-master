@@ -68,7 +68,7 @@ ext {
             "navigation_fragment"   : "androidx.navigation:navigation-fragment:2.3.0-alpha06",
             "navigation_ui"         : "androidx.navigation:navigation-ui:2.3.0-alpha06",
 
-            "mmkv"                  : "com.tencent:mmkv:1.2.1",
+            "mmkv"                  : "com.tencent:mmkv:1.2.2",
 
             "smartRefreshLayout"    : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.2",
             "smartheadRefreshLayout": "com.scwang.smartrefresh:SmartRefreshHeader:1.1.2",
