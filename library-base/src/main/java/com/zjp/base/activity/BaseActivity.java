@@ -8,15 +8,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.gyf.immersionbar.ImmersionBar;
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
-import com.zjp.base.interf.IBaseView;
 import com.zjp.base.event.IEventBus;
+import com.zjp.base.interf.IBaseView;
 import com.zjp.base.loadsir.EmptyCallback;
 import com.zjp.base.loadsir.ErrorCallback;
 import com.zjp.base.loadsir.LoadingCallback;
@@ -84,7 +84,8 @@ public abstract class BaseActivity<V extends ViewDataBinding, VM extends BaseVie
                 //如果没有指定泛型参数，则默认使用BaseViewModel
                 modelClass = BaseViewModel.class;
             }
-            mViewModel = (VM) ViewModelProviders.of(this).get(modelClass);
+//            mViewModel = new (VM) ViewModelProviders.of(this).get(modelClass);
+            mViewModel = (VM) new ViewModelProvider(this).get(modelClass);
         }
     }
 

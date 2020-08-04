@@ -56,9 +56,7 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
         mViewDataBinding.baseRefresh.recy.setAdapter(articleListAdapter = new ArticleListAdapter(null));
         mViewDataBinding.baseRefresh.refresh.setOnRefreshLoadMoreListener(this);
 
-        pageInfo = new PageInfo();
-        setLoadSir(mViewDataBinding.baseRefresh.refresh);
-        loadData();
+        getData();
     }
 
     @Override
@@ -129,6 +127,18 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
     @Override
     public void onRefresh(@NonNull RefreshLayout refreshLayout) {
         pageInfo.reset();
+        loadData();
+    }
+
+    @Override
+    protected void onRetryBtnClick() {
+        super.onRetryBtnClick();
+        getData();
+    }
+
+    private void getData() {
+        pageInfo = new PageInfo();
+        setLoadSir(mViewDataBinding.baseRefresh.refresh);
         loadData();
     }
 }
