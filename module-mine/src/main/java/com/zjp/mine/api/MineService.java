@@ -38,14 +38,14 @@ public interface MineService {
                                                        @Path("page") int page);
 
     //取消收藏
-    @POST("/lg/uncollect_originId/{id}/json")
+    @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResponse> unCollect(@Path("id") int id);
 
     //收藏
-    @POST("/lg/collect/{id}/json")
+    @POST("lg/collect/{id}/json")
     Observable<BaseResponse> collect(@Path("id") int id);
 
     //我的分享
-    @GET("/user/lg/private_articles/{pageNum}/json")
-    Observable<BaseResponse<ArticleEntity>> myShare(@Path("pageNum") int pageNum);
+    @GET("user/lg/private_articles/{pageNum}/json")
+    Observable<BaseResponse<UserCenter>> myShare(@Path("pageNum") int pageNum);
 }

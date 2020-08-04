@@ -245,10 +245,10 @@ public class MineViewModel extends BaseViewModel {
                 .myShare(pageNum)
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<ArticleEntity>>() {
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<UserCenter>>() {
                     @Override
-                    public void success(BaseResponse<ArticleEntity> response) {
-                        articleLiveData.postValue(response.getData());
+                    public void success(BaseResponse<UserCenter> response) {
+                        userCenterLiveData.postValue(response.getData());
                     }
 
                     @Override

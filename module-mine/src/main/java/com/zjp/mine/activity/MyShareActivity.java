@@ -64,22 +64,24 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
     @Override
     protected void initData() {
         super.initData();
-        mViewModel.articleLiveData.observe(this, articleEntity -> {
+
+        mViewModel.userCenterLiveData.observe(this, userCenter -> {
             if (mViewDataBinding.baseRefresh.refresh.getState().isOpening) {
                 mViewDataBinding.baseRefresh.refresh.finishRefresh();
                 mViewDataBinding.baseRefresh.refresh.finishLoadMore();
             }
+            pageInfo.nextPage();
 
-            List<ArticleEntity.DatasBean> dataList = articleEntity.getDatas();
-
+            ArticleEntity shareArticles = userCenter.getShareArticles();
+            List<ArticleEntity.DatasBean> dataList = shareArticles.getDatas();
+//
             if (dataList != null && dataList.size() > 0) {
                 for (ArticleEntity.DatasBean articleBean : dataList) {
                     articleBean.setCollect(true);
                 }
             }
 
-            pageInfo.nextZeroPage();
-            if (articleEntity.getCurPage() == 1) {
+            if (shareArticles.getCurPage() == 1) {
                 if (dataList != null && dataList.size() > 0) {
                     showContent();
                     articleListAdapter.setList(dataList);
@@ -87,20 +89,36 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
                     showEmpty();
                 }
             } else {
-//                if ((dataList == null || dataList.size() == 0) && articleEntity.isOver()) {
-//                    showEmpty();
-//                } else {
-//                    articleListAdapter.addData(dataList);
-//                }
+                articleListAdapter.addData(dataList);
             }
-            if (articleEntity.isOver()) {
+            if (shareArticles.isOver()) {
                 mViewDataBinding.baseRefresh.refresh.finishLoadMoreWithNoMoreData();
             }
+
+
         });
+//        mViewModel.userCenterLiveData.observe(this, articleEntity -> {
+//            if (mViewDataBinding.baseRefresh.refresh.getState().isOpening) {
+//                mViewDataBinding.baseRefresh.refresh.finishRefresh();
+//                mViewDataBinding.baseRefresh.refresh.finishLoadMore();
+//            }
+//
+//            List<ArticleEntity.DatasBean> dataList = articleEntity.getDatas();
+//
+//            if (dataList != null && dataList.size() > 0) {
+//                for (ArticleEntity.DatasBean articleBean : dataList) {
+//                    articleBean.setCollect(true);
+//                }
+//            }
+//
+//            pageInfo.nextPage();
+//
+//
+//        });
     }
 
     private void loadData() {
-        mViewModel.myShare(pageInfo.mPage);
+        mViewModel.myShare(pageInfo.page);
     }
 
     @Override
