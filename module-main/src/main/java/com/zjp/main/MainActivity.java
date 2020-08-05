@@ -1,7 +1,6 @@
 package com.zjp.main;
 
 
-import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.MenuItem;
 
@@ -14,9 +13,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.zjp.base.activity.BaseActivity;
-import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.base.router.RouterActivityPath;
 import com.zjp.base.router.RouterFragmentPath;
+import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.main.databinding.ActivityMainBinding;
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)

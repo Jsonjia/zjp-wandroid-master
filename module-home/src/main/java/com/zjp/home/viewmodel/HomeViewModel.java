@@ -6,6 +6,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.home.api.HomeService;
 import com.zjp.common.bean.ArticleEntity;
@@ -105,7 +106,7 @@ public class HomeViewModel extends BaseViewModel {
 
                     @Override
                     public void error(String msg) {
-
+                        ToastUtils.showShort(msg);
                     }
                 }));
     }

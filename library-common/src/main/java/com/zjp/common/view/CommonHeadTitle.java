@@ -9,6 +9,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentActivity;
 
@@ -20,8 +21,8 @@ import com.zjp.common.R;
  */
 public class CommonHeadTitle extends FrameLayout {
 
-    private final AppCompatTextView mTvTitle;
-    private final AppCompatTextView mTvRight;
+    private final AppCompatTextView mTvTitle, mTvRight;
+    private AppCompatImageView mIvRight;
     private final View mStatusView;
     private final View mBackView;
 
@@ -47,6 +48,7 @@ public class CommonHeadTitle extends FrameLayout {
         mBackView.setOnClickListener(v -> activity.finish());
         mTvTitle = inflate.findViewById(R.id.tv_title);
         mTvRight = inflate.findViewById(R.id.tv_right);
+        mIvRight = inflate.findViewById(R.id.iv_right);
     }
 
     public void setTitle(String title) {
@@ -76,5 +78,13 @@ public class CommonHeadTitle extends FrameLayout {
 
     public void setTvRightVisible(int visible) {
         mTvRight.setVisibility(visible);
+    }
+
+    public AppCompatImageView getIvRight() {
+        return mIvRight;
+    }
+
+    public void setIvRightVisible(int visible) {
+        mIvRight.setVisibility(visible);
     }
 }

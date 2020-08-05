@@ -64,5 +64,17 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         tools:text="确定" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_right"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_marginRight="@dimen/dp16"
+        android:padding="@dimen/dp8"
+        android:src="@mipmap/ic_guize"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
