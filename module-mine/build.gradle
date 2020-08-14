@@ -16,9 +16,7 @@ dependencies {
     implementation project(':library-common')
     implementation project(':library-aop')
     annotationProcessor support.arouter_compiler
-    implementation support.material_dialogs_core
-    implementation support.material_dialogs_bottomsheets
+//    implementation support.material_dialogs_core //弃用该dialog
+//    implementation support.material_dialogs_bottomsheets
 
-//    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta2'
-//    implementation support.constraint_layout
 }

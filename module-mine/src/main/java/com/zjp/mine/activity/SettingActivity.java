@@ -3,7 +3,8 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 
-import com.afollestad.materialdialogs.MaterialDialog;
+import androidx.appcompat.app.AlertDialog;
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.event.SettingEvent;
@@ -20,9 +21,7 @@ import org.greenrobot.eventbus.EventBus;
  */
 public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineViewModel> {
 
-    private MaterialDialog materialDialog;
-
-    public static void start(Context context){
+    public static void start(Context context) {
         context.startActivity(new Intent(context, SettingActivity.class));
     }
 
@@ -77,15 +76,31 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
     public class EventListener {
 
         public void clickClearCache() {
-            materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
-            materialDialog.title(R.string.tips, null);
-            materialDialog.message(R.string.clear_cache, null, null);
-            materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
-                mViewModel.clearCache();
-                return null;
-            }).negativeButton(R.string.cancel, null, materialDialog2 -> {
-                return null;
-            }).show();
+
+            //弃用 MaterialDialog
+//         MaterialDialog  materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
+////            materialDialog.title(R.string.tips, null);
+////            materialDialog.message(R.string.clear_cache, null, null);
+////            materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
+////                mViewModel.clearCache();
+////                return null;
+////            }).negativeButton(R.string.cancel, null, materialDialog2 -> {
+////                return null;
+////            }).show();
+////
+            //该dialog弹出的dialog框，字体都太小了
+//            new MaterialAlertDialogBuilder(SettingActivity.this)
+//                    .setTitle(R.string.tips)
+//                    .setMessage(R.string.clear_cache)
+//                    .setPositiveButton(R.string.sure, (dialogInterface, i) -> mViewModel.clearCache())
+//                    .setNegativeButton(R.string.cancel, null)
+//                    .show();
+            new AlertDialog.Builder(SettingActivity.this)
+                    .setTitle(R.string.tips)
+                    .setMessage(R.string.clear_cache)
+                    .setPositiveButton(R.string.sure, (dialogInterface, i) -> mViewModel.clearCache())
+                    .setNegativeButton(R.string.cancel, null)
+                    .show();
         }
 
         public void clickCurrentVersion() {
@@ -93,12 +108,11 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         }
 
         public void clickCopyright() {
-            materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
-            materialDialog.title(R.string.tips, null);
-            materialDialog.message(R.string.copyright_tips, null, null);
-            materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
-                return null;
-            }).show();
+            new AlertDialog.Builder(SettingActivity.this)
+                    .setTitle(R.string.tips)
+                    .setMessage(R.string.copyright_tips)
+                    .setPositiveButton(R.string.sure, null)
+                    .show();
         }
 
         public void clickAboutMe() {
@@ -106,15 +120,13 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         }
 
         public void clickLoginout() {
-            materialDialog = new MaterialDialog(SettingActivity.this, MaterialDialog.getDEFAULT_BEHAVIOR());
-            materialDialog.title(R.string.tips, null);
-            materialDialog.message(R.string.login_out_tips, null, null);
-            materialDialog.positiveButton(R.string.sure, null, materialDialog1 -> {
-                mViewModel.loginout();
-                return null;
-            }).negativeButton(R.string.cancel, null, materialDialog2 -> {
-                return null;
-            }).show();
+            new AlertDialog.Builder(SettingActivity.this)
+                    .setTitle(R.string.tips)
+                    .setMessage(R.string.login_out_tips)
+                    .setPositiveButton(R.string.sure, (dialogInterface, i) -> {
+                        dialogInterface.dismiss();
+                        mViewModel.loginout();
+                    }).setNegativeButton(R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss()).show();
         }
     }
 
