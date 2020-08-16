@@ -2,9 +2,9 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -50,13 +50,16 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
         super.initView();
 
         mViewDataBinding.titleview.setTitle("我的分享");
-        mViewDataBinding.baseRefresh.recy.setLayoutManager(new LinearLayoutManager(this));
+        mViewDataBinding.titleview.getIvRight().setImageResource(R.mipmap.add);
+        mViewDataBinding.titleview.setIvRightVisible(View.VISIBLE);
         mViewDataBinding.baseRefresh.recy.addItemDecoration(new CustomItemDecoration(this,
                 CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
         mViewDataBinding.baseRefresh.recy.setAdapter(articleListAdapter = new ArticleListAdapter(null));
         mViewDataBinding.baseRefresh.refresh.setOnRefreshLoadMoreListener(this);
 
         getData();
+
+        mViewDataBinding.titleview.getIvRight().setOnClickListener(view -> AddArticleActivity.start(MyShareActivity.this));
     }
 
     @Override

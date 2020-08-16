@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
-
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.event.SettingEvent;
