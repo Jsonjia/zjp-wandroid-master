@@ -75,7 +75,7 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
 
             ArticleEntity shareArticles = userCenter.getShareArticles();
             List<ArticleEntity.DatasBean> dataList = shareArticles.getDatas();
-//
+
             if (dataList != null && dataList.size() > 0) {
                 for (ArticleEntity.DatasBean articleBean : dataList) {
                     articleBean.setCollect(true);
