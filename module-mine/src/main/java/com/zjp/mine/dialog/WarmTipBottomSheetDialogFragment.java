@@ -1,6 +1,8 @@
 package com.zjp.mine.dialog;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ public class WarmTipBottomSheetDialogFragment extends BottomSheetDialogFragment 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
+
         View view = LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_dialog_warm_tip, null, false);
         dialog.setContentView(view);
         ViewGroup parent = (ViewGroup) view.getParent();
@@ -33,5 +36,11 @@ public class WarmTipBottomSheetDialogFragment extends BottomSheetDialogFragment 
         layoutParams.height = ScreenUtils.getScreenHeight() / 6 * 5;
         parent.setLayoutParams(layoutParams);
         return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        getDialog().getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 }
