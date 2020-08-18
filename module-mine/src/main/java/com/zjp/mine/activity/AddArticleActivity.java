@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.zjp.base.activity.BaseActivity;
+import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
 import com.zjp.mine.databinding.ActivityAddarticleBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
@@ -44,6 +45,7 @@ public class AddArticleActivity extends BaseActivity<ActivityAddarticleBinding, 
         mViewDataBinding.titleview.setTitle("添加文章");
         mViewDataBinding.titleview.getIvRight().setImageResource(R.mipmap.ic_guize);
         mViewDataBinding.titleview.setIvRightVisible(View.VISIBLE);
+        mViewDataBinding.shareUsername.setText(MmkvHelper.getInstance().getUserInfo().getUsername());
         mViewDataBinding.titleview.getIvRight().setOnClickListener((View.OnClickListener) view -> {
 
             View dialogView = LayoutInflater.from(AddArticleActivity.this).inflate(R.layout.bottom_sheet_dialog_warm_tip, null);
@@ -56,7 +58,7 @@ public class AddArticleActivity extends BaseActivity<ActivityAddarticleBinding, 
             // 设置bottomSheet的折叠高度
             // 比如设置成屏幕的1/2（不包括状态栏）
             behavior.setPeekHeight(ScreenUtils.getScreenHeight() / 2);
-            behavior.setHideable(false);
+            behavior.setHideable(true);
 
             ViewGroup.LayoutParams layoutParams = parent.getLayoutParams();
             layoutParams.height = ScreenUtils.getScreenHeight() / 6 * 5;

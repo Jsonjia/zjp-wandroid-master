@@ -1,6 +1,5 @@
 package com.zjp.mine.activity;
 
-import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -36,26 +35,31 @@ public class AboutMeActivity extends BaseActivity<ActivityAboutMeBinding, MineVi
     @Override
     protected void initView() {
         super.initView();
-
+        mViewDataBinding.titleview.setTitle("关于作者");
     }
 
     @Override
     protected void initData() {
         super.initData();
 
-        mViewDataBinding.ivAlipay.setOnLongClickListener(new View.OnLongClickListener() {
+//        mViewDataBinding.ivAlipay.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                return false;
+//            }
+//        });
+
+        mViewDataBinding.ivAlipay.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-
+            public void onClick(View view) {
                 test();
-
-                return false;
             }
         });
     }
 
-    @CheckPermission(permissions = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.CAMERA})
+    @CheckPermission(permissions = {
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.READ_EXTERNAL_STORAGE"})
     private void test() {
-
     }
 }
