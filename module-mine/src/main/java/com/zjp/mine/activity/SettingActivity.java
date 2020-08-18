@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
+
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.event.SettingEvent;
@@ -115,7 +116,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         }
 
         public void clickAboutMe() {
-            startActivity(new Intent(SettingActivity.this, AboutMeActivity.class));
+            AboutAppActivity.start(SettingActivity.this);
         }
 
         public void clickLoginout() {

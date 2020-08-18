@@ -2,4 +2,7 @@
     package="com.zjp.aop">
 
     /
+    <application>
+        <activity android:name=".permission.PermissionActivity" />
+    </application>
 </manifest>

@@ -5,12 +5,13 @@ import android.view.View;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.zjp.aop.annotation.CheckLogin;
+import com.zjp.aop.checklogin.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
 import com.zjp.mine.R;
+import com.zjp.mine.activity.AboutMeActivity;
 import com.zjp.mine.activity.LeaderboardActivity;
 import com.zjp.mine.activity.MyCollectArticleActivity;
 import com.zjp.mine.activity.MyIntergralActivity;
@@ -140,7 +141,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickAboutAuthor() {
-
+            AboutMeActivity.start(getActivity());
         }
 
     }

@@ -7,7 +7,7 @@
 
         <variable
             name="eventlistener"
-            type="com.zjp.mine.activity.AboutMeActivity.EventListener" />
+            type="com.zjp.mine.activity.AboutAppActivity.EventListener" />
 
         <variable
             name="url"

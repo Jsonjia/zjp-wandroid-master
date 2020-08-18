@@ -1,7 +1,7 @@
-package com.zjp.aop.aspect;
+package com.zjp.aop.checklogin.aspect;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.zjp.aop.annotation.CheckLogin;
+import com.zjp.aop.checklogin.annotation.CheckLogin;
 import com.zjp.base.router.RouterActivityPath;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.storage.MmkvHelper;
@@ -18,7 +18,7 @@ import org.aspectj.lang.annotation.Pointcut;
 public class CheckLoginAspect {
 
     @Pointcut("execution(" +//执行语句
-            "@com.zjp.aop.annotation.CheckLogin" +//注解筛选
+            "@com.zjp.aop.checklogin.annotation.CheckLogin" +//注解筛选
             " * " + //类路径,*为任意路径
             "*" +   //方法名,*为任意方法名
             "(..)" +//方法参数,'..'为任意个任意类型参数

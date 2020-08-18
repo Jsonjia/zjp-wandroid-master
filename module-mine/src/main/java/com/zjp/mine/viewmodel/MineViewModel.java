@@ -39,6 +39,7 @@ public class MineViewModel extends BaseViewModel {
     public MutableLiveData<UserCenter> userCenterLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mShareArticleMutable = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -249,6 +250,24 @@ public class MineViewModel extends BaseViewModel {
                     @Override
                     public void success(BaseResponse<UserCenter> response) {
                         userCenterLiveData.postValue(response.getData());
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void shareArticle(String title,String link){
+        RetrofitHelper.getInstance().create(MineService.class)
+                .shareArticle(title,link)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mShareArticleMutable.postValue(response);
                     }
 
                     @Override

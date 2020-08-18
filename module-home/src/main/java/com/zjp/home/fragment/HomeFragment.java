@@ -16,7 +16,7 @@ import com.youth.banner.config.BannerConfig;
 import com.youth.banner.config.IndicatorConfig;
 import com.youth.banner.indicator.CircleIndicator;
 import com.youth.banner.util.BannerUtils;
-import com.zjp.aop.annotation.CheckLogin;
+import com.zjp.aop.checklogin.annotation.CheckLogin;
 import com.zjp.base.event.IEventBus;
 import com.zjp.base.event.SettingEvent;
 import com.zjp.base.fragment.BaseFragment;

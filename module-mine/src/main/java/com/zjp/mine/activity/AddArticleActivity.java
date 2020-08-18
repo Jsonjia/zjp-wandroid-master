@@ -2,12 +2,18 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.appcompat.app.AlertDialog;
+
+import com.blankj.utilcode.util.ScreenUtils;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.mine.R;
 import com.zjp.mine.databinding.ActivityAddarticleBinding;
-import com.zjp.mine.dialog.WarmTipBottomSheetDialogFragment;
 import com.zjp.mine.viewmodel.MineViewModel;
 
 /**
@@ -38,21 +44,26 @@ public class AddArticleActivity extends BaseActivity<ActivityAddarticleBinding, 
         mViewDataBinding.titleview.setTitle("添加文章");
         mViewDataBinding.titleview.getIvRight().setImageResource(R.mipmap.ic_guize);
         mViewDataBinding.titleview.setIvRightVisible(View.VISIBLE);
-        mViewDataBinding.titleview.getIvRight().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        mViewDataBinding.titleview.getIvRight().setOnClickListener((View.OnClickListener) view -> {
 
-                WarmTipBottomSheetDialogFragment fragment = new WarmTipBottomSheetDialogFragment();
-//                fragment.setOnTagItemSelectedListener(new TagBottomSheetDialogFragment.OnTagItemSelectedListener() {
-//                    @Override
-//                    public void onTagItemSelected(TagList tagList) {
-//                        mTagList = tagList;
-//                        mBinding.actionAddTag.setText(tagList.title);
-//                    }
-//                });
-                fragment.show(getSupportFragmentManager(), "tag_dialog");
+            View dialogView = LayoutInflater.from(AddArticleActivity.this).inflate(R.layout.bottom_sheet_dialog_warm_tip, null);
+            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddArticleActivity.this, R.style.BottomSheetDialog);
+            bottomSheetDialog.setContentView(dialogView);
+            bottomSheetDialog.setCancelable(true);
+            bottomSheetDialog.setCanceledOnTouchOutside(true);
+            ViewGroup parent = (ViewGroup) dialogView.getParent();
+            BottomSheetBehavior<ViewGroup> behavior = BottomSheetBehavior.from((ViewGroup) parent);
+            // 设置bottomSheet的折叠高度
+            // 比如设置成屏幕的1/2（不包括状态栏）
+            behavior.setPeekHeight(ScreenUtils.getScreenHeight() / 2);
+            behavior.setHideable(false);
 
-                //https://www.jianshu.com/p/859943121b05
+            ViewGroup.LayoutParams layoutParams = parent.getLayoutParams();
+            layoutParams.height = ScreenUtils.getScreenHeight() / 6 * 5;
+            parent.setLayoutParams(layoutParams);
+
+            bottomSheetDialog.show();
+
 //                MaterialDialog materialDialog = new MaterialDialog(AddArticleActivity.this, new BottomSheet());
 //                materialDialog.title(R.string.warm_tips, null);
 ////                materialDialog.message(R.string.clear_cache, null, null);
@@ -63,7 +74,21 @@ public class AddArticleActivity extends BaseActivity<ActivityAddarticleBinding, 
 //                }).negativeButton(R.string.cancel, null, materialDialog2 -> {
 //                    return null;
 //                }).show();
-            }
         });
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        mViewModel.mShareArticleMutable.observe(this, baseResponse -> finish());
+    }
+
+    public void share(View view) {
+        new AlertDialog.Builder(AddArticleActivity.this)
+                .setTitle(R.string.tips)
+                .setMessage(R.string.share_tips)
+                .setPositiveButton(R.string.sure, (dialogInterface, i) -> mViewModel.shareArticle(mViewDataBinding.etShareTitle.getText().toString(), mViewDataBinding.etShareUrl.getText().toString()))
+                .setNegativeButton(R.string.cancel, null)
+                .show();
     }
 }

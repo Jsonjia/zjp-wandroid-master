@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.zjp.mine.activity.AboutMeActivity"
+            android:name="com.zjp.mine.activity.AboutAppActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.OpenSourceProjActivity"
@@ -31,7 +31,14 @@
         <activity
             android:name=".activity.MyIntergralActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.MyShareActivity" />
-        <activity android:name=".activity.AddArticleActivity" />
+        <activity
+            android:name=".activity.MyShareActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddArticleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AboutMeActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>

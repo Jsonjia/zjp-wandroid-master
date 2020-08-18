@@ -1,4 +1,4 @@
-package com.zjp.aop.annotation;
+package com.zjp.aop.checklogin.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

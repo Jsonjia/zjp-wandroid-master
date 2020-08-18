@@ -7,6 +7,8 @@ import com.zjp.mine.bean.UserCenter;
 import com.zjp.network.bean.BaseResponse;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -48,4 +50,14 @@ public interface MineService {
     //我的分享
     @GET("user/lg/private_articles/{pageNum}/json")
     Observable<BaseResponse<UserCenter>> myShare(@Path("pageNum") int pageNum);
+
+    /**
+     * 分享文章
+     * 注意需要登录后查看，如果为CSDN，简书等链接会直接通过审核，在对外的分享文章列表中展示。
+     */
+    @FormUrlEncoded
+    @POST("lg/user_article/add/json")
+    Observable<BaseResponse> shareArticle(@Field("title") String title,
+                                          @Field("link") String link);
+
 }

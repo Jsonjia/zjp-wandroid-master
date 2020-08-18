@@ -95,8 +95,6 @@ public class MyShareActivity extends BaseActivity<ActivityMyshareBinding, MineVi
             if (shareArticles.isOver()) {
                 mViewDataBinding.baseRefresh.refresh.finishLoadMoreWithNoMoreData();
             }
-
-
         });
 //        mViewModel.userCenterLiveData.observe(this, articleEntity -> {
 //            if (mViewDataBinding.baseRefresh.refresh.getState().isOpening) {

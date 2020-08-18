@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.zjp.aop.annotation.CheckLogin;
+import com.zjp.aop.checklogin.annotation.CheckLogin;
 import com.zjp.base.fragment.BaseLazyFragment;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
