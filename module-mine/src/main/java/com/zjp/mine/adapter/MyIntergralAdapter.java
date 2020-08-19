@@ -13,13 +13,16 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MyIntergralAdapter extends BaseQuickAdapter<UserInfo, BaseDataBindingHolder<AdapterItemMyIntergralBinding>> {
 
-
     public MyIntergralAdapter() {
         super(R.layout.adapter_item_my_intergral);
     }
 
     @Override
     protected void convert(@NotNull BaseDataBindingHolder<AdapterItemMyIntergralBinding> holder, UserInfo userInfo) {
-
+        AdapterItemMyIntergralBinding binding = holder.getDataBinding();
+        if (binding != null) {
+            binding.setUserinfo(userInfo);
+            binding.executePendingBindings();
+        }
     }
 }

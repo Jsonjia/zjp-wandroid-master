@@ -7,6 +7,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -21,7 +22,7 @@
         <View
             android:id="@+id/view_shadow"
             android:layout_width="@dimen/dp0"
-            android:layout_height="@dimen/dp3"
+            android:layout_height="@dimen/dp2"
             android:background="@drawable/shadow_appbar"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -78,7 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:contentScrim="@android:color/transparent"
-                        app:layout_scrollFlags="scroll|exitUntilCollapsed"/>
+                        app:layout_scrollFlags="scroll|exitUntilCollapsed" />
                 </com.google.android.material.appbar.AppBarLayout>
 
                 <androidx.core.widget.NestedScrollView

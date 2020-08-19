@@ -1,9 +1,9 @@
 package com.zjp.common.bindadapter;
 
 import android.text.TextUtils;
-import android.widget.ImageView;
 
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 
 import com.zjp.common.utils.GlideUtil;
@@ -14,14 +14,14 @@ import com.zjp.common.utils.GlideUtil;
 public class ImageBindingAdapters {
 
     @BindingAdapter("loadImageUrl")
-    public static void loadImage(ImageView imageView, String url) {
+    public static void loadImage(AppCompatImageView imageView, String url) {
         if (!TextUtils.isEmpty(url)) {
             GlideUtil.getInstance().loadImage(imageView, url);
         }
     }
 
     @BindingAdapter("loadCircleImageUrl")
-    public static void loadCircleImage(ImageView imageView, String url) {
+    public static void loadCircleImage(AppCompatImageView imageView, String url) {
         if (!TextUtils.isEmpty(url)) {
             GlideUtil.getInstance().loadCircleImage(imageView, url);
         }
@@ -35,7 +35,26 @@ public class ImageBindingAdapters {
     }
 
     @BindingAdapter("android:src")
-    public static void loadLocalDrawable(ImageView imageView, int resId) {
+    public static void loadLocalDrawable(AppCompatImageView imageView, int resId) {
         imageView.setImageResource(resId);
+    }
+
+    @BindingAdapter("desc")
+    public static void setDesc(AppCompatTextView textView, String desc) {
+        int firstSpace = desc.indexOf(" ");
+        int secondSpace = desc.indexOf(" ", firstSpace + 1);
+        String title = desc.substring(secondSpace + 1)
+                .replace(",", "")
+                .replace("：", "")
+                .replace(" ", "");
+        textView.setText(title);
+    }
+
+    @BindingAdapter("date")
+    public static void setDate(AppCompatTextView textView, String desc) {
+        int firstSpace = desc.indexOf(" ");
+        int secondSpace = desc.indexOf(" ", firstSpace + 1);
+        String time = desc.substring(0, secondSpace);
+        textView.setText(time);
     }
 }

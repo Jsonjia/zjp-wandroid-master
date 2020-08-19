@@ -27,4 +27,8 @@ public class C {
     public static final String USERID = "userid";
 
     public static final int SEARCH_REQUEST = 0x123;
+
+    public static final int DURATION = 1500;
+
+
 }

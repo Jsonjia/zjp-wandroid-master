@@ -5,17 +5,21 @@
 
     <data>
 
+        <variable
+            name="userinfo"
+            type="com.zjp.common.bean.UserInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="@dimen/dp20"
         android:paddingBottom="@dimen/dp20">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_sign_in_points"
             style="@style/textview_15sp_style"
+            desc="@{userinfo.desc}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +29,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_date"
             style="@style/textview_11sp_style"
+            date="@{userinfo.desc}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
@@ -36,6 +41,7 @@
             android:id="@+id/tv_point_nums"
             style="@style/textview_15sp_style"
             android:gravity="center"
+            android:text='@{"+" + userinfo.getCoinCount()}'
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_date"
