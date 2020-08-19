@@ -18,4 +18,5 @@
     <color name="c_F4F3F4">#F4F3F4</color>
     <color name="c_a0a0a0">#a0a0a0</color>
     <color name="c_eeeeee">#eeeeee</color>
+    <color name="shadow_start_color">#11000000</color>
 </resources>

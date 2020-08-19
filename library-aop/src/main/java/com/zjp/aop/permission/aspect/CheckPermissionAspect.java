@@ -1,12 +1,12 @@
 package com.zjp.aop.permission.aspect;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.aop.permission.annotation.CheckPermission;
@@ -30,6 +30,7 @@ public class CheckPermissionAspect {
 
     }
 
+    @SuppressLint("WrongConstant")
     @Around("requestPermission(checkPermission)")
     public void aroundRequestPermission(final ProceedingJoinPoint joinPoint, CheckPermission checkPermission) throws Throwable {
 
@@ -57,7 +58,7 @@ public class CheckPermissionAspect {
                     + "  requestPermission=" + permissionName);
         }
 
-        PermissionUtils.permission(PermissionConstants.STORAGE)
+        PermissionUtils.permission(permissionArray)
                 .callback(new PermissionUtils.SimpleCallback() {
                     @Override
                     public void onGranted() {

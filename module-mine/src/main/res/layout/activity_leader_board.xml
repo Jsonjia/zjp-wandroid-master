@@ -7,7 +7,7 @@
 
         <variable
             name="myself_intergral"
-            type="com.zjp.mine.bean.Integral" />
+            type="com.zjp.common.bean.UserInfo" />
 
         <import type="android.view.View" />
 

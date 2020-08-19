@@ -2,22 +2,22 @@ package com.zjp.mine.adapter;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.zjp.common.bean.UserInfo;
 import com.zjp.mine.R;
-import com.zjp.mine.bean.Leaderboard;
 
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by zjp on 2020/7/15 22:42.
  */
-public class LeaderboardAdapter extends BaseQuickAdapter<Leaderboard.DatasBean, BaseViewHolder> {
+public class LeaderboardAdapter extends BaseQuickAdapter<UserInfo, BaseViewHolder> {
 
     public LeaderboardAdapter() {
         super(R.layout.item_rank);
     }
 
     @Override
-    protected void convert(@NotNull BaseViewHolder baseViewHolder, Leaderboard.DatasBean datasBean) {
+    protected void convert(@NotNull BaseViewHolder baseViewHolder, UserInfo datasBean) {
         switch (baseViewHolder.getAdapterPosition()) {
             case 0:
                 baseViewHolder.setGone(R.id.iv_rank, false)

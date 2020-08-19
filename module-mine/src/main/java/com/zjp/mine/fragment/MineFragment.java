@@ -18,14 +18,13 @@ import com.zjp.mine.activity.MyIntergralActivity;
 import com.zjp.mine.activity.MyShareActivity;
 import com.zjp.mine.activity.OpenSourceProjActivity;
 import com.zjp.mine.activity.SettingActivity;
-import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.FragmentMineFragmentBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
 @Route(path = RouterFragmentPath.Mine.PAGER_MINE)
 public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, MineViewModel> {
 
-    private Integral mIntegral;
+    private UserInfo mUserInfo;
 
     @Override
     protected void initImmersionBar() {
@@ -54,45 +53,45 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
     protected void initData() {
         super.initData();
 
-        mViewModel.mIntegralLiveData.observe(this, integral -> {
-            this.mIntegral = integral;
-            mViewDataBinding.tvId.setText("ID." + integral.getUserId());
-            mViewDataBinding.tvLevel.setText("lv." + integral.getLevel());
-            mViewDataBinding.tvIntergralVal.setText("当前积分：" + integral.getCoinCount());
+        mViewModel.mIntegralLiveData.observe(this, userInfo -> {
+            mViewDataBinding.tvId.setText("ID." + userInfo.getUserId());
+            mViewDataBinding.tvLevel.setText("lv." + userInfo.getLevel());
+            mViewDataBinding.tvIntergralVal.setText("当前积分：" + userInfo.getCoinCount());
+            mUserInfo.setLevel(userInfo.getLevel());
+            mUserInfo.setCoinCount(userInfo.getCoinCount());
+            MmkvHelper.getInstance().saveUserInfo(mUserInfo);
         });
-
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        UserInfo userInfo = MmkvHelper.getInstance().getUserInfo();
+        mUserInfo = MmkvHelper.getInstance().getUserInfo();
 
-        if (userInfo == null) {
+        if (mUserInfo == null) {
             mViewDataBinding.tvName.setText("未登录");
             mViewDataBinding.tvId.setVisibility(View.GONE);
             mViewDataBinding.tvLevel.setVisibility(View.GONE);
         } else {
-            mViewDataBinding.tvName.setText(userInfo.getUsername());
+            mViewDataBinding.tvName.setText(mUserInfo.getUsername());
             mViewDataBinding.tvId.setVisibility(View.VISIBLE);
             mViewDataBinding.tvLevel.setVisibility(View.VISIBLE);
             loadUserInfo();
         }
 
-        mViewDataBinding.setEventlistener(new EventListener(mIntegral));
+        mViewDataBinding.setEventlistener(new EventListener(mUserInfo));
     }
 
     private void loadUserInfo() {
         mViewModel.getIntegral();
     }
 
-
     public class EventListener {
 
-        private Integral integral;
+        private UserInfo userInfo;
 
-        public EventListener(Integral integral) {
-            this.integral = integral;
+        public EventListener(UserInfo userInfo) {
+            this.userInfo = userInfo;
         }
 
         @CheckLogin()
@@ -107,7 +106,7 @@ public class MineFragment extends BaseFragment<FragmentMineFragmentBinding, Mine
 
         @CheckLogin()
         public void clickIntergral() {
-            LeaderboardActivity.start(getActivity(), integral);
+            LeaderboardActivity.start(getActivity(), userInfo);
         }
 
         @CheckLogin()

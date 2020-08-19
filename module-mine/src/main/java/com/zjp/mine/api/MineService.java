@@ -1,7 +1,7 @@
 package com.zjp.mine.api;
 
 import com.zjp.common.bean.ArticleEntity;
-import com.zjp.mine.bean.Integral;
+import com.zjp.common.bean.UserInfo;
 import com.zjp.mine.bean.Leaderboard;
 import com.zjp.mine.bean.UserCenter;
 import com.zjp.network.bean.BaseResponse;
@@ -20,7 +20,7 @@ public interface MineService {
 
     //获取个人积分
     @GET("lg/coin/userinfo/json")
-    Observable<BaseResponse<Integral>> getIntegral();
+    Observable<BaseResponse<UserInfo>> getIntegral();
 
     //退出登录
     @GET("user/logout/json")
@@ -59,5 +59,9 @@ public interface MineService {
     @POST("lg/user_article/add/json")
     Observable<BaseResponse> shareArticle(@Field("title") String title,
                                           @Field("link") String link);
+
+    //我的积分记录
+    @GET("/lg/coin/list/{pageNum}/json")
+    Observable<BaseResponse<Leaderboard>> getIntegralRecord(@Path("pageNum") int pageNum);
 
 }

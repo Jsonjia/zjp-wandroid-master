@@ -12,10 +12,10 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.adapter.ArticleListAdapter;
 import com.zjp.common.bean.ArticleEntity;
+import com.zjp.common.bean.UserInfo;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.mine.R;
-import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.ActivityUsercenter1Binding;
 import com.zjp.mine.viewmodel.MineViewModel;
 import com.zjp.network.constant.C;
@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding, MineViewModel> implements OnLoadMoreListener {
 
-    private int userId;
+    private String userId;
     private PageInfo pageInfo;
     private ArticleListAdapter articleListAdapter;
     private int currentPosition = 0;
@@ -46,7 +46,7 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
                 .init();
     }
 
-    public static void start(Context context, int userId) {
+    public static void start(Context context, String userId) {
         Intent intent = new Intent(context, UserCenterActivity.class);
         intent.putExtra(C.USERID, userId);
         context.startActivity(intent);
@@ -62,7 +62,7 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
         super.initView();
         Intent intent = getIntent();
         if (null != intent) {
-            userId = intent.getIntExtra(C.USERID, 0);
+            userId = intent.getStringExtra(C.USERID);
         }
         pageInfo = new PageInfo();
         mViewDataBinding.recy.setLayoutManager(new LinearLayoutManager(this));
@@ -83,7 +83,7 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
                 List<ArticleEntity.DatasBean> datas = shareArticles.getDatas();
                 pageInfo.nextPage();
                 if (shareArticles.getCurPage() == 1) {
-                    Integral coinInfo = userCenter.getCoinInfo();
+                    UserInfo coinInfo = userCenter.getCoinInfo();
                     mViewDataBinding.setUserInfo(coinInfo);
                     if (datas != null && datas.size() > 0) {
                         showContent();
@@ -138,7 +138,7 @@ public class UserCenterActivity extends BaseActivity<ActivityUsercenter1Binding,
     }
 
     private void loadData() {
-        mViewModel.getUserCenter(userId, pageInfo.page);
+        mViewModel.getUserCenter(Integer.parseInt(userId), pageInfo.page);
     }
 
     private void collectArticle(int position) {

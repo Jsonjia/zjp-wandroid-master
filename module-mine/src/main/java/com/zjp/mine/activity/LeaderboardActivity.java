@@ -3,7 +3,6 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zjp.base.activity.BaseActivity;
+import com.zjp.common.bean.UserInfo;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.mine.R;
 import com.zjp.mine.adapter.LeaderboardAdapter;
-import com.zjp.mine.bean.Integral;
 import com.zjp.mine.databinding.ActivityLeaderBoardBinding;
 import com.zjp.mine.viewmodel.MineViewModel;
 
@@ -25,11 +24,11 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
 
     private PageInfo pageInfo;
     private LeaderboardAdapter leaderboardAdapter;
-    private Integral integral;
+    private UserInfo userInfo;
 
-    public static void start(Context context, Integral integral) {
+    public static void start(Context context, UserInfo userInfo) {
         Intent intent = new Intent(context, LeaderboardActivity.class);
-        intent.putExtra("integral", integral);
+        intent.putExtra("userInfo", userInfo);
         context.startActivity(intent);
     }
 
@@ -58,9 +57,9 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
 
         Intent intent = getIntent();
         if (intent != null) {
-            integral = (Integral) intent.getSerializableExtra("integral");
-            Log.d("zjp11", "integral=" + integral);
-            mViewDataBinding.setMyselfIntergral(integral);
+//            userInfo = (UserInfo) intent.getParcelableArrayExtra("userInfo");
+//            Log.d("zjp11", "integral=" + userInfo);
+//            mViewDataBinding.setMyselfIntergral(userInfo);
         }
         setLoadSir(mViewDataBinding.clContent);
         loadData();

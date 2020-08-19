@@ -2,7 +2,6 @@ package com.zjp.mine.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.view.View;
 
 import com.zjp.aop.permission.annotation.CheckPermission;
 import com.zjp.base.activity.BaseActivity;
@@ -42,24 +41,28 @@ public class AboutMeActivity extends BaseActivity<ActivityAboutMeBinding, MineVi
     protected void initData() {
         super.initData();
 
-//        mViewDataBinding.ivAlipay.setOnLongClickListener(new View.OnLongClickListener() {
-//            @Override
-//            public boolean onLongClick(View view) {
-//                return false;
-//            }
-//        });
+        mViewDataBinding.ivAlipay.setOnLongClickListener(view -> {
+            saveAliQrCode();
+            return false;
+        });
 
-        mViewDataBinding.ivAlipay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                test();
-            }
+        mViewDataBinding.ivWx.setOnLongClickListener(view -> {
+            saveWxQrCode();
+            return false;
         });
     }
 
     @CheckPermission(permissions = {
             "android.permission.WRITE_EXTERNAL_STORAGE",
             "android.permission.READ_EXTERNAL_STORAGE"})
-    private void test() {
+    private void saveAliQrCode() {
     }
+
+    @CheckPermission(permissions = {
+            "android.permission.WRITE_EXTERNAL_STORAGE",
+            "android.permission.READ_EXTERNAL_STORAGE"})
+    private void saveWxQrCode() {
+    }
+
+
 }

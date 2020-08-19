@@ -24,22 +24,35 @@ public class UserInfo implements Parcelable {
 
     private String email;
     private String icon;
-    private int id;
+    private String id;
     private String password;
     private String token;
-    private int type;
+    private String type;
     private String username;
     private List<?> chapterTops;
     private List<Integer> collectIds; //收藏的文章id
 
+    /**********************************************我的积分******************************************/
+    private String coinCount;
+    private int level;
+    private String rank;
+    private String userId, reason, desc, date;
+
     protected UserInfo(Parcel in) {
         email = in.readString();
         icon = in.readString();
-        id = in.readInt();
+        id = in.readString();
         password = in.readString();
         token = in.readString();
-        type = in.readInt();
+        type = in.readString();
         username = in.readString();
+        coinCount = in.readString();
+        level = in.readInt();
+        rank = in.readString();
+        userId = in.readString();
+        reason = in.readString();
+        desc = in.readString();
+        date = in.readString();
     }
 
     public static final Creator<UserInfo> CREATOR = new Creator<UserInfo>() {
@@ -70,11 +83,11 @@ public class UserInfo implements Parcelable {
         this.icon = icon;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -94,11 +107,11 @@ public class UserInfo implements Parcelable {
         this.token = token;
     }
 
-    public int getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(int type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -126,6 +139,62 @@ public class UserInfo implements Parcelable {
         this.collectIds = collectIds;
     }
 
+    public String getCoinCount() {
+        return coinCount;
+    }
+
+    public void setCoinCount(String coinCount) {
+        this.coinCount = coinCount;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getRank() {
+        return rank;
+    }
+
+    public void setRank(String rank) {
+        this.rank = rank;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -135,10 +204,17 @@ public class UserInfo implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(email);
         dest.writeString(icon);
-        dest.writeInt(id);
+        dest.writeString(id);
         dest.writeString(password);
         dest.writeString(token);
-        dest.writeInt(type);
+        dest.writeString(type);
         dest.writeString(username);
+        dest.writeString(coinCount);
+        dest.writeInt(level);
+        dest.writeString(rank);
+        dest.writeString(userId);
+        dest.writeString(reason);
+        dest.writeString(desc);
+        dest.writeString(date);
     }
 }

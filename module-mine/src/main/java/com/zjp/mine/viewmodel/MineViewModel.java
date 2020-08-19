@@ -7,8 +7,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.bean.ArticleEntity;
+import com.zjp.common.bean.UserInfo;
 import com.zjp.mine.api.MineService;
-import com.zjp.mine.bean.Integral;
 import com.zjp.mine.bean.Leaderboard;
 import com.zjp.mine.bean.UserCenter;
 import com.zjp.mine.cache.CacheUtil;
@@ -31,15 +31,16 @@ import io.reactivex.disposables.Disposable;
  */
 public class MineViewModel extends BaseViewModel {
 
-    public MutableLiveData<Integral> mIntegralLiveData = new MutableLiveData<>();
+    public MutableLiveData<UserInfo> mIntegralLiveData = new MutableLiveData<>();
     public MutableLiveData<String> mCacheSizeLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> loginoutLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<Leaderboard.DatasBean>> leaderBoardLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<UserInfo>> leaderBoardLiveData = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> articleLiveData = new MutableLiveData<>();
     public MutableLiveData<UserCenter> userCenterLiveData = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mShareArticleMutable = new MutableLiveData<>();
+    public MutableLiveData<Leaderboard> mLeaderBoardMuTable = new MutableLiveData<>();
 
     public MineViewModel(@NonNull Application application) {
         super(application);
@@ -50,9 +51,9 @@ public class MineViewModel extends BaseViewModel {
                 .getIntegral()
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<Integral>>() {
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<UserInfo>>() {
                     @Override
-                    public void success(BaseResponse<Integral> response) {
+                    public void success(BaseResponse<UserInfo> response) {
                         mIntegralLiveData.postValue(response.getData());
                     }
 
@@ -156,7 +157,7 @@ public class MineViewModel extends BaseViewModel {
                 .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<Leaderboard>>() {
                     @Override
                     public void success(BaseResponse<Leaderboard> response) {
-                        List<Leaderboard.DatasBean> datas = response.getData().getDatas();
+                        List<UserInfo> datas = response.getData().getDatas();
                         if (null != datas && datas.size() > 0) {
                             leaderBoardLiveData.postValue(datas);
                         }
@@ -241,7 +242,7 @@ public class MineViewModel extends BaseViewModel {
                 }));
     }
 
-    public void myShare(int pageNum){
+    public void myShare(int pageNum) {
         RetrofitHelper.getInstance().create(MineService.class)
                 .myShare(pageNum)
                 .compose(new IoMainScheduler<>())
@@ -259,15 +260,33 @@ public class MineViewModel extends BaseViewModel {
                 }));
     }
 
-    public void shareArticle(String title,String link){
+    public void shareArticle(String title, String link) {
         RetrofitHelper.getInstance().create(MineService.class)
-                .shareArticle(title,link)
+                .shareArticle(title, link)
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
                 .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
                     @Override
                     public void success(BaseResponse response) {
                         mShareArticleMutable.postValue(response);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
+
+    public void getIntegralRecord(int pageNum) {
+        RetrofitHelper.getInstance().create(MineService.class)
+                .getIntegralRecord(pageNum)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<Leaderboard>>() {
+                    @Override
+                    public void success(BaseResponse<Leaderboard> response) {
+                        mLeaderBoardMuTable.postValue(response.getData());
                     }
 
                     @Override
