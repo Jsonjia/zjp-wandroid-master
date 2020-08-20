@@ -3,6 +3,7 @@ package com.zjp.square.api;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.ProjectTabBean;
 import com.zjp.network.bean.BaseResponse;
+import com.zjp.square.bean.NaviBean;
 
 import java.util.List;
 
@@ -31,6 +32,6 @@ public interface SquareService {
 
     //导航
     @GET("navi/json")
-    Observable<BaseResponse<List<ArticleEntity.DatasBean>>> getNavigation();
+    Observable<BaseResponse<List<NaviBean>>> getNavigation();
 
 }

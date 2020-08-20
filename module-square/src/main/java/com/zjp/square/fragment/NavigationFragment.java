@@ -1,17 +1,20 @@
 package com.zjp.square.fragment;
 
 import com.zjp.base.fragment.BaseLazyFragment;
-import com.zjp.common.adapter.ArticleListAdapter;
+import com.zjp.common.bean.ArticleEntity;
 import com.zjp.square.R;
+import com.zjp.square.activity.SystemActivity;
+import com.zjp.square.adapter.NavigationAdapter;
 import com.zjp.square.databinding.FragmentListSystemBinding;
 import com.zjp.square.viewmodel.SquareViewModel;
 
 /**
  * Created by zjp on 2020/08/20 14:47
  */
-public class NavigationFragment extends BaseLazyFragment<FragmentListSystemBinding, SquareViewModel> {
+public class NavigationFragment extends BaseLazyFragment<FragmentListSystemBinding, SquareViewModel>
+implements NavigationAdapter.OnItemClickListener {
 
-    private ArticleListAdapter articleListAdapter;
+    private NavigationAdapter navigationAdapter;
     private boolean isLoading;
 
     public static NavigationFragment newInstance() {
@@ -29,7 +32,8 @@ public class NavigationFragment extends BaseLazyFragment<FragmentListSystemBindi
     @Override
     protected void initView() {
         super.initView();
-        mViewDataBinding.recy.setAdapter(articleListAdapter = new ArticleListAdapter(null));
+        mViewDataBinding.recy.setAdapter(navigationAdapter = new NavigationAdapter());
+        navigationAdapter.setOnItemClickListener(this::onClick);
     }
 
     @Override
@@ -39,7 +43,7 @@ public class NavigationFragment extends BaseLazyFragment<FragmentListSystemBindi
             if (isLoading)
                 showContent();
             if (articleEntities != null && articleEntities.size() > 0) {
-                articleListAdapter.setList(articleEntities);
+                navigationAdapter.setList(articleEntities);
             }
             isLoading = !isLoading;
         });
@@ -61,5 +65,10 @@ public class NavigationFragment extends BaseLazyFragment<FragmentListSystemBindi
     @Override
     public int getLayoutId() {
         return R.layout.fragment_list_system;
+    }
+
+    @Override
+    public void onClick(ArticleEntity.DatasBean datasBean) {
+        SystemActivity.start(getActivity(), datasBean.getTitle(),datasBean.getCourseId());
     }
 }

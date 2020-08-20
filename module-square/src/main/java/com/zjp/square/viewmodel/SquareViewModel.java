@@ -14,6 +14,7 @@ import com.zjp.network.observer.NetCallback;
 import com.zjp.network.observer.NetHelperObserver;
 import com.zjp.network.scheduler.IoMainScheduler;
 import com.zjp.square.api.SquareService;
+import com.zjp.square.bean.NaviBean;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class SquareViewModel extends BaseViewModel {
     public MutableLiveData<List<ProjectTabBean>> mSystemListMutable = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> mArticleMuTable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
-    public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMuTable = new MutableLiveData<>();
+    public MutableLiveData<List<NaviBean>> mArticleListMuTable = new MutableLiveData<>();
 
     public SquareViewModel(@NonNull Application application) {
         super(application);
@@ -95,9 +96,9 @@ public class SquareViewModel extends BaseViewModel {
                 .getNavigation()
                 .compose(new IoMainScheduler<>())
                 .doOnSubscribe(this)
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<ArticleEntity.DatasBean>>>() {
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<NaviBean>>>() {
                     @Override
-                    public void success(BaseResponse<List<ArticleEntity.DatasBean>> response) {
+                    public void success(BaseResponse<List<NaviBean>> response) {
                         if (response.getData() != null && response.getData().size() > 0) {
                             mArticleListMuTable.postValue(response.getData());
                         } else {
