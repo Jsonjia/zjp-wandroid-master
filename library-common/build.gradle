@@ -48,5 +48,5 @@ dependencies {
     api support.glide
     api support.baseadapterhelper
     implementation support.agentweb
-
+    api support.magicindicator
 }

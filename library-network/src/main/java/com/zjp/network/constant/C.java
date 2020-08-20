@@ -14,7 +14,11 @@ public class C {
     public static final String BASE_URL = "https://www.wanandroid.com/";
     public static final String URL_ABOUT = BASE_URL + "about";
     public static final String SOURCE_URL = "https://github.com/Jsonjia/zjp-wandroid-master";
+    public static final String INTERGRAL_URL = "https://www.wanandroid.com/blog/show/2653";
+    public static final int SEARCH_REQUEST = 0x123;
+    public static final int DURATION = 1500;
 
+    /**************************Intent constant********************/
     public static final String USER_INFO = "user_info";
     public static final String FIRST = "first";
     public static final String SEARCH_HISTORY = "search_history";
@@ -25,10 +29,8 @@ public class C {
     public static final String THEME_COLOR = "theme_color";
     public static final String REFRESH_COLLECT = "refresh_collect";
     public static final String USERID = "userid";
-
-    public static final int SEARCH_REQUEST = 0x123;
-
-    public static final int DURATION = 1500;
+    public static final String TITLE = "title";
+    public static final String CID = "cid";
 
 
 }

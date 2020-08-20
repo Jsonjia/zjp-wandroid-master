@@ -3,6 +3,7 @@ package com.zjp.mine.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,9 +58,8 @@ public class LeaderboardActivity extends BaseActivity<ActivityLeaderBoardBinding
 
         Intent intent = getIntent();
         if (intent != null) {
-//            userInfo = (UserInfo) intent.getParcelableArrayExtra("userInfo");
-//            Log.d("zjp11", "integral=" + userInfo);
-//            mViewDataBinding.setMyselfIntergral(userInfo);
+            userInfo = intent.getParcelableExtra("userInfo");
+            mViewDataBinding.setMyselfIntergral(userInfo);
         }
         setLoadSir(mViewDataBinding.clContent);
         loadData();

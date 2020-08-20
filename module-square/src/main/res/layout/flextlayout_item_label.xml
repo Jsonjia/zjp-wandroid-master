@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/bg_radius_max"
+        android:paddingLeft="@dimen/dp15"
+        android:paddingTop="@dimen/dp5"
+        android:paddingRight="@dimen/dp15"
+        android:paddingBottom="@dimen/dp5"
+        android:textColor="@color/c_444444"
+        android:textSize="@dimen/sp13"
+        tools:text="公众号文章" />
+</layout>

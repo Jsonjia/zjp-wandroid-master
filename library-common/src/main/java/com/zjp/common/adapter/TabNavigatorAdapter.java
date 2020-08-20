@@ -1,17 +1,15 @@
-package com.zjp.project.adapter;
+package com.zjp.common.adapter;
 
 import android.content.Context;
 import android.text.TextPaint;
 import android.util.TypedValue;
-import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
+import com.zjp.common.R;
+import com.zjp.common.adapter.navigator.ScaleTransitionPagerTitleView;
 import com.zjp.common.callback.OnTabClickListener;
 import com.zjp.common.callback.TabSelectListener;
-import com.zjp.project.R;
-import com.zjp.project.adapter.navigator.ScaleTransitionPagerTitleView;
-import com.zjp.project.bean.ProjectTabBean;
 
 import net.lucode.hackware.magicindicator.buildins.UIUtil;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter;
@@ -32,9 +30,9 @@ public class TabNavigatorAdapter extends CommonNavigatorAdapter {
         this.onTabClickListener = onTabClickListener;
     }
 
-    private List<ProjectTabBean> tabNameList;
+    private List<String> tabNameList;
 
-    public TabNavigatorAdapter(List<ProjectTabBean> list) {
+    public TabNavigatorAdapter(List<String> list) {
         this.tabNameList = list;
     }
 
@@ -46,11 +44,11 @@ public class TabNavigatorAdapter extends CommonNavigatorAdapter {
     @Override
     public IPagerTitleView getTitleView(Context context, int index) {
         ScaleTransitionPagerTitleView scaleTransitionPagerTitleView = new ScaleTransitionPagerTitleView(context);
-        scaleTransitionPagerTitleView.setText(tabNameList.get(index).getName());
+        scaleTransitionPagerTitleView.setText(tabNameList.get(index));
         scaleTransitionPagerTitleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f);
         scaleTransitionPagerTitleView.setPadding(40, 0, 40, 0);
         scaleTransitionPagerTitleView.setNormalColor(context.getResources().getColor(R.color.c_666666));
-        scaleTransitionPagerTitleView.setSelectedColor(context.getResources().getColor(R.color.colorAccent));
+        scaleTransitionPagerTitleView.setSelectedColor(context.getResources().getColor(R.color.colorPrimary));
         scaleTransitionPagerTitleView.setOnClickListener(view -> {
             if (null != onTabClickListener)
                 onTabClickListener.onTabClick(view, index);
@@ -82,7 +80,7 @@ public class TabNavigatorAdapter extends CommonNavigatorAdapter {
         indicator.setRoundRadius((float) UIUtil.dip2px(context, 3.0));
         indicator.setStartInterpolator(new AccelerateInterpolator());
         indicator.setEndInterpolator(new DecelerateInterpolator(2.0f));
-        indicator.setColors(context.getResources().getColor(R.color.colorAccent));
+        indicator.setColors(context.getResources().getColor(R.color.colorPrimary));
         return indicator;
     }
 }

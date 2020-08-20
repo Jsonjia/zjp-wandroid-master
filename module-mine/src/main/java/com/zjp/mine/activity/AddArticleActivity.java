@@ -46,7 +46,7 @@ public class AddArticleActivity extends BaseActivity<ActivityAddarticleBinding, 
         mViewDataBinding.titleview.getIvRight().setImageResource(R.mipmap.ic_guize);
         mViewDataBinding.titleview.setIvRightVisible(View.VISIBLE);
         mViewDataBinding.shareUsername.setText(MmkvHelper.getInstance().getUserInfo().getUsername());
-        mViewDataBinding.titleview.getIvRight().setOnClickListener((View.OnClickListener) view -> {
+        mViewDataBinding.titleview.getIvRight().setOnClickListener(view -> {
 
             View dialogView = LayoutInflater.from(AddArticleActivity.this).inflate(R.layout.bottom_sheet_dialog_warm_tip, null);
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(AddArticleActivity.this, R.style.BottomSheetDialog);

@@ -3,6 +3,7 @@ package com.zjp.mine.activity;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.zjp.base.activity.BaseActivity;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.bean.page.PageInfo;
 import com.zjp.common.storage.MmkvHelper;
+import com.zjp.common.ui.WebViewActivity;
 import com.zjp.mine.R;
 import com.zjp.mine.adapter.MyIntergralAdapter;
 import com.zjp.mine.databinding.ActivityMyIntergralBinding;
@@ -51,6 +53,8 @@ public class MyIntergralActivity extends BaseActivity<ActivityMyIntergralBinding
     protected void initView() {
         super.initView();
         mViewDataBinding.titleview.setTitle("我的积分");
+        mViewDataBinding.titleview.getIvRight().setImageResource(R.mipmap.ic_guize);
+        mViewDataBinding.titleview.setIvRightVisible(View.VISIBLE);
         pageInfo = new PageInfo();
         mViewDataBinding.rvIntergralList.setAdapter(myIntergralAdapter = new MyIntergralAdapter());
         setLoadSir(mViewDataBinding.rootview);
@@ -86,6 +90,9 @@ public class MyIntergralActivity extends BaseActivity<ActivityMyIntergralBinding
         });
 
         mViewDataBinding.smartRefresh.setOnLoadMoreListener(this);
+        mViewDataBinding.titleview.getIvRight().setOnClickListener(view -> {
+            WebViewActivity.start(this, "积分规则", C.INTERGRAL_URL);
+        });
     }
 
     private void loadData() {
@@ -98,13 +105,10 @@ public class MyIntergralActivity extends BaseActivity<ActivityMyIntergralBinding
         //播放时长
         valueAnimator.setDuration(C.DURATION);
         valueAnimator.setInterpolator(new DecelerateInterpolator());
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                //获取改变后的值
-                int currentValue = (int) valueAnimator.getAnimatedValue();
-                mViewDataBinding.tvIntegralAnim.setText(currentValue + "");
-            }
+        valueAnimator.addUpdateListener(valueAnimator1 -> {
+            //获取改变后的值
+            int currentValue = (int) valueAnimator1.getAnimatedValue();
+            mViewDataBinding.tvIntegralAnim.setText(currentValue + "");
         });
         valueAnimator.start();
     }

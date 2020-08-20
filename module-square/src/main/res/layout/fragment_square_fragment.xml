@@ -6,16 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.ProjectFragment">
-
-        <!--   <View
-               android:id="@+id/view_status"
-               android:layout_width="@dimen/dp0"
-               android:layout_height="@dimen/dp0"
-               app:layout_constraintLeft_toLeftOf="parent"
-               app:layout_constraintRight_toRightOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               tools:layout_height="@dimen/dp28" />-->
+        tools:context=".fragment.SquareFragment">
 
         <FrameLayout
             android:id="@+id/fl"
@@ -28,12 +19,13 @@
 
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/magic_inticator"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp40"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginTop="34dp" />
         </FrameLayout>
 
-        <com.zjp.common.view.NoAnimationViewpager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp"
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp0"

@@ -1,10 +1,11 @@
-package com.zjp.project.adapter.navigator;
+package com.zjp.common.adapter.navigator;
 
 import android.content.Context;
 
 import com.zjp.common.callback.TabSelectListener;
 
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.ColorTransitionPagerTitleView;
+
 
 /**
  * Created by zjp on 2020/7/1 13:40

@@ -1,4 +1,4 @@
-package com.zjp.project.bean;
+package com.zjp.common.bean;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class ProjectTabBean {
     private int parentChapterId;
     private boolean userControlSetTop;
     private int visible;
-    private List<?> children;
+    private List<ProjectTabBean> children;
 
     public int getCourseId() {
         return courseId;
@@ -83,11 +83,11 @@ public class ProjectTabBean {
         this.visible = visible;
     }
 
-    public List<?> getChildren() {
+    public List<ProjectTabBean> getChildren() {
         return children;
     }
 
-    public void setChildren(List<?> children) {
+    public void setChildren(List<ProjectTabBean> children) {
         this.children = children;
     }
 }

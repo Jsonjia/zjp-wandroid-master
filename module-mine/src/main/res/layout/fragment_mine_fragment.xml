@@ -301,6 +301,7 @@
                 android:id="@+id/cl_read_history"
                 android:layout_width="@dimen/dp0"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:background="@drawable/ripple_bg"
                 android:onClick="@{()->eventlistener.clickReadHistory()}"
                 app:layout_constraintLeft_toLeftOf="parent"

@@ -16,5 +16,5 @@ dependencies {
     api project(':library-common')
     api project(':library-aop')
     annotationProcessor support.arouter_compiler
-    implementation support.magicindicator
+
 }
