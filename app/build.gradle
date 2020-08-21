@@ -1,10 +1,24 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-aspectjx'
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 def androidId = rootProject.ext.androidId
 def support = rootProject.ext.dependencies
 
 android {
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['keystore'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     compileSdkVersion androidId.compileSdkVersion
     buildToolsVersion androidId.buildToolsVersion
 
@@ -29,6 +43,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 

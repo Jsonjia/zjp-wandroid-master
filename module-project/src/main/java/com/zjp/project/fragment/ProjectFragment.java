@@ -93,6 +93,11 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
         commonNavigator.setAdapter(tabNavigatorAdapter);
         mViewDataBinding.magicInticator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(mViewDataBinding.magicInticator, mViewDataBinding.vp);
+
+        //        Observable.fromIterable(null).map(SelectHomeListFragment::newInstance).toList()
+//                .map(fragments -> new FragmentAdapter(getSupportFragmentManager()).newInstance(getSupportFragmentManager(), fragments, mCategotyTxt))
+//                .subscribe(mFragmentAdapter -> binding.viewpager.setAdapter(mFragmentAdapter));
+
     }
 
     @Override

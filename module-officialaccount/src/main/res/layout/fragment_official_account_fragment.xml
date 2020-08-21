@@ -3,20 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="vm"
+            type="com.zjp.officialaccount.viewmodel.OfficialAccountViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".OfficialAccountFragment">
+        tools:context=".fragment.OfficialAccountFragment">
 
-        <Button
-            android:id="@+id/btn"
-            android:layout_width="wrap_content"
+        <com.zjp.common.view.CommonHeadTitle
+            android:id="@+id/titleview"
+            android:layout_width="@dimen/dp0"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="@dimen/dp0"
+            android:layout_height="@dimen/dp0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleview">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recy_category"
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp0"
+                tools:listitem="@layout/item_project_category"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/refresh"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refresh"
+                android:layout_width="@dimen/dp0"
+                android:layout_height="@dimen/dp0"
+                android:background="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintLeft_toRightOf="@+id/recy_category"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srlEnableAutoLoadMore="false"
+                app:srlEnableLoadMore="true"
+                app:srlEnableOverScrollBounce="true"
+                app:srlEnableRefresh="true">
+
+                <com.scwang.smartrefresh.header.MaterialHeader
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recy"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:overScrollMode="never"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

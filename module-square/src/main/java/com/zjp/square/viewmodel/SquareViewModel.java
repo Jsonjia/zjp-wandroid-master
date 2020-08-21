@@ -25,6 +25,7 @@ public class SquareViewModel extends BaseViewModel {
 
     public MutableLiveData<List<ProjectTabBean>> mSystemListMutable = new MutableLiveData<>();
     public MutableLiveData<ArticleEntity> mArticleMuTable = new MutableLiveData<>();
+    public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
     public MutableLiveData<List<NaviBean>> mArticleListMuTable = new MutableLiveData<>();
 
@@ -72,6 +73,23 @@ public class SquareViewModel extends BaseViewModel {
                 }));
     }
 
+    public void collect(int id) {
+        RetrofitHelper.getInstance().create(SquareService.class)
+                .collect(id)
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse>() {
+                    @Override
+                    public void success(BaseResponse response) {
+                        mCollectMutable.postValue(response);
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
+                    }
+                }));
+    }
 
     public void unCollect(int id) {
         RetrofitHelper.getInstance().create(SquareService.class)

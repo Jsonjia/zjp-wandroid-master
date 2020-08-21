@@ -32,6 +32,12 @@ public class SystemActivity extends BaseActivity<ActivityStstemBinding, SquareVi
     //记录当前点击收藏的position
     private int currentPosition = 0;
 
+    /**
+     * 点击收藏后将点击事件上锁,等接口有相应结果再解锁
+     * 避免重复点击产生的bug
+     */
+    private boolean lockCollectClick = true;
+
     public static void start(Context context, String title, int cid) {
         Intent intent = new Intent(context, SystemActivity.class);
         intent.putExtra(C.TITLE, title);
@@ -85,11 +91,11 @@ public class SystemActivity extends BaseActivity<ActivityStstemBinding, SquareVi
 
             List<ArticleEntity.DatasBean> dataList = articleEntity.getDatas();
 
-            if (dataList != null && dataList.size() > 0) {
-                for (ArticleEntity.DatasBean articleBean : dataList) {
-                    articleBean.setCollect(true);
-                }
-            }
+//            if (dataList != null && dataList.size() > 0) {
+//                for (ArticleEntity.DatasBean articleBean : dataList) {
+//                    articleBean.setCollect(true);
+//                }
+//            }
 
             pageInfo.nextZeroPage();
             if (articleEntity.getCurPage() == 0) {
@@ -107,10 +113,22 @@ public class SystemActivity extends BaseActivity<ActivityStstemBinding, SquareVi
             }
         });
 
-        mViewModel.mUnCollectMutable.observe(this, baseResponse -> {
+        mViewModel.mCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
             if (baseResponse.getErrorCode() == 0) {
                 if (currentPosition < articleListAdapter.getData().size()) {
-                    articleListAdapter.cancelCollect(currentPosition);
+                    articleListAdapter.getData().get(currentPosition).setCollect(true);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
+                }
+            }
+        });
+
+        mViewModel.mUnCollectMutable.observe(this, baseResponse -> {
+            lockCollectClick = true;
+            if (baseResponse.getErrorCode() == 0) {
+                if (currentPosition < articleListAdapter.getData().size()) {
+                    articleListAdapter.getData().get(currentPosition).setCollect(false);
+                    articleListAdapter.notifyItemChanged(currentPosition, C.REFRESH_COLLECT);
                 }
             }
         });
@@ -123,9 +141,14 @@ public class SystemActivity extends BaseActivity<ActivityStstemBinding, SquareVi
     }
 
     private void collectArticle(int position) {
-        if (position < articleListAdapter.getData().size()) {
+        if (position < articleListAdapter.getData().size() && lockCollectClick) {
+            lockCollectClick = false;
             currentPosition = position;
-            mViewModel.unCollect(articleListAdapter.getData().get(position).getId());
+            if (articleListAdapter.getData().get(position).isCollect()) {
+                mViewModel.unCollect(articleListAdapter.getData().get(position).getId());
+            } else {
+                mViewModel.collect(articleListAdapter.getData().get(position).getId());
+            }
         }
     }
 

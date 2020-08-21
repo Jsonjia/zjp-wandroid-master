@@ -26,6 +26,10 @@ public interface SquareService {
     @GET("project/list/{pageNum}/json")
     Observable<BaseResponse<ArticleEntity>> getProjectList(@Path("pageNum") int pageNum, @Query("cid") int cid);
 
+    //收藏
+    @POST("/lg/collect/{id}/json")
+    Observable<BaseResponse> collect(@Path("id") int id);
+
     //取消收藏
     @POST("lg/uncollect_originId/{id}/json")
     Observable<BaseResponse> unCollect(@Path("id") int id);
