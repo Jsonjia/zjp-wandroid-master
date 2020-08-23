@@ -32,7 +32,6 @@
 - [banner](https://github.com/youth5201314/banner)
 - [LoadSir](https://github.com/KingJA/LoadSir)
 - [MagicIndicator](https://github.com/hackware1993/MagicIndicator)
-- [AndroidUtilCode](https://github.com/alibaba/ARouter)  
 - [AndroidUtilCode](https://github.com/Blankj/AndroidUtilCode)
 - [MMKV](https://github.com/Tencent/MMKV)
 - [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
