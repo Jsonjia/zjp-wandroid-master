@@ -3,16 +3,16 @@
 [![Platform][1]][2]  [![Build Status][3]][4]  [![Release][5]][6]  [![Release][7]][8]  [![GitHub license][9]][10]  [![][11]][12] 
 
 [1]:https://img.shields.io/badge/platform-Android-blue.svg  
-[2]:https://github.com/iceCola7/WanAndroid
+[2]:https://github.com/Jsonjia/zjp-wandroid-master/
 
 [3]:https://travis-ci.org/iceCola7/WanAndroid.svg?branch=master
 [4]:https://travis-ci.org/iceCola7/WanAndroid
 
 [5]:https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat
-[6]:https://android-arsenal.com/api?level=16
+[6]:https://android-arsenal.com/api?level=21
 
 [7]:https://img.shields.io/github/release/iceCola7/WanAndroid.svg
-[8]:https://github.com/iceCola7/WanAndroid/releases/latest
+[8]:https://github.com/Jsonjia/zjp-wandroid-master/releases/latest
 
 [9]:https://img.shields.io/badge/license-Apache%202-blue.svg
 [10]:https://github.com/iceCola7/WanAndroid/blob/master/LICENSE
