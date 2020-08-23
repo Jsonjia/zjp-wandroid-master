@@ -26,8 +26,8 @@
             android:layout_width="@dimen/dp0"
             android:layout_height="@dimen/dp0"
             android:layout_marginTop="@dimen/dp30"
-            app:defaultNavHost="true"
             android:layout_marginBottom="@dimen/dp20"
+            app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@+id/tv_other_platform"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -75,6 +75,7 @@
                 app:layout_constraintTop_toTopOf="@+id/iv_qq_login" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_wb_login"
                 android:layout_width="@dimen/dp40"
                 android:layout_height="@dimen/dp40"
                 android:layout_marginLeft="@dimen/dp30"

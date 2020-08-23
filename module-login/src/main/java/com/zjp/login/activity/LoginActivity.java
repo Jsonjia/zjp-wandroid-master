@@ -6,6 +6,7 @@ import android.widget.TextView;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.router.RouterActivityPath;
 import com.zjp.base.viewmodel.BaseViewModel;
@@ -42,6 +43,10 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, BaseViewMo
         backView = mViewDataBinding.headTitle.getBackView();
         tvRight.setVisibility(View.VISIBLE);
         tvRight.setText("注册");
+
+        mViewDataBinding.ivWxLogin.setOnClickListener(view -> ToastUtils.showShort("该功能暂未开发"));
+        mViewDataBinding.ivQqLogin.setOnClickListener(view -> ToastUtils.showShort("该功能暂未开发"));
+        mViewDataBinding.ivWbLogin.setOnClickListener(view -> ToastUtils.showShort("该功能暂未开发"));
     }
 
     @Override
