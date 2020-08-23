@@ -38,3 +38,12 @@
 - [AgentWeb](https://github.com/Justson/AgentWeb)
 - [aop](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)
 - [PersistentCookieJar](https://github.com/franmontiel/PersistentCookieJar)
+
+
+## 更新日志
+
+**[最新更新日志请点击查看](https://github.com/Jsonjia/zjp-wandroid-master/releases)**
+
+**v1.0.0**
+
+- 初始化版本，主要功能都已经完成。
