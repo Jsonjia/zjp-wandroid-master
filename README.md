@@ -1,6 +1,23 @@
 ## 简介
 
-[![Platform][1]][2]  [![Build Status][3]][4]  [![Release][5]][6]  [![Release][7]][8]  [![GitHub license][9]][10]  [![][11]][12] 
+[![Platform][1]][2]  [![Build Status][3]][4]  [![Release][5]][6]  [![Release][7]][8]  [![GitHub license][9]][10]  [![][11]][12]
+[1]:https://img.shields.io/badge/platform-Android-blue.svg  
+[2]:https://github.com/iceCola7/WanAndroid
+
+[3]:https://travis-ci.org/iceCola7/WanAndroid.svg?branch=master
+[4]:https://travis-ci.org/iceCola7/WanAndroid
+
+[5]:https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat
+[6]:https://android-arsenal.com/api?level=16
+
+[7]:https://img.shields.io/github/release/iceCola7/WanAndroid.svg
+[8]:https://github.com/iceCola7/WanAndroid/releases/latest
+
+[9]:https://img.shields.io/badge/license-Apache%202-blue.svg
+[10]:https://github.com/iceCola7/WanAndroid/blob/master/LICENSE
+
+[11]:https://img.shields.io/badge/QQ-563859095-orange.svg
+[12]:http://wpa.qq.com/msgrd?v=3&uin=563859095&site=qq&menu=yes
 
 该项目用了[玩Android](https://www.wanandroid.com/blog/show/2)网站提供的API进行开发而成；项目基于`组件化` + `Arouter` +  + `MVVM` + `Jetpack` + `Rxjava` + `Retrofit` + `DataBinding` + `AOP` 等框架，如有任何疑问或者bug，可以给我提[Issues](https://github.com/Jsonjia/zjp-wandroid-master/issues)，项目可能迭代维护，努力打造一款优秀的 WanAndroid 客户端。 开源不易，喜欢请个star，谢谢
 
