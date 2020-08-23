@@ -4,7 +4,10 @@
 
 ## 效果图
 
-
+## App下载
+- [github下载](https://github.com/Jsonjia/zjp-wandroid-master)
+- [fir.im下载](http://d.firim.info/24u9)
+- 扫码
 
 ## 主要功能
 
