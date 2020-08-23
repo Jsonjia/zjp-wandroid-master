@@ -31,49 +31,55 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleview">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recy_category"
+            <RadioGroup
+                android:id="@+id/radiogroup"
                 android:layout_width="@dimen/dp80"
-                android:layout_height="@dimen/dp0"
-                tools:listitem="@layout/item_project_category"
-                android:overScrollMode="never"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/refresh"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="wrap_content" />
 
-            <com.scwang.smartrefresh.layout.SmartRefreshLayout
-                android:id="@+id/refresh"
-                android:layout_width="@dimen/dp0"
-                android:layout_height="@dimen/dp0"
-                android:background="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintLeft_toRightOf="@+id/recy_category"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srlEnableAutoLoadMore="false"
-                app:srlEnableLoadMore="true"
-                app:srlEnableOverScrollBounce="true"
-                app:srlEnableRefresh="true">
+            <!-- <androidx.recyclerview.widget.RecyclerView
+                 android:id="@+id/recy_category"
+                 android:layout_width="@dimen/dp80"
+                 android:layout_height="@dimen/dp0"
+                 tools:listitem="@layout/item_project_category"
+                 android:overScrollMode="never"
+                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintHorizontal_weight="1"
+                 app:layout_constraintLeft_toLeftOf="parent"
+                 app:layout_constraintRight_toLeftOf="@+id/refresh"
+                 app:layout_constraintTop_toTopOf="parent" />
 
-                <com.scwang.smartrefresh.header.MaterialHeader
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+             <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                 android:id="@+id/refresh"
+                 android:layout_width="@dimen/dp0"
+                 android:layout_height="@dimen/dp0"
+                 android:background="@color/white"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintHorizontal_weight="1"
+                 app:layout_constraintLeft_toRightOf="@+id/recy_category"
+                 app:layout_constraintRight_toRightOf="parent"
+                 app:layout_constraintTop_toTopOf="parent"
+                 app:srlEnableAutoLoadMore="false"
+                 app:srlEnableLoadMore="true"
+                 app:srlEnableOverScrollBounce="true"
+                 app:srlEnableRefresh="true">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recy"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:overScrollMode="never"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                 <com.scwang.smartrefresh.header.MaterialHeader
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
 
-                <com.scwang.smartrefresh.layout.footer.ClassicsFooter
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+                 <androidx.recyclerview.widget.RecyclerView
+                     android:id="@+id/recy"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent"
+                     android:overScrollMode="never"
+                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                 <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content" />
+             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+         -->
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
