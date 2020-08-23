@@ -17,9 +17,11 @@ public class C {
     public static final String INTERGRAL_URL = "https://www.wanandroid.com/blog/show/2653";
     public static final int SEARCH_REQUEST = 0x123;
     public static final int DURATION = 1500;
+    public static final int BACK_DURATION = 1500;
 
     /**************************Intent constant********************/
     public static final String USER_INFO = "user_info";
+    public static final String PROJECT_TAB = "project_tab";
     public static final String FIRST = "first";
     public static final String SEARCH_HISTORY = "search_history";
     public static final String KEYWORD = "keyword";

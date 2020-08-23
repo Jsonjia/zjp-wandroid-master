@@ -1,11 +1,12 @@
 package com.zjp.common.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by zjp on 2020/7/1 10:53
  */
-public class ProjectTabBean {
+public class ProjectTabBean implements Serializable {
 
     /**
      * children : []
@@ -26,6 +27,16 @@ public class ProjectTabBean {
     private boolean userControlSetTop;
     private int visible;
     private List<ProjectTabBean> children;
+
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
+    }
+
+    private boolean select;
 
     public int getCourseId() {
         return courseId;

@@ -1,6 +1,7 @@
 package com.zjp.main;
 
 
+import android.content.Intent;
 import android.util.SparseArray;
 import android.view.MenuItem;
 
@@ -12,11 +13,13 @@ import androidx.fragment.app.FragmentTransaction;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.zjp.base.activity.BaseActivity;
 import com.zjp.base.router.RouterActivityPath;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.main.databinding.ActivityMainBinding;
+import com.zjp.network.constant.C;
 
 @Route(path = RouterActivityPath.Main.PAGER_MAIN)
 public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewModel> implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -153,5 +156,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, BaseViewMode
             transaction.show(fragment);
         }
         transaction.commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        if (System.currentTimeMillis() - mPreTime > C.BACK_DURATION) {
+            Snackbar.make(mViewDataBinding.rootview, "再按一次退出 wanandroid", Snackbar.LENGTH_SHORT).show();
+            mPreTime = System.currentTimeMillis();
+            return;
+        } else {
+            startActivity(new Intent(Intent.ACTION_MAIN).addCategory(Intent.CATEGORY_HOME));
+        }
+        super.onBackPressed();
     }
 }

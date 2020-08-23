@@ -32,7 +32,8 @@
             style="@style/textview_13sp_style"
             android:layout_marginRight="@dimen/dp5"
             android:text="新"
-            android:textColor="@color/colorPrimary" />
+            android:textColor="@color/colorPrimary"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tv_author"
@@ -49,6 +50,7 @@
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             android:textColor="@color/colorPrimary"
+            android:visibility="gone"
             tools:text="本站发布" />
     </LinearLayout>
 

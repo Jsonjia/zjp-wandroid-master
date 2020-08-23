@@ -1,6 +1,7 @@
 package com.zjp.common.bindadapter;
 
 import android.text.TextUtils;
+import android.view.View;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -56,5 +57,10 @@ public class ImageBindingAdapters {
         int secondSpace = desc.indexOf(" ", firstSpace + 1);
         String time = desc.substring(0, secondSpace);
         textView.setText(time);
+    }
+
+    @BindingAdapter("select")
+    public static void bindSelect(View v, boolean select) {
+        v.setSelected(select);
     }
 }

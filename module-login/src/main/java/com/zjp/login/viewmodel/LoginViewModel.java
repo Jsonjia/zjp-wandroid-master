@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.viewmodel.BaseViewModel;
+import com.zjp.common.bean.ProjectTabBean;
 import com.zjp.common.bean.UserInfo;
 import com.zjp.common.textwatcher.SimpleTextWatcher;
 import com.zjp.login.api.LoginService;
@@ -19,6 +20,7 @@ import com.zjp.network.observer.NetHelperObserver;
 import com.zjp.network.scheduler.IoMainScheduler;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +30,7 @@ public class LoginViewModel extends BaseViewModel {
 
     public MutableLiveData<UserInfo> registerLiveData= new MutableLiveData<>();
     public MutableLiveData<UserInfo> loginLiveData= new MutableLiveData<>();
+    public MutableLiveData<List<ProjectTabBean>> mProjectListMutable = new MutableLiveData<>();
 
     public LoginViewModel(@NonNull Application application) {
         super(application);
@@ -73,6 +76,28 @@ public class LoginViewModel extends BaseViewModel {
                     @Override
                     public void error(String msg) {
                         ToastUtils.showShort(msg);
+                    }
+                }));
+    }
+
+    public void getProjectTab() {
+        RetrofitHelper.getInstance().create(LoginService.class)
+                .getProjectTab()
+                .compose(new IoMainScheduler<>())
+                .doOnSubscribe(this)  //  请求与ViewModel周期同步
+                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<ProjectTabBean>>>() {
+                    @Override
+                    public void success(BaseResponse<List<ProjectTabBean>> response) {
+                        if (response.getData() != null && response.getData().size() > 0) {
+                            mProjectListMutable.postValue(response.getData());
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void error(String msg) {
+
                     }
                 }));
     }

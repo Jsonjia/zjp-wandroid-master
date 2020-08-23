@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.tencent.mmkv.MMKV;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.adapter.TabNavigatorAdapter;
@@ -14,6 +15,8 @@ import com.zjp.common.adapter.TabPagerAdapter;
 import com.zjp.common.bean.ProjectTabBean;
 import com.zjp.common.callback.OnTabClickListener;
 import com.zjp.common.callback.TabPagerListener;
+import com.zjp.common.storage.MmkvHelper;
+import com.zjp.network.constant.C;
 import com.zjp.project.R;
 import com.zjp.project.databinding.FragmentProjectFragmentBinding;
 import com.zjp.project.viewmodel.ProjectViewModel;
@@ -62,23 +65,20 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             mViewDataBinding.fl.setElevation(10f);
         }
-        mViewModel.getProjectTab();
     }
 
     @Override
     protected void initData() {
         super.initData();
-
-        mViewModel.mProjectListMutable.observe(this, projectTabBeans -> {
-            if (projectTabBeans != null && projectTabBeans.size() > 0) {
-                tabBeanList.clear();
-                tabBeanList.addAll(projectTabBeans);
-                for (int i = 0; i < projectTabBeans.size(); i++) {
-                    titleList.add(projectTabBeans.get(i).getName());
-                }
-                initFragment();
+        List<ProjectTabBean> mProjTabList = MmkvHelper.getInstance().getTList(C.PROJECT_TAB, ProjectTabBean.class);
+        if (null != mProjTabList && mProjTabList.size() > 0) {
+            tabBeanList.clear();
+            tabBeanList.addAll(mProjTabList);
+            for (int i = 0; i < mProjTabList.size(); i++) {
+                titleList.add(mProjTabList.get(i).getName());
             }
-        });
+            initFragment();
+        }
     }
 
     private void initFragment() {

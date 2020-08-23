@@ -22,35 +22,12 @@ import java.util.List;
  */
 public class ProjectViewModel extends BaseViewModel {
 
-    public MutableLiveData<List<ProjectTabBean>> mProjectListMutable = new MutableLiveData<>();
     public MutableLiveData<List<ArticleEntity.DatasBean>> mArticleListMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mCollectMutable = new MutableLiveData<>();
     public MutableLiveData<BaseResponse> mUnCollectMutable = new MutableLiveData<>();
 
     public ProjectViewModel(@NonNull Application application) {
         super(application);
-    }
-
-    public void getProjectTab() {
-        RetrofitHelper.getInstance().create(ProjectService.class)
-                .getProjectTab()
-                .compose(new IoMainScheduler<>())
-                .doOnSubscribe(this)  //  请求与ViewModel周期同步
-                .subscribe(new NetHelperObserver<>(new NetCallback<BaseResponse<List<ProjectTabBean>>>() {
-                    @Override
-                    public void success(BaseResponse<List<ProjectTabBean>> response) {
-                        if (response.getData() != null && response.getData().size() > 0) {
-                            mProjectListMutable.postValue(response.getData());
-                        } else {
-
-                        }
-                    }
-
-                    @Override
-                    public void error(String msg) {
-
-                    }
-                }));
     }
 
     public void getProjectList(int pageNum, int id) {

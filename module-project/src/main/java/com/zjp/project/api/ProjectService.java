@@ -17,10 +17,6 @@ import retrofit2.http.Query;
  */
 public interface ProjectService {
 
-    //获取项目tab
-    @GET("/project/tree/json")
-    Observable<BaseResponse<List<ProjectTabBean>>> getProjectTab();
-
     //获取项目list
     @GET("/project/list/{pageNum}/json")
     Observable<BaseResponse<ArticleEntity>> getProjectList(@Path("pageNum") int pageNum, @Query("cid") int cid);

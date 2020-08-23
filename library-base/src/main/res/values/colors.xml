@@ -20,4 +20,6 @@
     <color name="c_a0a0a0">#a0a0a0</color>
     <color name="c_eeeeee">#eeeeee</color>
     <color name="shadow_start_color">#11000000</color>
+    <color name="c_616161">#616161</color>
+    <color name="c_3f3f3f">#3f3f3f</color>
 </resources>

@@ -17,7 +17,6 @@ public class CategoryAdapter extends BaseQuickAdapter<ProjectTabBean, BaseDataBi
         super(R.layout.item_project_category);
     }
 
-
     @Override
     protected void convert(@NotNull BaseDataBindingHolder<ItemProjectCategoryBinding> holder, ProjectTabBean projectTabBean) {
         ItemProjectCategoryBinding dataBinding = holder.getDataBinding();

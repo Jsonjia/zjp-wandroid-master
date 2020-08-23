@@ -3,6 +3,9 @@ package com.zjp.common.storage;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.tencent.mmkv.MMKV;
 import com.zjp.common.bean.UserInfo;
@@ -110,6 +113,27 @@ public class MmkvHelper {
     }
 
     /**
+     * 获取带有泛型的List
+     */
+    public <T> List<T> getTList(String tag, Class<T> cls) {
+        List<T> dataList = new ArrayList<>();
+        String strJson = mmkv.decodeString(tag, null);
+        if (null == strJson) {
+            return dataList;
+        }
+        try {
+            Gson gson = new Gson();
+            JsonArray arry = new JsonParser().parse(strJson).getAsJsonArray();
+            for (JsonElement jsonElement : arry) {
+                dataList.add(gson.fromJson(jsonElement, cls));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dataList;
+    }
+
+    /**
      * 是否是第一次启动app
      */
     public boolean isFirst() {
@@ -168,7 +192,6 @@ public class MmkvHelper {
     public boolean getshowTopArticle() {
         return mmkv.decodeBool(C.SHOW_TOP_ARTICLE, true);
     }
-
 
 
     public void setDarkTheme(boolean darkTheme) {
