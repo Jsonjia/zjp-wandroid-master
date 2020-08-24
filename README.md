@@ -14,7 +14,7 @@
 ## 效果图
 
 ## App下载
-- [github下载](https://github.com/Jsonjia/zjp-wandroid-master)
+- 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://github.com/Jsonjia/zjp-wandroid-master/blob/master/app/release/app-release.apk) 下载
 - [fir.im下载](http://d.firim.info/24u9)
 - 扫码
 
