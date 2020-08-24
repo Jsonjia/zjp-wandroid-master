@@ -8,6 +8,8 @@
         <variable
             name="userinfo"
             type="com.zjp.common.bean.UserInfo" />
+
+        <import type="com.zjp.common.font.Font" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,6 +44,7 @@
             style="@style/textview_15sp_style"
             android:gravity="center"
             android:text='@{"+" + userinfo.getCoinCount()}'
+            textTypeFace="@{Font.ROBOTO_MEDIUM}"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/tv_date"

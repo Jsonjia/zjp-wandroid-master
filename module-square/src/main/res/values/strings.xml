@@ -1,6 +1,4 @@
 <resources>
-    <string name="app_name">module-square</string>
-
     <string-array name="square_title">
         <item>体系</item>
         <item>导航</item>

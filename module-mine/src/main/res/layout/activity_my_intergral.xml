@@ -4,6 +4,7 @@
 
     <data>
 
+        <import type="com.zjp.common.font.Font" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,6 +40,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvIntegralAnim"
+                textTypeFace="@{Font.ROBOTO_MEDIUM}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
@@ -116,6 +118,7 @@
                                 android:src="@mipmap/iv_integral" />
 
                             <androidx.appcompat.widget.AppCompatTextView
+                                textTypeFace="@{Font.SOURCEHANSANSCN_MEDIUM}"
                                 android:layout_width="match_parent"
                                 android:layout_height="42dp"
                                 android:gravity="center_vertical"

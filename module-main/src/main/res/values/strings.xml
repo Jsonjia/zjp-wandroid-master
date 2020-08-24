@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">moudle-main</string>
 
     <string name="ic_tab_home_txt">首页</string>
     <string name="ic_tab_project_txt">项目</string>

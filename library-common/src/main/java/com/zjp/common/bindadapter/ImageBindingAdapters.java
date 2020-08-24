@@ -1,5 +1,6 @@
 package com.zjp.common.bindadapter;
 
+import android.graphics.Typeface;
 import android.text.TextUtils;
 import android.view.View;
 
@@ -7,6 +8,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.databinding.BindingAdapter;
 
+import com.zjp.common.font.Font;
 import com.zjp.common.utils.GlideUtil;
 
 /**
@@ -62,5 +64,18 @@ public class ImageBindingAdapters {
     @BindingAdapter("select")
     public static void bindSelect(View v, boolean select) {
         v.setSelected(select);
+    }
+
+    /**
+     * 设置字体
+     */
+    @BindingAdapter(value = {"textTypeFace"}, requireAll = false)
+    public static void setTypeFace(AppCompatTextView textView, Font font) {
+        try {
+            Typeface typeface = Typeface.createFromAsset(textView.getContext().getAssets(), "font/" + font.getName());
+            textView.setTypeface(typeface);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

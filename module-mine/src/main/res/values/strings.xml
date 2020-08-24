@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">module-mine</string>
 
     <!--设置 page-->
     <string name="setting_base">基本设置</string>

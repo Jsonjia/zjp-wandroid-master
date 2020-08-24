@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">module-login</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
