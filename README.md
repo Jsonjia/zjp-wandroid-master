@@ -16,7 +16,7 @@
 | ![](art/01.jpg) | ![](art/02.jpg) | ![](art/03.jpg) | ![](art/04.jpg) |
 | --- | --- | --- | --- |
 | ![](art/05.jpg) | ![](art/06.jpg) | ![](art/07.jpg) | ![](art/08.jpg) |
-| ![](art/09.jpg) 
+| ![](art/01.gif) | ![](art/02.gif) | ![](art/03.gif) | ![](art/04.gif) | 
 
 ## App下载
 - 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://github.com/Jsonjia/zjp-wandroid-master/blob/master/app/release/app-release.apk) 下载
