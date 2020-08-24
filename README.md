@@ -18,6 +18,9 @@
 - [fir.im下载](http://d.firim.info/24u9)
 - 扫码
 
+![](./art/download_qr_code.png)
+
+
 ## 主要功能
 
 - 首页、项目、广场、公众号、我的五大模块；
