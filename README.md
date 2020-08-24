@@ -10,7 +10,7 @@
 
 [简书介绍](https://www.jianshu.com/p/e6b743f809df)
 
-该项目用了[玩Android](https://www.wanandroid.com/blog/show/2)网站提供的API进行开发而成；项目基于`组件化` + `Arouter` +  + `MVVM` + `Jetpack` + `Rxjava` + `Retrofit` + `DataBinding` + `AOP` 等框架，如有任何疑问或者bug，可以给我提[Issues](https://github.com/Jsonjia/zjp-wandroid-master/issues)，项目可能迭代维护，努力打造一款优秀的 WanAndroid 客户端。 开源不易，喜欢请个star，谢谢
+该项目用了[玩Android](https://www.wanandroid.com/blog/show/2)网站提供的API进行开发而成；项目基于`组件化` + `Arouter` + `MVVM` + `Jetpack` + `Rxjava` + `Retrofit` + `DataBinding` + `AOP` 等框架，如有任何疑问或者bug，可以给我提[Issues](https://github.com/Jsonjia/zjp-wandroid-master/issues)，项目可能迭代维护，努力打造一款优秀的 WanAndroid 客户端。 开源不易，喜欢请个star，谢谢
 
 ## 效果图
 
