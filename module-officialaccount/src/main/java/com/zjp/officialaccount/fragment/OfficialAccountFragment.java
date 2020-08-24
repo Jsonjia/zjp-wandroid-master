@@ -1,26 +1,22 @@
 package com.zjp.officialaccount.fragment;
 
-import android.util.Log;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.Observer;
+import android.view.ViewGroup;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
+import com.gyf.immersionbar.ImmersionBar;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.ProjectTabBean;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.officialaccount.R;
 import com.zjp.officialaccount.adapter.CategoryAdapter;
 import com.zjp.officialaccount.adapter.OfficialAccountListAdapter;
 import com.zjp.officialaccount.databinding.FragmentOfficialAccountFragmentBinding;
 import com.zjp.officialaccount.viewmodel.OfficialAccountViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = RouterFragmentPath.OfficialAccount.PAGER_OFFICIALACCOUNT)
@@ -30,6 +26,7 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
     private OfficialAccountListAdapter officialAccountListAdapter;
     private PageInfo pageInfo;
     private int id = 0;
+    private List<ArticleEntity.DatasBean> shareArticles = new ArrayList<>();
 
     @Override
     protected void initImmersionBar() {
@@ -55,6 +52,10 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
     @Override
     protected void initView() {
         super.initView();
+        ViewGroup.LayoutParams layoutParams = mViewDataBinding.viewStatus.getLayoutParams();
+        layoutParams.height = ImmersionBar.getStatusBarHeight(getActivity());
+        mViewDataBinding.viewStatus.setLayoutParams(layoutParams);
+        mViewDataBinding.tvTitle.setText("公众号");
         mViewDataBinding.setVm(mViewModel);
         initCategory();
         initArticleList();
@@ -86,6 +87,7 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
         });
 
         mViewModel.mArticleMutable.observe(this, articleEntity -> {
+            officialAccountListAdapter.getData().clear();
             if (null != articleEntity) {
                 List<ArticleEntity.DatasBean> shareArticles = articleEntity.getDatas();
                 pageInfo.nextPage();
@@ -122,6 +124,7 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
     }
 
     private void loadOfficialAccountList(int id) {
+        pageInfo.reset();
         mViewModel.getAuthorArticleList(id, pageInfo.page);
     }
 
@@ -130,6 +133,8 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
     }
 
     private void initArticleList() {
+        mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
+                CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
         mViewDataBinding.recy.setAdapter(officialAccountListAdapter = new OfficialAccountListAdapter());
     }
 

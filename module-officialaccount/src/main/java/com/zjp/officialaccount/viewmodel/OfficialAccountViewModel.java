@@ -2,7 +2,7 @@ package com.zjp.officialaccount.viewmodel;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
-import android.util.Log;
+import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -22,13 +22,10 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.functions.Predicate;
-import io.reactivex.internal.schedulers.IoScheduler;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -42,6 +39,12 @@ public class OfficialAccountViewModel extends BaseViewModel {
 
     public OfficialAccountViewModel(@NonNull Application application) {
         super(application);
+    }
+
+    public MutableLiveData<Integer> cId = new MutableLiveData<>();
+
+    public void onCheckedChanged(RadioGroup group, int checkId) {
+        cId.setValue(checkId);
     }
 
     public void loadData() {
