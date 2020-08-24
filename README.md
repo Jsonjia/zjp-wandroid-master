@@ -17,6 +17,7 @@
 - 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://github.com/Jsonjia/zjp-wandroid-master/blob/master/app/release/app-release.apk) 下载
 - [fir.im下载](http://d.firim.info/24u9)
 - 扫码
+	![](./art/download_qr_code.png)
 
 ## 主要功能
 
