@@ -8,6 +8,7 @@
 [3]:https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat
 [4]:https://android-arsenal.com/api?level=21
 
+[简书介绍](https://www.jianshu.com/p/e6b743f809df)
 
 该项目用了[玩Android](https://www.wanandroid.com/blog/show/2)网站提供的API进行开发而成；项目基于`组件化` + `Arouter` +  + `MVVM` + `Jetpack` + `Rxjava` + `Retrofit` + `DataBinding` + `AOP` 等框架，如有任何疑问或者bug，可以给我提[Issues](https://github.com/Jsonjia/zjp-wandroid-master/issues)，项目可能迭代维护，努力打造一款优秀的 WanAndroid 客户端。 开源不易，喜欢请个star，谢谢
 
@@ -16,7 +17,7 @@
 | ![](art/01.jpg) | ![](art/02.jpg) | ![](art/03.jpg) | ![](art/04.jpg) |
 | --- | --- | --- | --- |
 | ![](art/05.jpg) | ![](art/06.jpg) | ![](art/07.jpg) | ![](art/08.jpg) |
-| ![](art/09.jpg) 
+| ![](art/01.gif) | ![](art/02.gif) | ![](art/03.gif) | ![](art/04.gif) | 
 
 ## App下载
 - 点击[![](https://img.shields.io/badge/Download-apk-green.svg)](https://github.com/Jsonjia/zjp-wandroid-master/blob/master/app/release/app-release.apk) 下载
