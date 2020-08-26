@@ -1,12 +1,15 @@
 ## 简介
 
-[![Platform][1]][2]  [![Release][3]][4]  
+[![Platform][1]][2]  [![Release][3]][4]  [![Release][5]][6]
 
 [1]:https://img.shields.io/badge/platform-Android-blue.svg  
 [2]:https://github.com/Jsonjia/zjp-wandroid-master/
 
 [3]:https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat
 [4]:https://android-arsenal.com/api?level=21
+
+[5]:https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat
+[6]:https://android-arsenal.com/api?level=16
 
 [简书介绍](https://www.jianshu.com/p/e6b743f809df)
 
