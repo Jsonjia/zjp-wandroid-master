@@ -8,8 +8,8 @@
 [3]:https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat
 [4]:https://android-arsenal.com/api?level=21
 
-[5]:https://img.shields.io/badge/API-16%2B-brightgreen.svg?style=flat
-[6]:https://android-arsenal.com/api?level=16
+[5]:https://img.shields.io/github/release/iceCola7/WanAndroid.svg
+[6]:https://github.com/Jsonjia/zjp-wandroid-master/releases
 
 [简书介绍](https://www.jianshu.com/p/e6b743f809df)
 
