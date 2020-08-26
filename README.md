@@ -9,7 +9,7 @@
 [4]:https://android-arsenal.com/api?level=21
 
 [5]:https://img.shields.io/github/release/iceCola7/WanAndroid.svg
-[6]:https://github.com/Jsonjia/zjp-wandroid-master/releases
+[6]:https://github.com/Jsonjia/zjp-wandroid-master/releases/tag/V1.0.0
 
 [简书介绍](https://www.jianshu.com/p/e6b743f809df)
 
