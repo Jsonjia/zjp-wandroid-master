@@ -68,7 +68,7 @@ public class SearchResultActivity extends BaseActivity<ActivitySearchresultBindi
         pageInfo = new PageInfo();
         Intent intent = getIntent();
         if (intent != null) {
-            keyword = intent.getStringExtra("keyword");
+            keyword = intent.getStringExtra(C.KEYWORD);
             if (!TextUtils.isEmpty(keyword)) {
                 mViewDataBinding.searchEt.setText(keyword);
                 mViewDataBinding.searchEt.setFocusable(false);

@@ -128,7 +128,6 @@ public class ProjectListFragment extends BaseLazyFragment<FragmentProjectListBin
     protected void lazyLoadData() {
         pageInfo = new PageInfo();
         isLoading = true;
-        showLoading();
         mViewDataBinding.refresh.setOnRefreshLoadMoreListener(this);
         articleListAdapter.setOnItemClickListener((adapter, view, position) -> {
             ArticleEntity.DatasBean datasBean = articleListAdapter.getData().get(position);
