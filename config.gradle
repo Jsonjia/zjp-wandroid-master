@@ -6,14 +6,14 @@ ext {
             applicationId    : "com.zjp.wandroid",
             minSdkVersion    : 21,
             targetSdkVersion : 30,
-            versionCode      : 1,
-            versionName      : "1.0",
+            versionCode      : 2,
+            versionName      : "1.2",
     ]
 
     version = [
-            appcompatVersion: "1.1.0",
-            constraintlayout: "2.0.0-beta8",
-            materialVersion : "1.1.0",
+            appcompatVersion: "1.2.0",
+            constraintlayout: "2.0.1",
+            materialVersion : "1.2.0",
     ]
 
     androidXTest = [

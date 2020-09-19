@@ -1,14 +1,20 @@
 package com.zjp.officialaccount.fragment;
 
+import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.gyf.immersionbar.ImmersionBar;
 import com.zjp.base.fragment.BaseFragment;
 import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.common.bean.ArticleEntity;
 import com.zjp.common.bean.ProjectTabBean;
 import com.zjp.common.bean.page.PageInfo;
+import com.zjp.common.ui.WebViewActivity;
 import com.zjp.common.utils.CustomItemDecoration;
 import com.zjp.officialaccount.R;
 import com.zjp.officialaccount.adapter.CategoryAdapter;
@@ -92,6 +98,7 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
                 List<ArticleEntity.DatasBean> shareArticles = articleEntity.getDatas();
                 pageInfo.nextPage();
                 if (articleEntity.getCurPage() == 1) {
+                    mViewDataBinding.recy.smoothScrollToPosition(0);
                     showContent();
                     if (shareArticles != null && shareArticles.size() > 0) {
                         showContent();
@@ -136,6 +143,11 @@ public class OfficialAccountFragment extends BaseFragment<FragmentOfficialAccoun
         mViewDataBinding.recy.addItemDecoration(new CustomItemDecoration(getActivity(),
                 CustomItemDecoration.ItemDecorationDirection.VERTICAL_LIST, R.drawable.linear_split_line));
         mViewDataBinding.recy.setAdapter(officialAccountListAdapter = new OfficialAccountListAdapter());
+
+        officialAccountListAdapter.setOnItemClickListener((adapter, view, position) -> {
+            ArticleEntity.DatasBean datasBean = officialAccountListAdapter.getData().get(position);
+            WebViewActivity.start(getActivity(), datasBean.getTitle(), datasBean.getLink());
+        });
     }
 
 }

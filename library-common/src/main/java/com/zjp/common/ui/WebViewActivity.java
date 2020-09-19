@@ -3,6 +3,7 @@ package com.zjp.common.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.text.Html;
 import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -85,7 +86,8 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding, BaseVi
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            mViewDataBinding.title.setTitle(mTitle);
+//            mViewDataBinding.title.setTitle(mTitle);
+            mViewDataBinding.title.setTitle(Html.fromHtml(mTitle) + "");
         }
     };
 

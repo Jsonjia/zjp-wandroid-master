@@ -1,6 +1,7 @@
 package com.zjp.square.fragment;
 
 import android.os.Build;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
@@ -10,6 +11,7 @@ import com.zjp.base.router.RouterFragmentPath;
 import com.zjp.base.viewmodel.BaseViewModel;
 import com.zjp.common.adapter.TabNavigatorAdapter;
 import com.zjp.common.adapter.TabPagerAdapter;
+import com.zjp.common.callback.OnTabClickListener;
 import com.zjp.common.callback.TabPagerListener;
 import com.zjp.square.R;
 import com.zjp.square.databinding.FragmentSquareFragmentBinding;
@@ -22,7 +24,7 @@ import java.util.Arrays;
 
 @Route(path = RouterFragmentPath.Square.PAGER_SQUARE)
 public class SquareFragment extends BaseFragment<FragmentSquareFragmentBinding, BaseViewModel>
-        implements TabPagerListener {
+        implements TabPagerListener, OnTabClickListener {
 
     private TabPagerAdapter tabPagerAdapter;
 
@@ -58,10 +60,11 @@ public class SquareFragment extends BaseFragment<FragmentSquareFragmentBinding, 
         tabPagerAdapter = new TabPagerAdapter(getChildFragmentManager(), stringArray.length);
         tabPagerAdapter.setListener(this::getFragment);
         mViewDataBinding.vp.setAdapter(tabPagerAdapter);
-        mViewDataBinding.vp.setOffscreenPageLimit(stringArray.length - 1);
+        mViewDataBinding.vp.setOffscreenPageLimit(stringArray.length);
 
         CommonNavigator commonNavigator = new CommonNavigator(getActivity());
         TabNavigatorAdapter tabNavigatorAdapter = new TabNavigatorAdapter(Arrays.asList(stringArray));
+        tabNavigatorAdapter.setOnTabClickListener(this::onTabClick);
         commonNavigator.setAdapter(tabNavigatorAdapter);
         mViewDataBinding.magicInticator.setNavigator(commonNavigator);
         ViewPagerHelper.bind(mViewDataBinding.magicInticator, mViewDataBinding.vp);
@@ -75,5 +78,10 @@ public class SquareFragment extends BaseFragment<FragmentSquareFragmentBinding, 
             default:
                 return NavigationFragment.newInstance();
         }
+    }
+
+    @Override
+    public void onTabClick(View view, int index) {
+        mViewDataBinding.vp.setCurrentItem(index);
     }
 }

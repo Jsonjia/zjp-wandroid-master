@@ -85,7 +85,7 @@ public class ProjectFragment extends BaseFragment<FragmentProjectFragmentBinding
         tabPagerAdapter = new TabPagerAdapter(getChildFragmentManager(), tabBeanList.size());
         tabPagerAdapter.setListener(this::getFragment);
         mViewDataBinding.vp.setAdapter(tabPagerAdapter);
-        mViewDataBinding.vp.setOffscreenPageLimit(tabBeanList.size() - 1);
+        mViewDataBinding.vp.setOffscreenPageLimit(tabBeanList.size() );
 
         CommonNavigator commonNavigator = new CommonNavigator(getActivity());
         TabNavigatorAdapter tabNavigatorAdapter = new TabNavigatorAdapter(titleList);
