@@ -21,7 +21,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
 
 import java.util.Arrays;
 
-
 @Route(path = RouterFragmentPath.Square.PAGER_SQUARE)
 public class SquareFragment extends BaseFragment<FragmentSquareFragmentBinding, BaseViewModel>
         implements TabPagerListener, OnTabClickListener {
