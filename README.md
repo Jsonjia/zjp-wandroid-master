@@ -1,3 +1,20 @@
+## 更新日志
+
+**[最新更新日志请点击查看](https://github.com/Jsonjia/zjp-wandroid-master/releases)**
+
+
+### v1.2.0 (2020-09-19)
+
+- 1.fix tab导航点击事件和公众号tab文章列表跳转无效问题
+- 2.fix文章详情标题出现转义符问题；
+- 3.fix fragment切换重叠问题
+- 4.优化了公众号文章列表切换显示问题；
+- 5.更新了constraintlayout版本号为2.0.1，弃用测试版等；
+
+### v1.0.0 (2020-08-24)
+
+- 初始化版本，主要功能都已经完成。
+
 ## 简介
 
 [![Platform][1]][2]  [![Release][3]][4]
@@ -61,23 +78,6 @@
 - [aop](https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx)
 - [PersistentCookieJar](https://github.com/franmontiel/PersistentCookieJar)
 
-
-## 更新日志
-
-**[最新更新日志请点击查看](https://github.com/Jsonjia/zjp-wandroid-master/releases)**
-
-
-### v1.2.0 (2020-09-19)
-
-- 1.fix tab导航点击事件和公众号tab文章列表跳转无效问题
-- 2.fix文章详情标题出现转义符问题；
-- 3.fix fragment切换重叠问题
-- 4.优化了公众号文章列表切换显示问题；
-- 5.更新了constraintlayout版本号为2.0.1，弃用测试版等；
-
-### v1.0.0 (2020-08-24)
-
-- 初始化版本，主要功能都已经完成。
 
 ## 感谢
 - [阿里矢量图](https://www.iconfont.cn/)
