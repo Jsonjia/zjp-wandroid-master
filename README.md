@@ -67,7 +67,7 @@
 **[最新更新日志请点击查看](https://github.com/Jsonjia/zjp-wandroid-master/releases)**
 
 
-## v1.2.0 (2020-09-19)
+### v1.2.0 (2020-09-19)
 
 - 1.fix tab导航点击事件和公众号tab文章列表跳转无效问题
 - 2.fix文章详情标题出现转义符问题；
