@@ -12,14 +12,14 @@ ext {
 
     version = [
             appcompatVersion: "1.2.0",
-            constraintlayout: "2.0.1",
-            materialVersion : "1.2.0",
+            constraintlayout: "2.0.2",
+            materialVersion : "1.2.1",
     ]
 
     androidXTest = [
-            "junit"                               : "junit:junit:4.13",
-            "androidx.test.ext_junit"             : "androidx.test.ext:junit:1.1.1",
-            "androidx.test.espresso:espresso_core": "androidx.test.espresso:espresso-core:3.2.0",
+            "junit"                               : "junit:junit:4.13.1",
+            "androidx.test.ext_junit"             : "androidx.test.ext:junit:1.1.2",
+            "androidx.test.espresso:espresso_core": "androidx.test.espresso:espresso-core:3.3.0",
     ]
 
     androidx = [
@@ -51,7 +51,7 @@ ext {
             "arouter_compiler"             : "com.alibaba:arouter-compiler:1.2.2",
 
             //banner
-            "banner"                       : "com.youth.banner:banner:2.0.10",
+            "banner"                       : "com.youth.banner:banner:2.1.0",
 
             //refresh
             "refreshlayout"                : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",

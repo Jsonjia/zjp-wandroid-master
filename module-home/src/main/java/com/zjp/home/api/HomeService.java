@@ -25,10 +25,12 @@ public interface HomeService {
     //获取首页【置顶】文章数据
     @GET("article/top/json")
     Observable<BaseResponse<List<ArticleEntity.DatasBean>>> getTopList();
+//    Flowable<BaseResponse<List<ArticleEntity.DatasBean>>> getTopList();
 
     //首页文章列表
     @GET("article/list/{page}/json")
     Observable<BaseResponse<ArticleEntity>> getHomeList(@Path("page") int pageNo);
+//    Flowable<BaseResponse<ArticleEntity>> getHomeList(@Path("page") int pageNo);
 
     //热门搜索
     @GET("hotkey/json")

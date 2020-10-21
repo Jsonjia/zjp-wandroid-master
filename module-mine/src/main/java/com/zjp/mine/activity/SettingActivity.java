@@ -45,7 +45,7 @@ public class SettingActivity extends BaseActivity<ActivitySettingBinding, MineVi
         boolean hideTopArticle = MmkvHelper.getInstance().getshowTopArticle();
         mViewDataBinding.swShowTop.setChecked(hideTopArticle);
 
-        mViewDataBinding.tvCurrentVersionVal.setText("v" + BuildConfig.VERSION_NAME);
+        mViewDataBinding.tvCurrentVersionVal.setText("v" + BuildConfig.BUILD_TYPE);
         mViewModel.getCacheSize();
     }
 

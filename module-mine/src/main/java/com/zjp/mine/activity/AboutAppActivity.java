@@ -38,7 +38,7 @@ public class AboutAppActivity extends BaseActivity<ActivityAboutAppBinding, Base
         mViewDataBinding.titleview.setTitle("关于我们");
 
         mViewDataBinding.tvVersionCode.setText(String.format("V%s(%d)",
-                BuildConfig.VERSION_NAME, BuildConfig.VERSION_CODE));
+                BuildConfig.BUILD_TYPE, BuildConfig.BUILD_TYPE));
     }
 
     @Override

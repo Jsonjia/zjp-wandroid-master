@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.zjp.base.viewmodel.BaseViewModel;
-import com.zjp.home.api.HomeService;
 import com.zjp.common.bean.ArticleEntity;
+import com.zjp.home.api.HomeService;
 import com.zjp.home.bean.BannerEntity;
 import com.zjp.network.bean.BaseResponse;
 import com.zjp.network.https.RetrofitHelper;
@@ -63,6 +63,7 @@ public class HomeViewModel extends BaseViewModel {
     @SuppressLint("CheckResult")
     public void getArticleMultiList(int page) {
         HomeService homeService = RetrofitHelper.getInstance().create(HomeService.class);
+//        Flowable.concat(homeService.getTopList(),  homeService.getHomeList(page))
         Observable.zip(homeService.getTopList(),
                 homeService.getHomeList(page),
                 // 注：创建BiFunction对象传入的第3个参数 = 合并后数据的数据类型

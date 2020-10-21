@@ -59,4 +59,9 @@ android {
     buildFeatures {
         dataBinding = true
     }
+
+//    packagingOptions {
+//        exclude 'classes.dex'
+//        exclude '**.**'
+//    }
 }

@@ -1,19 +1,17 @@
 {
-  "version": 1,
+  "version": 2,
   "artifactType": {
     "type": "APK",
     "kind": "Directory"
   },
   "applicationId": "com.zjp.wandroid",
-  "variantName": "release",
+  "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "SINGLE",
       "filters": [],
-      "properties": [],
       "versionCode": 2,
-      "versionName": "1.2",
-      "enabled": true,
+      "versionName": "1.2.0",
       "outputFile": "app-release.apk"
     }
   ]
