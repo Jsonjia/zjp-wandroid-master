@@ -3,7 +3,7 @@
 **[最新更新日志请点击查看](https://github.com/Jsonjia/zjp-wandroid-master/releases)**
 
 
-### v1.2.0 (2020-10-21)
+### v1.2.1 (2020-10-21)
 - 1.更新banner版本号为2.1.0；
 - 2.更新as版本号为4.1；
 - 3.fix 经常出现签名文件密码不正确问题。
