@@ -12,7 +12,7 @@ ext {
 
     version = [
             appcompatVersion: "1.2.0",
-            constraintlayout: "2.0.2",
+            constraintlayout: "2.0.4",
             materialVersion : "1.2.1",
     ]
 
@@ -32,14 +32,14 @@ ext {
     dependencies = [
 
             //retrofit
-            "retrofit"                     : "com.squareup.retrofit2:retrofit:2.8.1",
-            "converter_gson"               : "com.squareup.retrofit2:converter-gson:2.8.1",
-            "adapter_rxjava"               : "com.squareup.retrofit2:adapter-rxjava2:2.8.1",
-            "converter_scalars"            : "com.squareup.retrofit2:converter-scalars:2.8.1",
+            "retrofit"                     : "com.squareup.retrofit2:retrofit:2.9.0",
+            "converter_gson"               : "com.squareup.retrofit2:converter-gson:2.9.0",
+            "adapter_rxjava"               : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+            "converter_scalars"            : "com.squareup.retrofit2:converter-scalars:2.9.0",
 
             //okhttp
-            "okhttp"                       : "com.squareup.okhttp3:okhttp:4.4.0",
-            "logging_interceptor"          : "com.squareup.okhttp3:logging-interceptor:4.4.0",
+            "okhttp"                       : "com.squareup.okhttp3:okhttp:4.7.2",
+            "logging_interceptor"          : "com.squareup.okhttp3:logging-interceptor:4.7.2",
 
             //rxjava
             "rxjava"                       : "io.reactivex.rxjava2:rxjava:2.2.19",
