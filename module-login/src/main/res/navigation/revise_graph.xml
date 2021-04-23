@@ -25,6 +25,7 @@
         android:name="com.zjp.login.fragment.RegisterFragment"
         android:label="fragment_register_label"
         tools:layout="@layout/fragment_register">
+
         <action
             android:id="@+id/action_fragment_login"
             app:destination="@id/login_fragment"
