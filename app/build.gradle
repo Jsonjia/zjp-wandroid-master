@@ -5,12 +5,12 @@ def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
-def gitVersionCode() {
+static def gitVersionCode() {
     def cmd = 'git rev-list HEAD --first-parent --count'
     cmd.execute().text.trim().toInteger()
 }
 
-def gitVersionTag() {
+static def gitVersionTag() {
     def cmd = 'git describe --tags'
     def version = cmd.execute().text.trim()
 
